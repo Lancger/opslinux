@@ -1,0 +1,36 @@
+#vim /lib/systemd/system/nginx.service
+
+[Unit]
+Description=nginx
+After=network.target
+  
+[Service]
+Type=forking
+ExecStart=/usr/local/nginx/sbin/nginx
+ExecReload=/usr/local/nginx/sbin/nginx -s reload
+ExecStop=/usr/local/nginx/sbin/nginx -s quit
+PrivateTmp=true
+  
+[Install]
+WantedBy=multi-user.target
+
+
+
+# 设置开机启动
+systemctl enable nginx
+ 
+# 停止开机自动启动
+systemctl disable nginx
+ 
+# 启动nginx服务
+systemctl restart nginx
+ 
+# 查看服务当前状态
+systemctl status nginx
+ 
+# 重启nginx服务
+systemctl restart nginx.service
+ 
+ 
+# 查看所有已经启动的服务
+systemctl list-units --type=service

@@ -1,0 +1,4 @@
+HISTSIZE=4096
+HISTTIMEFORMAT="%Y/%m/%d %T   ";export HISTTIMEFORMAT
+export HISTORY_FILE=/var/log/shell_audit/audit.log
+export PROMPT_COMMAND='{ code=$?;thisHistID=`history 1|awk "{print \\$1}"`;lastCommand=`history 1| awk "{\\$1=\"\" ;print}"`;user=`id -un`;whoStr=(`who -u am i`);realUser=${whoStr[0]};logDay=${whoStr[2]};logTime=${whoStr[3]};pid=${whoStr[5]};ip=${whoStr[6]};if [[ ${thisHistID}x != ${lastHistID}x ]];then echo -E `date "+%Y/%m/%d %H:%M:%S"` $user\($realUser\)@$ip[PID:$pid][LOGIN:$logDay $logTime] --- [$PWD]$lastCommand [$code];lastHistID=$thisHistID;fi; } >> $HISTORY_FILE'
