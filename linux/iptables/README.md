@@ -1,7 +1,7 @@
 # 0、RH-Firewall-1-INPUT自定义链
-```
-INPUT链是系统默认带的链，RH-Firewall-1-INPUT是系统管理员自己定义添加的链。INPUT链一般是父链，像RH-Firewall-1-INPUT这样自定义的链都是一些特定功能的链，可以加入到主链INPUT中。
 
+INPUT链是系统默认带的链，RH-Firewall-1-INPUT是系统管理员自己定义添加的链。INPUT链一般是父链，像RH-Firewall-1-INPUT这样自定义的链都是一些特定功能的链，可以加入到主链INPUT中。
+```
 分别有RH-Firewall-1-INPUT和RH-IDS-1-INPUT两个链，分别完成防火墙和入侵检测功能，先将两个链加入到主链INPUT中。
 iptables -A INPUT -j RH-Firewall-1-INPUT
 iptables -A INPUT -j RH-IDS-1-INPUT
@@ -21,7 +21,6 @@ https://zhidao.baidu.com/question/494775320.html
 -A FORWARD -j REJECT --reject-with icmp-host-prohibited --需要将这行放到-A INPUT -j REJECT规则前面才生效
 -A INPUT -m state --state NEW -m tcp -p tcp --dport 3306 -j ACCEPT   --需要将这行放到-A INPUT -j REJECT规则前面才生效
 ```
-
 
 # 二、iptables文件说明
 
