@@ -1,3 +1,15 @@
+# 0、RH-Firewall-1-INPUT自定义链
+```
+INPUT链是系统默认带的链，RH-Firewall-1-INPUT是系统管理员自己定义添加的链。INPUT链一般是父链，像RH-Firewall-1-INPUT这样自定义的链都是一些特定功能的链，可以加入到主链INPUT中。
+
+分别有RH-Firewall-1-INPUT和RH-IDS-1-INPUT两个链，分别完成防火墙和入侵检测功能，先将两个链加入到主链INPUT中。
+iptables -A INPUT -j RH-Firewall-1-INPUT
+iptables -A INPUT -j RH-IDS-1-INPUT
+
+这样报文会先进入INPUT链，再由INPUT链进入RH-Firewall-1-INPUT处理，最后进入RH-IDS-1-INPUT链处理。
+
+https://zhidao.baidu.com/question/494775320.html
+```
 # 一、iptables没有生效的问题
 
 由于配置问题配置REJECT的情况
