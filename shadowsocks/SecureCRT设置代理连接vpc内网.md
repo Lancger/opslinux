@@ -4,4 +4,4 @@
 
 # 二、测试连接代理机器
 
-  ![SecureCRT代理2](https://github.com/Lancger/opslinux/blob/master/images/securecrt_proxy01.png)
+  ![SecureCRT代理2](https://github.com/Lancger/opslinux/blob/master/images/securecrt_proxy02.png)
