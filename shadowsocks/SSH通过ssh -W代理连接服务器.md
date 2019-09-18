@@ -1,6 +1,9 @@
+# 使用ssh -q -W代理连接
+
 ```
 (demo3) ➜  .ssh pwd
 /Users/User01/.ssh
+
 (demo3) ➜  .ssh cat config
 Host 139.180.*
   User root
