@@ -9,3 +9,7 @@
 # 三、目标机器使用代理连接
 
   ![SecureCRT代理2](https://github.com/Lancger/opslinux/blob/master/images/securecrt_proxy03.png)
+
+# 四、测试连接是否为代理连接
+
+  ![SecureCRT代理2](https://github.com/Lancger/opslinux/blob/master/images/securecrt_proxy04.png)
