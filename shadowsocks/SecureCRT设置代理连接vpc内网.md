@@ -13,3 +13,5 @@
 # 四、测试连接是否为代理连接
 
   ![SecureCRT代理2](https://github.com/Lancger/opslinux/blob/master/images/securecrt_proxy04.png)
+
+  ![SecureCRT代理2](https://github.com/Lancger/opslinux/blob/master/images/securecrt_proxy05.png)
