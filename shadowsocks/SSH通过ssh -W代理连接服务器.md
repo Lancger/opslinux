@@ -48,3 +48,13 @@ Host 139.180.*    #这里可以使用通配符
   IdentityFile /Users/User01/OpenVpn/shadowsock/id_salt_rsa
  
 ```
+
+# 三、测试连接
+```
+(demo3) ➜  .ssh ssh -p33389 root@139.180.22.30
+Last login: Wed Sep 18 11:25:23 2019 from 47.11.120.190
+
+salt-master<2019-09-18 11:39:24> ~
+root>#
+```
+
