@@ -68,6 +68,37 @@ P=3306           #端口。
 --execute        #执行命令。
 ```
 
+# 四、常见问题
+
+1、Waiting for the --replicate table to replicate to XXX
+
+问题出在 percona.checksums 表在从库不存在，根本原因是没有从主库同步过来，所以看一下从库是否延迟严重。
+
+```
+--replicate= 指定 checksum 计算结果存到哪个库表里，如果没有指定，默认是 percona.checksums 。
+但是我们检查使用的mysql用户一般是没有 create table 权限的，所以你可能需要先手动创建：
+
+CREATE DATABASE IF NOT EXISTS percona;
+CREATE TABLE IF NOT EXISTS percona.checksums (
+    db CHAR(64) NOT NULL,
+    tbl CHAR(64) NOT NULL,
+    chunk INT NOT NULL,
+    chunk_time FLOAT NULL,
+    chunk_index VARCHAR(200) NULL,
+    lower_boundary TEXT NULL,
+    upper_boundary TEXT NULL,
+    this_crc CHAR(40) NOT NULL,
+    this_cnt INT NOT NULL,
+    master_crc CHAR(40) NULL,
+    master_cnt INT NULL,
+    ts TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (db,tbl,chunk),
+    INDEX ts_db_tbl(ts,db,tbl)
+) ENGINE=InnoDB;
+
+生产环境中数据库用户权限一般都是有严格管理的，假如连接用户是repl_user（即直接用复制用户来检查），它应该额外赋予对其它库的 SELECT ，LOCK TABLES 权限，如果后续要用 pt-table-sync 就就需要写权限了。对percona库有写权限：
+```
+
 
 参考资料：
 
