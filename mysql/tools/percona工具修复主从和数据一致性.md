@@ -72,3 +72,5 @@ P=3306           #端口。
 参考资料：
 
 https://www.ywnds.com/?p=4415  使用pt-table-checksum&pt-table-sync检查和修复主从数据一致性
+
+https://segmentfault.com/a/1190000004309169
