@@ -6,7 +6,7 @@ yum install -y percona-toolkit
 ```
 # 二、表数据一致性校验(注意主库上执行)
 ```
-pt-table-checksum --nocheck-replication-filters --no-check-binlog-format --replicate=percona.checksums --empty-replicate-table --databases=user_center --tables=coin_change h=172.16.15.12,u=root,p='****',P=3306
+pt-table-checksum --nocheck-replication-filters --no-check-binlog-format --create-replicate-table --replicate=percona.checksums --empty-replicate-table --databases=user_center --tables=coin_change h=172.16.15.12,u=root,p='****',P=3306
 
 
 h=172.16.15.12 这里是写主库
