@@ -23,6 +23,7 @@ dirmessage_enable=YES
 xferlog_enable=YES
 connect_from_port_20=YES
 xferlog_std_format=YES
+xferlog_file=/var/log/vsftpd.log
 listen=NO
 listen_ipv6=YES
 pam_service_name=vsftpd
