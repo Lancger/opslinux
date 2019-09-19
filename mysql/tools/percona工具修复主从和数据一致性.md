@@ -39,6 +39,13 @@ TIME ：执行的时间。
 TABLE ：被检查的表名
 ```
 
+```
+校验结束后，在每个从库上，执行如下的sql语句即可看到是否有主从不一致发生：
+
+select * from percona.checksums where master_cnt <> this_cnt OR master_crc <> this_crc OR 
+ISNULL(master_crc) <> ISNULL(this_crc);
+```
+
 # 三、表结构和数据同步(注意从库上执行)
 ```
 pt-table-sync --replicate=percona.checksums --sync-to-master h=192.168.56.12,P=3306,u=root,p=123456 --databases=center --charset=utf8 --print  > diff.sql
