@@ -6,7 +6,7 @@ yum install -y percona-toolkit
 ```
 # 二、表数据一致性校验(注意主库上执行)
 ```
-pt-table-checksum --nocheck-replication-filters --no-check-binlog-format --replicate=test.checksums --empty-replicate-table --databases=user_center --tables=coin_change h=172.16.15.12,u=root,p='****',P=3306
+pt-table-checksum --nocheck-replication-filters --no-check-binlog-format --replicate=percona.checksums --empty-replicate-table --databases=user_center --tables=coin_change h=172.16.15.12,u=root,p='****',P=3306
 
 
 h=172.16.15.12 这里是写主库
@@ -17,12 +17,24 @@ h=172.16.15.12 这里是写主库
 
 # 三、表结构和数据同步(注意从库上执行)
 ```
-pt-table-sync --sync-to-master h=192.168.56.12,P=3306,u=root,p=123456 --databases=center --charset=utf8 --print  > diff.sql
+pt-table-sync --replicate=percona.checksums --sync-to-master h=192.168.56.12,P=3306,u=root,p=123456 --databases=center --charset=utf8 --print  > diff.sql
 
+pt-table-sync --replicate=percona.checksums --sync-to-master h=192.168.56.12,u=root,p='123456',P=3306 --print
 
-pt-table-sync --sync-to-master h=192.168.56.12,u=root,p='123456',P=3306 --print
+pt-table-sync --replicate=percona.checksums --sync-to-master h=192.168.56.12,u=root,p='123456',P=3306 --execute
 
-pt-table-sync --sync-to-master h=192.168.56.12,u=root,p='123456',P=3306 --execute
+--sync-to-master h=192.168.56.12  注意这里是写从库的IP
+
+--replicate=     #指定通过pt-table-checksum得到的表，这2个工具差不多都会一直用。
+--databases=     #指定执行同步的数据库，多个用逗号隔开。
+--tables=        #指定执行同步的表，多个用逗号隔开。
+--sync-to-master #指定一个DSN，即从的IP、端口、用户、密码等，他会通过show processlist或show slave status去自动的找主。
+h=192.168.56.12  #Slave服务器地址。
+u=root           #帐号。
+p=123456         #密码。
+P=3306           #端口。
+--print          #打印SQL语句,但不执行命令。
+--execute        #执行命令。
 ```
 
 
