@@ -13,6 +13,30 @@ h=172.16.15.12 这里是写主库
 --recursion-method：查找slave的方式，有hosts和processlist两种。前者是用show slave hosts来查找，这种方式适合服务器的端口和socket之类的不使用默认参数的情况；后者是用show processlist来查找
 --empty-replicate-table：检验前先清空以前的检验数据
 --create-replicate-table：存放检验数据的表如果不存在，则自动创建 
+
+Checking if all tables can be checksummed ...
+Starting checksum ...
+            TS ERRORS  DIFFS     ROWS  DIFF_ROWS  CHUNKS SKIPPED    TIME TABLE
+06-25T15:41:59      0      0        9          0       1       0   0.236 xmusic.star_archives
+06-25T15:41:59      0      0        3          0       1       0   0.337 xmusic.star_categories
+06-25T15:41:59      0      0        9          0       1       0   0.153 xmusic.star_category
+06-25T15:42:00      0      0        8          0       1       0   0.246 xmusic.star_news
+06-25T15:42:00      0      0        0          0       1       0   0.613 xmusic.star_occupation
+06-25T15:42:00      0      0      160          0       1       0   0.336 xmusic.tags
+06-25T15:42:02      0      1       10          0       1       0   1.284 xmusic.type
+06-25T15:42:02      0      0      102          0       1       0   0.437 xmusic.users
+
+如果是首次运行，会在主库自动创建 percona.checksums 表。
+
+
+TS ：完成检查的时间戳。
+ERRORS ：检查时候发生错误和警告的数量。
+DIFFS ：0表示一致，1表示不一致。当指定--no-replicate-check时，会一直为0，当指定--replicate-check-only会显示不同的信息
+ROWS ：比对的表行数。
+CHUNKS ：被划分到表中的块的数目。
+SKIPPED ：由于错误或警告或过大，则跳过块的数目。
+TIME ：执行的时间。
+TABLE ：被检查的表名
 ```
 
 # 三、表结构和数据同步(注意从库上执行)
