@@ -8,6 +8,9 @@ yum install -y percona-toolkit
 ```
 pt-table-checksum --nocheck-replication-filters --no-check-binlog-format --replicate=test.checksums --empty-replicate-table --databases=user_center --tables=coin_change h=172.16.15.12,u=root,p='****',P=3306
 
+
+h=172.16.15.12 这里是写主库
+--recursion-method：查找slave的方式，有hosts和processlist两种。前者是用show slave hosts来查找，这种方式适合服务器的端口和socket之类的不使用默认参数的情况；后者是用show processlist来查找
 --empty-replicate-table：检验前先清空以前的检验数据
 --create-replicate-table：存放检验数据的表如果不存在，则自动创建 
 ```
