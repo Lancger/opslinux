@@ -8,3 +8,5 @@ show variables like '%relay_log_purge%';
 10几天累计的日志，全放relaylog了，所以这么大，等你实时同步了，就没那么多了
 
 ```
+
+  ![Mysql relaylog](https://github.com/Lancger/opslinux/blob/master/images/relaylog.png)
