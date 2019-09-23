@@ -43,7 +43,12 @@ EOF
 
 chmod +x /tmp/disk.sh && sh /tmp/disk.sh
 
+mkdir -p /data0/{opt,logs}
+
+ln -s /data0/logs/ /opt/logs
+
 #ln -s /data /data0
+
 ```
 
 参考文档
