@@ -47,7 +47,9 @@ mkdir -p /data0/{opt,logs}
 
 ln -s /data0/logs/ /opt/logs
 
-#ln -s /data /data0
+chown -R www:www /data0/
+
+#ln -s /data /data0  (前面为目标，后面为软链)
 
 ```
 
