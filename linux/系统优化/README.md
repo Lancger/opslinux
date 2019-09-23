@@ -49,7 +49,11 @@ ln -s /data0/logs/ /opt/logs
 
 chown -R www:www /data0/
 
-chown -R www:www /opt/logs/
+chown -R www:www /opt/logs
+
+ls -l /data0/
+
+ls -l /opt/
 
 #ln -s /data /data0  (前面为目标，后面为软链)
 
