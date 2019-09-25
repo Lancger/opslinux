@@ -105,10 +105,58 @@ Syncing disks.
 [root@coin-server-eth-b ~]# init 6     --- 重启才生效
   ```
 # 二、查看当前VG大小
+```
+[root@coin-server-eth-b ~]# vgdisplay 
+  --- Volume group ---
+  VG Name               vg_group
+  System ID             
+  Format                lvm2
+  Metadata Areas        1
+  Metadata Sequence No  4
+  VG Access             read/write
+  VG Status             resizable
+  MAX LV                0
+  Cur LV                1
+  Open LV               1
+  Max PV                0
+  Cur PV                1
+  Act PV                1
+  VG Size               <600.00 GiB
+  PE Size               4.00 MiB
+  Total PE              153599
+  Alloc PE / Size       153599 / <600.00 GiB
+  Free  PE / Size       0 / 0   
+  VG UUID               fTZ1C7-MKDV-xeUt-f6Lk-eTlZ-2ac2-PME9hu
+   
+  --- Volume group ---
+  VG Name               vg_group2
+  System ID             
+  Format                lvm2
+  Metadata Areas        2
+  Metadata Sequence No  4
+  VG Access             read/write
+  VG Status             resizable
+  MAX LV                0
+  Cur LV                1
+  Open LV               1
+  Max PV                0
+  Cur PV                2
+  Act PV                2
+  VG Size               499.99 GiB
+  PE Size               4.00 MiB
+  Total PE              127998
+  Alloc PE / Size       127743 / <499.00 GiB
+  Free  PE / Size       255 / 1020.00 MiB
+  VG UUID               Mfxems-DfTe-JIsd-E6DU-9i0m-U0P6-UvDpx4
+```
 
   ![ECS LVM 扩容1](https://github.com/Lancger/opslinux/blob/master/images/ecs_lvm_01.png)
 
-# 三、
+# 三、将新分区磁盘加入到VG组
+
+```
+vgextend vg_group2 /dev/vdc2
+```
 
   ![ECS LVM 扩容1](https://github.com/Lancger/opslinux/blob/master/images/ecs_lvm_02.png)
   
