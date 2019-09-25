@@ -1,3 +1,7 @@
+# 一、问题现象
+
+  阿里云的一块数据磁一开始购买的磁盘只有300G,后面通过阿里云控制台，将数据盘扩容到了500G，然后系统分区使用的LVM格式的
+
   ![ECS LVM 扩容1](https://github.com/Lancger/opslinux/blob/master/images/ecs_lvm_01.png)
 
 
