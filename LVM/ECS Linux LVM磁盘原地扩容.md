@@ -125,6 +125,12 @@ lvextend -L +199G /dev/vg_group2/vg_eth_data
 
   ![ECS LVM 扩容1](https://github.com/Lancger/opslinux/blob/master/images/ecs_lvm_05.png)
 
+```
+lvdisplay
+```
+
+  ![ECS LVM 扩容1](https://github.com/Lancger/opslinux/blob/master/images/ecs_lvm_06.png)
+
   
 # 四、 应用生效
 
