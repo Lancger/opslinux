@@ -104,16 +104,17 @@ the next reboot or after you run partprobe(8) or kpartx(8)
 Syncing disks.
 [root@coin-server-eth-b ~]# init 6     --- 重启才生效
   ```
+# 二。查看当前VG大小
 
   ![ECS LVM 扩容1](https://github.com/Lancger/opslinux/blob/master/images/ecs_lvm_01.png)
 
-
+# 三、
   ![ECS LVM 扩容1](https://github.com/Lancger/opslinux/blob/master/images/ecs_lvm_02.png)
   
-  
+# 四、 
   ![ECS LVM 扩容1](https://github.com/Lancger/opslinux/blob/master/images/ecs_lvm_04.png)
 
-  
+# 五、 
   ![ECS LVM 扩容1](https://github.com/Lancger/opslinux/blob/master/images/ecs_lvm_03.png)
 
 
