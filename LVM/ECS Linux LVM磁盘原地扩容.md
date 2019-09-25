@@ -121,9 +121,17 @@ vgextend vg_group2 /dev/vdc2
   
 # 四、 应用生效
 
+```
+xfs_growfs /dev/vg_group2/vg_eth_data      # xfs 格式文件使用该命令生效
+```
+
   ![ECS LVM 扩容1](https://github.com/Lancger/opslinux/blob/master/images/ecs_lvm_04.png)
 
 # 五、 查看磁盘分区
+
+```
+lsblk
+```
 
   ![ECS LVM 扩容1](https://github.com/Lancger/opslinux/blob/master/images/ecs_lvm_03.png)
 
