@@ -1,8 +1,10 @@
 
 # 参考资料：
 
-https://yq.aliyun.com/articles/52222?spm=5176.11065265.1996646101.searchclickresult.1546247dUlgfe4  
+https://help.aliyun.com/knowledge_detail/38061.html?spm=5176.11065259.1996646101.searchclickresult.551521e8mN9JMW&aly_as=7_tCZbP-   ECS Linux LVM磁盘原地扩容
 
+
+https://yq.aliyun.com/articles/52222?spm=5176.11065265.1996646101.searchclickresult.1546247dUlgfe4  
 
 
 https://www.cnblogs.com/zhenglisai/p/6638107.html  新添加一块硬盘制作LVM卷并进行分区挂载
