@@ -3,14 +3,14 @@
   阿里云的一块数据磁一开始购买的磁盘只有300G,后面通过阿里云控制台，将数据盘扩容到了500G，然后系统分区使用的LVM格式
   
   ```
-  [root@coin-server-eth-b ~]# fdisk /dev/vdc
+  [root@coin-server-eth-b ~]# fdisk /dev/vdc    ---- 重新对该磁盘划分分区
 Welcome to fdisk (util-linux 2.23.2).
 
 Changes will remain in memory only, until you decide to write them.
 Be careful before using the write command.
 
 
-Command (m for help): p
+Command (m for help): p  --- 打印当前分区表
 
 Disk /dev/vdc: 536.9 GB, 536870912000 bytes, 1048576000 sectors
 Units = sectors of 1 * 512 = 512 bytes
@@ -20,18 +20,18 @@ Disk label type: dos
 Disk identifier: 0xb30a48c8
 
    Device Boot      Start         End      Blocks   Id  System
-/dev/vdc1            2048   629145599   314571776   8e  Linux LVM
+/dev/vdc1            2048   629145599   314571776   8e  Linux LVM     --- 这里发现该磁盘已经划分了一个vdc1的分区
 
-Command (m for help): n
+Command (m for help): n   --- 新建一个主分区
 Partition type:
    p   primary (1 primary, 0 extended, 3 free)
    e   extended
 Select (default p): 
 Using default response p
-Partition number (2-4, default 2): 2
-First sector (629145600-1048575999, default 629145600): 
+Partition number (2-4, default 2): 2     --- 因为已经有个分区，所以这里选择 2 
+First sector (629145600-1048575999, default 629145600):   --- 注意这里的扇区的起始位置 
 Using default value 629145600
-Last sector, +sectors or +size{K,M,G} (629145600-1048575999, default 1048575999): 
+Last sector, +sectors or +size{K,M,G} (629145600-1048575999, default 1048575999):  --- 扇区的结束位置
 Using default value 1048575999
 Partition 2 of type Linux and of size 200 GiB is set
 
@@ -46,11 +46,11 @@ Disk identifier: 0xb30a48c8
 
    Device Boot      Start         End      Blocks   Id  System
 /dev/vdc1            2048   629145599   314571776   8e  Linux LVM
-/dev/vdc2       629145600  1048575999   209715200   83  Linux
+/dev/vdc2       629145600  1048575999   209715200   83  Linux           --- 这里发现已经新建了一个分区，但这里不是使用的 LVM 格式，还需对其进行修改操作
 
-Command (m for help): t
-Partition number (1,2, default 2): 2
-Hex code (type L to list all codes): L
+Command (m for help): t   ---  修改磁盘分区格式
+Partition number (1,2, default 2): 2  --- 这里选择对第2块磁盘进行分区格式修改
+Hex code (type L to list all codes): L  --- 列出所有的格式
 
  0  Empty           24  NEC DOS         81  Minix / old Lin bf  Solaris        
  1  FAT12           27  Hidden NTFS Win 82  Linux swap / So c1  DRDOS/sec (FAT-
@@ -77,7 +77,7 @@ Hex code (type L to list all codes): L
 1b  Hidden W95 FAT3 70  DiskSecure Mult bb  Boot Wizard hid fe  LANstep        
 1c  Hidden W95 FAT3 75  PC/IX           be  Solaris boot    ff  BBT            
 1e  Hidden W95 FAT1 80  Old Minix      
-Hex code (type L to list all codes): 8e
+Hex code (type L to list all codes): 8e  ---  这里修改为 LVM 格式的分区
 Changed type of partition 'Linux' to 'Linux LVM'
 
 Command (m for help): p
@@ -93,7 +93,7 @@ Disk identifier: 0xb30a48c8
 /dev/vdc1            2048   629145599   314571776   8e  Linux LVM
 /dev/vdc2       629145600  1048575999   209715200   8e  Linux LVM
 
-Command (m for help): w
+Command (m for help): w  --- 写入到分区表
 The partition table has been altered!
 
 Calling ioctl() to re-read partition table.
@@ -102,7 +102,7 @@ WARNING: Re-reading the partition table failed with error 16: Device or resource
 The kernel still uses the old table. The new table will be used at
 the next reboot or after you run partprobe(8) or kpartx(8)
 Syncing disks.
-[root@coin-server-eth-b ~]# init 6
+[root@coin-server-eth-b ~]# init 6     --- 重启才生效
   ```
 
   ![ECS LVM 扩容1](https://github.com/Lancger/opslinux/blob/master/images/ecs_lvm_01.png)
