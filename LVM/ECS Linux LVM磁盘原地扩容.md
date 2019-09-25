@@ -1,4 +1,4 @@
-
+  ![ECS LVM 扩容1](https://github.com/Lancger/opslinux/blob/master/images/ecs_lvm_01.png)
 
 参考资料：
 
