@@ -111,10 +111,12 @@ vgdisplay
 
   ![ECS LVM 扩容1](https://github.com/Lancger/opslinux/blob/master/images/ecs_lvm_01.png)
 
-# 三、将新分区磁盘加入到VG组
+# 三、将新分区磁盘加入到VG组并扩容
 
 ```
 vgextend vg_group2 /dev/vdc2
+
+lvextend -L +199G /dev/vg_group2/vg_eth_data
 ```
 
   ![ECS LVM 扩容1](https://github.com/Lancger/opslinux/blob/master/images/ecs_lvm_02.png)
