@@ -116,10 +116,15 @@ vgdisplay
 ```
 vgextend vg_group2 /dev/vdc2
 
-lvextend -L +199G /dev/vg_group2/vg_eth_data
 ```
-
   ![ECS LVM 扩容1](https://github.com/Lancger/opslinux/blob/master/images/ecs_lvm_02.png)
+  
+```  
+lvextend -L +199G /dev/vg_group2/vg_eth_data
+```  
+
+  ![ECS LVM 扩容1](https://github.com/Lancger/opslinux/blob/master/images/ecs_lvm_05.png)
+
   
 # 四、 应用生效
 
