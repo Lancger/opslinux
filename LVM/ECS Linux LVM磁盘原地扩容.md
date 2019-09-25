@@ -119,11 +119,11 @@ vgextend vg_group2 /dev/vdc2
 
   ![ECS LVM 扩容1](https://github.com/Lancger/opslinux/blob/master/images/ecs_lvm_02.png)
   
-# 四、 
+# 四、 应用生效
 
   ![ECS LVM 扩容1](https://github.com/Lancger/opslinux/blob/master/images/ecs_lvm_04.png)
 
-# 五、 
+# 五、 查看磁盘分区
 
   ![ECS LVM 扩容1](https://github.com/Lancger/opslinux/blob/master/images/ecs_lvm_03.png)
 
