@@ -72,6 +72,38 @@ EOF
     priority： 用来选举master的，要成为master，那么这个选项的值最好高于其他机器50个点，该项取值范围是1-255（在此范围之外会被识别成默认值100）。
 ```
 
+## 3、启动Keepalived
+
+```bash
+# 设置开机启动
+systemctl enable keepalived
+
+# 启动keepalived
+systemctl start keepalived
+
+# 查看启动状态
+systemctl status keepalived
+```
+
+## 4、查看网络状态
+
+kepplived 配置中 state 为 MASTER 的节点启动后，查看网络状态，可以看到虚拟IP已经加入到绑定的网卡中
+```
+[root@tw19410s1 sysconfig]# ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP group default qlen 1000
+    link/ether 00:50:56:be:86:af brd ff:ff:ff:ff:ff:ff
+    inet 192.168.2.20/22 brd 192.168.2.255 scope global eth0
+       valid_lft forever preferred_lft forever
+    inet 192.168.2.10/32 scope global eth0
+```
+
+当关掉当前节点的keeplived服务后将进行虚拟IP转移，将会推选state 为 BACKUP 的节点的某一节点为新的MASTER，可以在那台节点上查看网卡，将会查看到虚拟IP
+
+
 参考文档:
 
 https://mp.weixin.qq.com/s?__biz=MzAwNTM5Njk3Mw==&mid=2247487183&idx=1&sn=1dfddfd2d1f883cc568f311a4d77ced7&chksm=9b1c0e4dac6b875ba7f388f8f383d3c99dd10ea01f022d9bab8b929edb858d06433c5f2d30a9&mpshare=1&scene=23&srcid=&sharer_sharetime=1569483288434&sharer_shareid=73f6a617f7f81d90d08fd8ee497b58ac#rd  
