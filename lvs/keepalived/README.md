@@ -49,9 +49,9 @@ vrrp_instance VI_1 {
     }
 }
 EOF
-
+```
 当前节点的配置中 state 配置为 MASTER，其它两个节点设置为 BACKUP
-
+```
 配置说明：
 
     virtual_ipaddress： vip
