@@ -49,6 +49,27 @@ vrrp_instance VI_1 {
     }
 }
 EOF
+
+当前节点的配置中 state 配置为 MASTER，其它两个节点设置为 BACKUP
+
+配置说明：
+
+    virtual_ipaddress： vip
+
+    track_script： 执行上面定义好的检测的script
+
+    interface： 节点固有IP（非VIP）的网卡，用来发VRRP包。
+
+    virtual_router_id： 取值在0-255之间，用来区分多个instance的VRRP组播
+
+    advert_int： 发VRRP包的时间间隔，即多久进行一次master选举（可以认为是健康查检时间间隔）。
+
+    authentication： 认证区域，认证类型有PASS和HA（IPSEC），推荐使用PASS（密码只识别前8位）。
+
+    state：
+    可以是MASTER或BACKUP，不过当其他节点keepalived启动时会将priority比较大的节点选举为MASTER，因此该项其实没有实质用途。
+
+    priority： 用来选举master的，要成为master，那么这个选项的值最好高于其他机器50个点，该项取值范围是1-255（在此范围之外会被识别成默认值100）。
 ```
 
 参考文档:
