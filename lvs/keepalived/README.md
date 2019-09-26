@@ -104,6 +104,19 @@ kepplived 配置中 state 为 MASTER 的节点启动后，查看网络状态，�
 当关掉当前节点的keeplived服务后将进行虚拟IP转移，将会推选state 为 BACKUP 的节点的某一节点为新的MASTER，可以在那台节点上查看网卡，将会查看到虚拟IP
 
 
+# 二、防火墙配置
+
+```
+1、防火墙要放开vrrp协议，不然会脑裂 （把防火墙的vrrp给禁掉，就会出现脑裂现象）
+
+#默认链的开放规则
+-A INPUT -p vrrp -j ACCEPT
+
+#自定义链的开放规则
+-A RH-Firewall-1-INPUT -p vrrp -j ACCEPT 
+```
+
+
 参考文档:
 
 https://mp.weixin.qq.com/s?__biz=MzAwNTM5Njk3Mw==&mid=2247487183&idx=1&sn=1dfddfd2d1f883cc568f311a4d77ced7&chksm=9b1c0e4dac6b875ba7f388f8f383d3c99dd10ea01f022d9bab8b929edb858d06433c5f2d30a9&mpshare=1&scene=23&srcid=&sharer_sharetime=1569483288434&sharer_shareid=73f6a617f7f81d90d08fd8ee497b58ac#rd  
