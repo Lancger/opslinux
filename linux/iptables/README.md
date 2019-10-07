@@ -113,5 +113,8 @@ default via 172.33.0.1 dev eth0
 
 https://www.jianshu.com/p/8ded7c5fda1d   CentOS 防火墙配置与REJECT导致没有生效问题
 
-
 https://www.cnblogs.com/zejin2008/p/5917654.html   linux iptables常用命令之配置生产环境iptables及优化 
+
+https://www.169it.com/tech-qa-linux/article-15975807478845015423.html  iptables规则问题
+
+https://zhidao.baidu.com/question/564388897.html  iptables默认策略
