@@ -42,21 +42,17 @@ df -h
 EOF
 
 chmod +x /tmp/disk.sh && sh /tmp/disk.sh
-
 mkdir -p /data0/{opt,logs}
-
 ln -s /data0/logs/ /opt/logs
-
 chown -R www:www /data0/
-
 chown -R www:www /opt/logs
-
+mv /home/ /data0/
+ln -s /data0/home/ /home
 ls -l /data0/
-
 ls -l /opt/
+ls -l /home/
 
 #ln -s /data /data0  (前面为目标，后面为软链)
-
 ```
 
 参考文档
