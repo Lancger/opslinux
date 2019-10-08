@@ -62,7 +62,6 @@ xferlog_enable=YES
 xferlog_std_format=YES
 xferlog_file=/var/log/vsftpd.log
 connect_from_port_20=YES
-xferlog_std_format=YES
 listen=YES
 pam_service_name=vsftpd
 userlist_enable=YES
