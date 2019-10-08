@@ -74,6 +74,16 @@ hostname hk-ubuntu-188
 
 useradd www -m -d /home/www
 
+mkdir -p /home/www/.ssh
+
+chown -R www:www /home/www/
+
+chmod 700 /home/www/.ssh
+
+touch mkdir -p /home/www/.ssh/authorized_keys
+
+chmod 400 /home/www/.ssh/authorized_keys
+
 vim /root/.bashrc
 
 vim /$HOME/.bashrc
