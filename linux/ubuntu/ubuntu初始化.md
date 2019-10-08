@@ -72,7 +72,6 @@ hk-ubuntu-188
 EOF
 hostname hk-ubuntu-188
 
-
 useradd www -m -d /home/www
 
 vim /root/.bashrc
@@ -82,7 +81,6 @@ vim /$HOME/.bashrc
 vim /etc/profile
 
 export PS1="\[\e]0;\a\]\n\[\e[1;32m\]\[\e[1;33m\]\H\[\e[1;35m\]<\$(date +\"%Y-%m-%d %T\")> \[\e[32m\]\w\[\e[0m\]\n\u>\\$ "
-
 ```
 
 # 四、sshd配置
