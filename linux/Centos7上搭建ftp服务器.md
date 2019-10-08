@@ -107,6 +107,10 @@ service vsftpd restart
 https://www.cnblogs.com/hisunhyx/p/5029476.html?utm_source=tuicool&utm_medium=referral
 ```
 
+# 六、FTP主被动原理
+```
+https://www.cnblogs.com/ajianbeyourself/p/7655464.html
+```
 
 参考资料：
 
