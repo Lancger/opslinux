@@ -104,3 +104,4 @@ https://www.jianshu.com/p/72a35e14c6bb
 
 https://www.v5c87.com/2019/01/11/CentOS7%E6%90%AD%E5%BB%BAFTP%EF%BC%88%E8%A2%AB%E5%8A%A8%E6%A8%A1%E5%BC%8F%EF%BC%89/ CentOS7搭建FTP（被动模式）
 
+https://blog.51cto.com/12476193/2308486  linux下VSFTPD的主动模式、被动模式和虚拟用户登录配置。
