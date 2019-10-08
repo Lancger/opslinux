@@ -7,12 +7,12 @@ useradd ftpuser -d /tmp/ftpfile -s /sbin/nologin  # 新建不可登录用户
 chown -R ftpuser.ftpuser /data0/ftpfile           # 将归属改成新用户
 echo "vLpxdMIA2EZPsDIv" |passwd --stdin ftpuser   # 给新用户设密码
 
-
 cat > /etc/vsftpd/chroot_list << \EOF
 ftpuser
 EOF
-
-
+```
+# 二、ftp被动模式配置
+```
 cat > /etc/vsftpd/vsftpd.conf << \EOF
 anonymous_enable=YES
 local_root=/data0/ftpfile 
@@ -44,10 +44,36 @@ systemctl start vsftpd.service
 systemctl stop vsftpd.service
 systemctl restart vsftpd.service
 systemctl status  vsftpd.service
-
 ```
 
-# 二、ftp客户端
+# 三、ftp主动模式配置
+```
+cat > /etc/vsftpd/vsftpd.conf << \EOF
+local_root=/data0/ftpfile
+anonymous_enable=NO
+local_enable=YES
+write_enable=YES
+local_umask=022
+anon_upload_enable=YES
+anon_mkdir_write_enable=YES
+anon_umask=022
+dirmessage_enable=YES
+xferlog_enable=YES
+connect_from_port_20=YES
+xferlog_std_format=YES
+listen=YES
+pam_service_name=vsftpd
+userlist_enable=YES
+tcp_wrappers=YES
+pasv_promiscuous=YES
+EOF
+
+systemctl start vsftpd.service
+systemctl stop vsftpd.service
+systemctl restart vsftpd.service
+systemctl status  vsftpd.service
+```
+# 四、ftp客户端
 ```
 yum -y install ftp
 
