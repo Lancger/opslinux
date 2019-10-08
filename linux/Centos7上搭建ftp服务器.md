@@ -81,8 +81,10 @@ ftp 103.106.20X.XX
 ```
 
 # 五、报错解决
-```
+
 1、425 Security: Bad IP connecting
+
+```
 
 解决方法：
 https://blog.51cto.com/fullseo/1857562
@@ -96,6 +98,14 @@ pasv_promiscuous=YES
 
 service vsftpd restart
 ```
+
+2、java ftp Host attempting data connection 172.33.0.7 is not same as server 问题
+
+```
+https://www.cnblogs.com/hisunhyx/p/5029476.html?utm_source=tuicool&utm_medium=referral
+```
+
+
 参考资料：
 
 https://www.cnblogs.com/tdalcn/p/6940147.html  
