@@ -11,7 +11,7 @@ supersede interface-mtu 1500;
 ```
 
 ```
-
+ [root@centos ~]# nmcli connection modify "System eth0" ethernet.mtu 1500
 ```
 参考资料：
 
