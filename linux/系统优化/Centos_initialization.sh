@@ -4,10 +4,9 @@
 #Mai: 1151980610@qq.com
 #Function:  This script is used for system Centos6 or Centos7 initialization 
 #Version:  V1.0
-#Update:  2019-07-22
+#Update:  2019-10-09
 
 . /etc/init.d/functions
-
 
 function echo_color() {
     if [ $1 == "green" ]; then
