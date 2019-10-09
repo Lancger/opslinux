@@ -277,6 +277,7 @@ AuthorizedKeysFile      %h/.ssh/authorized_keys
 ChallengeResponseAuthentication no
 GSSAPIAuthentication no
 GSSAPICleanupCredentials no
+ClientAliveInterval 60
 UsePAM yes
 X11Forwarding yes
 UseDNS no
