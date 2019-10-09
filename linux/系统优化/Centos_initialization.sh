@@ -242,6 +242,9 @@ cat > /etc/security/limits.d/def.conf << EOF
 * soft nproc 204800
 * hard nproc 204800
 EOF
+
+#修复MTU太大了，造成了丢包问题
+echo "1460" > /sys/class/net/eth0/mtu
 }
 
 #add user
