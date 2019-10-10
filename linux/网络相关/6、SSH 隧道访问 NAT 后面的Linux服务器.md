@@ -1,9 +1,19 @@
 # 一、ssh反向代理
 ```
+yum install -y epel-release sshpass autossh
+
 #Nat机器上执行
 sshpass -p **2019** ssh -fNR 60021:localhost:22 root@47.10.*.8 -o ExitOnForwardFailure=YES -o ServerAliveInterval=60
 
-将47.10.*.8代理服务器的60021端口转发到Nat机器的本地22端口
+-R 60021:localhost:22 选项定义了一个反向隧道, 它转发代理服务器 60021 端口的流量到Nat服务器的 22 号端口
+
+用 "-fN" 选项，当你成功通过 SSH 服务器验证时 SSH 会进入后台运行。当你不想在远程 SSH 服务器执行任何命令，就像我们的例子中只想转发端口的时候非常有用。
+
+
+登录到代理服务器，确认其 127.0.0.1:10022 绑定到了 sshd。如果是的话就表示已经正确设置了反向隧道。
+
+
+
 
 #代理
 ssh -fNL *:60022:localhost:60021 localhost
