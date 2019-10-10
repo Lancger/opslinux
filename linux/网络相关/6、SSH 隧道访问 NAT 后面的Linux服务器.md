@@ -44,7 +44,10 @@ done
 
 # 三、本地电脑验证登录
 ```bash
-ssh -p 60026 root@47.10.*.8
+[root@root ~]# ssh -p 60026 root@47.10.*.8
+root@47.10.*.8's password:
+Last login: Thu Oct 10 20:48:27 2019 from localhost
+[root@nat_x86 ~]#
 ```
 
 参考资料：
