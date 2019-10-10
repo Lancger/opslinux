@@ -61,6 +61,14 @@ sshpass -p **passwd** autossh -M 7281 -CNR 60025:localhost:22 root@47.*.90.8
 
 # autossh的参数与ssh的参数是一致的，但是不同的是，在隧道断开的时候，autossh会自动重新连接而ssh不会。另外不同的是我们需要指出的-M参数，这个参数指定一个端口，这个端口是外网的B机器用来接收内网A机器的信息，如果隧道不正常而返回给A机器让他实现重新连接。
 ```
+# 五、一条命令搞定
+```
+#nat机器
+sshpass -p "**passwd**" ssh -fN -R *:10022:localhost:22 root@47.*.90.8
+
+#本地机器
+ssh -p 10022 root@47.*.90.8
+```
 
 
 参考资料：
