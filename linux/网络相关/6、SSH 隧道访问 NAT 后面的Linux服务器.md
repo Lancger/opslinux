@@ -1,9 +1,14 @@
+# 一、ssh反向代理
 ```
 #Nat机器上执行
 sshpass -p **2019** ssh -fNR 60021:localhost:22 root@47.10.*.8 -o ExitOnForwardFailure=YES -o ServerAliveInterval=60
 
+将47.10.*.8代理服务器的60021端口转发到Nat机器的本地22端口
+
 #代理
 ssh -fNL *:60022:localhost:60021 localhost
+
+代理机器的60022端口转发到代理本身的60021端口，这样我们访问(代理)60022-->>(代理本身)60021--->>Nat(22)
 
 #本地电脑
 ssh -p 60022 root@47.10.*.8
