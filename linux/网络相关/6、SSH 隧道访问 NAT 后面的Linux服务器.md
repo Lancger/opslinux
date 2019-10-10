@@ -1,35 +1,31 @@
-# 一、ssh反向代理
+# 一、ssh反向代理(Nat机器上执行)
 ```
 yum install -y epel-release sshpass autossh
 
-#Nat机器上执行
-sshpass -p **2019** ssh -fNR 60021:localhost:22 root@47.10.*.8 -o ExitOnForwardFailure=YES -o ServerAliveInterval=60
+[root@nat_x86 ~]# sshpass -p **passwd** ssh -fNR 60025:localhost:22 root@47.*.90.8 -o ExitOnForwardFailure=YES -o ServerAliveInterval=60
 
--R 60021:localhost:22 选项定义了一个反向隧道, 它转发代理服务器 60021 端口的流量到Nat服务器的 22 号端口
+-R 60025:localhost:22 选项定义了一个反向隧道, 它转发代理服务器 60025 端口的流量到Nat服务器的 22 号端口
 
 用 "-fN" 选项，当你成功通过 SSH 服务器验证时 SSH 会进入后台运行。当你不想在远程 SSH 服务器执行任何命令，就像我们的例子中只想转发端口的时候非常有用。
-
-
-登录到代理服务器，确认其 127.0.0.1:10022 绑定到了 sshd。如果是的话就表示已经正确设置了反向隧道。
-
-
-
-
-#代理
-ssh -fNL *:60022:localhost:60021 localhost
-
-代理机器的60022端口转发到代理本身的60021端口，这样我们访问(代理)60022-->>(代理本身)60021--->>Nat(22)
-
-#本地电脑
-ssh -p 60022 root@47.10.*.8
 ```
-
-
+# 二、确认隧道是否建立成功(Proxy机器上执行)
 ```
-第二步代理服务操作，使用定时任务预置代替
+1、#登录到代理服务器，确认其 127.0.0.1:60025 绑定到了 sshd。如果是的话就表示已经正确设置了反向隧道。
+
+[root@proxy_x86 ~]# sudo netstat -nap | grep 60025
+tcp        0      0 127.0.0.1:60025             0.0.0.0:*                   LISTEN      22026/sshd  
+
+2、执行本地端口转发
+[root@proxy_x86 ~]# ssh -fNL *:60026:localhost:60025 localhost
+
+代理机器的60022端口转发到代理本身的60021端口，这样我们访问(代理)60026-->>(代理本身)60025--->>Nat(22)
+
+3、第二步代理服务操作，使用定时任务预置代替
+
+[root@proxy_x86 ~]# crontab -l
 0 1 * * * /bin/sh /opt/scripts/startproxy.sh >> /tmp/run.log
 
-root># cat /opt/scripts/startproxy.sh
+[root@proxy_x86 ~]# cat /opt/scripts/startproxy.sh
 #!/bin/bash
 
 echo "停止ssh代理服务!!!!"
@@ -45,6 +41,12 @@ do
     fi
 done
 ```
+
+# 三、本地电脑验证登录
+```
+ssh -p 60026 root@47.10.*.8
+```
+
 参考资料：
 
 https://linux.cn/article-5975-1.html  如何通过反向 SSH 隧道访问 NAT 后面的 Linux 服务器
