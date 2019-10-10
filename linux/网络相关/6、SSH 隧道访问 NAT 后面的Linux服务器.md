@@ -1,5 +1,5 @@
 # 一、ssh反向代理(Nat机器上执行)
-```
+```bash
 yum install -y epel-release sshpass autossh
 
 [root@nat_x86 ~]# sshpass -p **passwd** ssh -fNR 60025:localhost:22 root@47.*.90.8 -o ExitOnForwardFailure=YES -o ServerAliveInterval=60
@@ -9,7 +9,7 @@ yum install -y epel-release sshpass autossh
 用 "-fN" 选项，当你成功通过 SSH 服务器验证时 SSH 会进入后台运行。当你不想在远程 SSH 服务器执行任何命令，就像我们的例子中只想转发端口的时候非常有用。
 ```
 # 二、确认隧道是否建立成功(Proxy机器上执行)
-```
+```bash
 1、#登录到代理服务器，确认其 127.0.0.1:60025 绑定到了 sshd。如果是的话就表示已经正确设置了反向隧道。
 
 [root@proxy_x86 ~]# sudo netstat -nap | grep 60025
@@ -43,7 +43,7 @@ done
 ```
 
 # 三、本地电脑验证登录
-```
+```bash
 ssh -p 60026 root@47.10.*.8
 ```
 
