@@ -64,7 +64,8 @@ sshpass -p **passwd** autossh -M 7281 -CNR 60025:localhost:22 root@47.*.90.8
 # 五、一条命令搞定
 ```
 #nat机器
-sshpass -p "**passwd**" ssh -fN -R *:10022:localhost:22 root@47.*.90.8
+killall ssh
+sshpass -p "**passwd**" ssh -fN -R *:10022:localhost:22 root@47.*.90.8 -o ExitOnForwardFailure=YES -o ServerAliveInterval=60
 
 #本地机器
 ssh -p 10022 root@47.*.90.8
