@@ -63,6 +63,18 @@ sshpass -p **passwd** autossh -M 7281 -CNR 60025:localhost:22 root@47.*.90.8
 ```
 # 五、一条命令搞定
 ```
+事实上，有一种方法可以只需要登录到中继服务器就能直接访问NAT之后的家庭服务器。要做到这点，你需要让中继服务器上的 sshd 不仅转发回环地址上的端口，还要转发外部主机的端口。这通过指定中继服务器上运行的 sshd 的 GatewayPorts 实现。
+
+打开代理服务器的 /etc/ssh/sshd_config 并添加下面的行。
+
+vim /etc/ssh/sshd_config
+#添加
+GatewayPorts clientspecified
+
+systemctl restart sshd
+
+接下来就可以使用下面命令建立隧道
+
 #nat机器
 killall ssh
 sshpass -p "**passwd**" ssh -fNR *:10022:localhost:22 root@47.*.90.8 -o ExitOnForwardFailure=YES -o ServerAliveInterval=60
