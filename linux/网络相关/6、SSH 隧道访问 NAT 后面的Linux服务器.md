@@ -71,6 +71,28 @@ vim /etc/ssh/sshd_config
 #添加
 GatewayPorts clientspecified
 
+#最终sshd配置
+[root@proxy ~]# cat /etc/ssh/sshd_config |grep -Ev "^#|^$"
+Protocol 2
+MaxAuthTries 100
+MaxSessions 500
+ChallengeResponseAuthentication no
+GSSAPIAuthentication yes
+GSSAPICleanupCredentials yes
+UsePAM yes
+AcceptEnv LANG LC_CTYPE LC_NUMERIC LC_TIME LC_COLLATE LC_MONETARY LC_MESSAGES
+AcceptEnv LC_PAPER LC_NAME LC_ADDRESS LC_TELEPHONE LC_MEASUREMENT
+AcceptEnv LC_IDENTIFICATION LC_ALL LANGUAGE
+AcceptEnv XMODIFIERS
+X11Forwarding yes
+Subsystem       sftp    /usr/libexec/openssh/sftp-server
+UseDNS no
+AddressFamily inet
+PermitRootLogin yes
+SyslogFacility AUTHPRIV
+PasswordAuthentication yes
+GatewayPorts clientspecified
+
 systemctl restart sshd
 
 接下来就可以使用下面命令建立隧道
