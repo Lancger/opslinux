@@ -2,11 +2,13 @@
 ```bash
 yum install -y epel-release sshpass autossh
 
-[root@nat_x86 ~]# sshpass -p **passwd** ssh -fNR 60025:localhost:22 root@47.*.90.8 -o ExitOnForwardFailure=YES -o ServerAliveInterval=60
+[root@nat_x86 ~]# sshpass -p **passwd** ssh -fNR 60025:localhost:22 root@47.*.90.8 -o ExitOnForwardFailure=YES -o ServerAliveInterval=60 -o StrictHostKeyChecking=no
 
 -R 60025:localhost:22 选项定义了一个反向隧道, 它转发代理服务器 60025 端口的流量到Nat服务器的 22 号端口
 
 用 "-fN" 选项，当你成功通过 SSH 服务器验证时 SSH 会进入后台运行。当你不想在远程 SSH 服务器执行任何命令，就像我们的例子中只想转发端口的时候非常有用。
+
+-o: ssh或scp的一个选项, StrictHostKeyChecking=no表示在第一次主机认证的时候, 自动接收远端主机密钥.
 ```
 # 二、确认隧道是否建立成功(Proxy机器上执行)
 ```bash
@@ -99,7 +101,7 @@ systemctl restart sshd
 
 #nat机器
 killall ssh
-sshpass -p "**passwd**" ssh -fNR *:10022:localhost:22 root@47.*.90.8 -o ExitOnForwardFailure=YES -o ServerAliveInterval=60
+sshpass -p "**passwd**" ssh -fNR *:10022:localhost:22 root@47.*.90.8 -o ExitOnForwardFailure=YES -o ServerAliveInterval=60 -o StrictHostKeyChecking=no
 
 #本地机器
 ssh -p 10022 root@47.*.90.8
