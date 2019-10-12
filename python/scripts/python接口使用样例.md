@@ -1,5 +1,7 @@
 # 一、脚本文件
 ```
+cat tun_cmd.py
+
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
@@ -95,4 +97,10 @@ tssssss
 
 ls -al /tmp
 head -10 /tmp/go-agent.log
+```
+
+# 四、使用方法
+
+```
+python tun_cmd.py sn_list.txt cmd_list.txt
 ```
