@@ -1,11 +1,10 @@
+```
 第一次搭建Keepalived集群，实现IP漂移。
-
 笔者所搭建Keepalived集群额外满足下面两个需求点：
 
 监听HAProxy进程，一旦HAProxy进程不存在，可能触发IP漂移
 互为主备，充分利用服务器资源
 
-```
 一、安装
 Debian下安装命令如下：
 
