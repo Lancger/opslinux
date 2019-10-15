@@ -3,6 +3,7 @@
 ```
 先安装cython
 pip install cython
+pip install --trusted-host mirrors.aliyun.com -i https://mirrors.aliyun.com/pypi/simple/ cython
 
 然后安装python开发包
 centos系统下
