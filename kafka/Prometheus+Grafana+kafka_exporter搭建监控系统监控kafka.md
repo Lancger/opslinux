@@ -53,6 +53,7 @@ scrape_configs:
 EOF
 
 重启prometheus
+
 docker restart prometheus
 ```
 
