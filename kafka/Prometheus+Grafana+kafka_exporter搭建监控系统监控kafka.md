@@ -58,7 +58,7 @@ EOF
 docker restart prometheus
 ```
 
-通过浏览器访问：http://prometheus服务器IP:9090,所添加的kafka_exporter状态为UP，就可以去配置grafana
+`通过浏览器访问：http://prometheus服务器IP:9090,  所添加的kafka_exporter状态为UP，就可以去配置grafana`
 
 
 参考链接：
