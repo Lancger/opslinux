@@ -72,8 +72,7 @@ Mode: leader
 ## 1、下载kafka安装包
 ```
 cd /usr/local/src/
-https://mirrors.tuna.tsinghua.edu.cn/apache/kafka/2.1.1/kafka_2.12-2.1.1.tgz
-
+wget https://mirrors.tuna.tsinghua.edu.cn/apache/kafka/2.1.1/kafka_2.12-2.1.1.tgz
 ```
 
 ## 2、修改文件server.properties
