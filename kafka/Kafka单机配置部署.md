@@ -71,12 +71,16 @@ Mode: leader
 
 ## 1、下载kafka安装包
 ```
+export VER="2.1.1"
 cd /usr/local/src/
-wget https://mirrors.tuna.tsinghua.edu.cn/apache/kafka/2.1.1/kafka_2.12-2.1.1.tgz
+wget https://mirrors.tuna.tsinghua.edu.cn/apache/kafka/${VER}/kafka_2.12-${VER}.tgz
+tar -zxvf kafka_2.12-${VER}.tgz
+mv kafka_2.12-${VER} kafka
 ```
 
 ## 2、修改文件server.properties
 ```
+
 broker.id=1     # 唯一ID同一集群下broker.id不能重复
 listeners=PLAINTEXT://localhost:9092   # 监听地址
 log.dirs=/opt/kafka_2.11-1.0.1/data      # 数据目录
