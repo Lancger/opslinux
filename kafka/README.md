@@ -7,7 +7,7 @@ docker-compose --version
 
 # 删除所有容器 
 
-docker rm -f `docker ps -a -q` 
+docker rm -f `docker ps -a -q`
 ```
 
 # 二、docker安装zk和kafka
@@ -72,6 +72,8 @@ Created topic my-test.
 
 # 四、docker-compose运行单机版kafka
 ```
+docker rm -f `docker ps -a -q`
+
 cat > docker-compose.yml <<-EOF
 version: '2'
 services:
@@ -94,6 +96,8 @@ services:
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181       ## 卡夫卡运行是基于zookeeper的
   kafka-manager:  
     image: sheepkiller/kafka-manager                ## 镜像：开源的web管理kafka集群的界面
+    restart: always
+    container_name: kafka-manager
     environment:
         ZK_HOSTS: 192.168.56.11                     ## 修改:宿主机IP
     ports:  
@@ -101,6 +105,7 @@ services:
 EOF
 
 docker-compose up -d
+
 ```
 
 # 五、docker-compose运行集群版kafka
@@ -110,6 +115,8 @@ docker-compose up -d
 /*  自己指定kafka的节点数量 */
 
 1、先运行单机版kafka
+
+docker rm -f `docker ps -a -q`
 
 cat > docker-compose.yml <<-EOF
 version: '2'
