@@ -256,6 +256,9 @@ services:
 EOF
 
 docker-compose up -d
+
+
+https://www.cnblogs.com/yingww/p/9188701.html   docker下部署kafka集群(多个broker+多个zookeeper)
 ```
 
 
