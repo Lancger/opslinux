@@ -1,14 +1,12 @@
 # 一、安装docker-compose
 ```
 export Version="1.24.0"
-
 curl -L "https://github.com/docker/compose/releases/download/${Version}/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-
 chmod +x /usr/local/bin/docker-compose
-
 docker-compose --version
 
 # 删除所有容器 
+
 docker rm -f `docker ps -a -q` 
 ```
 
@@ -36,6 +34,7 @@ docker run -itd \
 sheepkiller/kafka-manager
 
 4、查看docker端口
+
 root># docker port fe73af90eff1
 9000/tcp -> 0.0.0.0:9000
 
