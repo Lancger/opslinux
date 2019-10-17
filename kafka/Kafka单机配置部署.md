@@ -6,8 +6,9 @@ wget https://archive.apache.org/dist/zookeeper/zookeeper-3.4.10/zookeeper-3.4.10
 ```
 
 # 二、安装zookeeper
-```
+```bash
 #首先创建Zookeeper项目目录
+
 mkdir -p /data0/zookeeper
 cd /data0/zookeeper
 mkdir zkdata
@@ -19,6 +20,7 @@ mv zookeeper-3.4.10/ /usr/local/zookeeper
 cp -rf /usr/local/zookeeper/conf/zoo_sample.cfg /usr/local/zookeeper/conf/zoo.cfg
 
 #zoo.cfg配置文件
+
 cat > /usr/local/zookeeper/conf/zoo.cfg << \EOF
 tickTime=10000
 initLimit=10
@@ -59,7 +61,7 @@ Mode: leader
 # 五、连接测试
 
 ```
-/usr/local/zookeeper/bin/zkCli.sh -server 172.18.8.24:2181
+/usr/local/zookeeper/bin/zkCli.sh -server 192.168.56.11:2181
 
 ```
 参考资料：
