@@ -69,6 +69,8 @@ services:
     ports:  
       - "9000:9000"                                 ## 暴露端口
 EOF
+
+docker-compose up -d
 ```
 
 # 五、docker-compose运行集群版kafka
