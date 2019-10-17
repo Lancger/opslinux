@@ -151,6 +151,8 @@ docker-compose scale kafka=3
 
 参考资料：
 
+https://www.cnblogs.com/yingww/p/9188701.html  docker下部署kafka集群(多个broker+多个zookeeper)
+
 https://www.jianshu.com/p/240d9166aaaf   Docker容器安装单机Kafka
 
 https://johng.cn/install-kafka-with-docker/
