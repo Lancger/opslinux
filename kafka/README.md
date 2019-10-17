@@ -109,6 +109,7 @@ EOF
 docker-compose up -d
 
 2、指定kafka的节点数量
+
 docker-compose scale kafka=3
 ```
 
