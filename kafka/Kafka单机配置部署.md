@@ -104,7 +104,7 @@ EOF
 ## 3、启动和停止
 ```
 cd /usr/local/kafka/
-./bin/kafka-server-start.sh config/server.properties
+nohup ./bin/kafka-server-start.sh config/server.properties &
 ./bin/kafka-server-stop.sh
 ```
 
