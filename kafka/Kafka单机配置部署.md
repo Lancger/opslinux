@@ -75,18 +75,20 @@ export VER="2.1.1"
 cd /usr/local/src/
 wget https://mirrors.tuna.tsinghua.edu.cn/apache/kafka/${VER}/kafka_2.12-${VER}.tgz
 tar -zxvf kafka_2.12-${VER}.tgz
-mv kafka_2.12-${VER} kafka
+mv kafka_2.12-${VER} /usr/local/kafka
+mkdir /usr/local/kafka/data/
 ```
 
 ## 2、修改文件server.properties
 ```
-
-broker.id=1     # 唯一ID同一集群下broker.id不能重复
+cat > /usr/local/kafka/config/server.properties<<\EOF
+broker.id=1    # 唯一ID同一集群下broker.id不能重复
 listeners=PLAINTEXT://localhost:9092   # 监听地址
-log.dirs=/opt/kafka_2.11-1.0.1/data      # 数据目录
+log.dirs=/usr/local/kafka/data    # 数据目录
 log.retention.hours=168   # kafka数据保留时间单位为hour 默认 168小时即 7天 
-log.retention.bytes=1073741824  #(kafka数据量最大值，超出范围自动清理，和 log.retention.hours配合使用，注意其最大值设定不可超磁盘大小）
-zookeeper.connect:192.168.56.11:2181  #(zookeeper连接ip及port,多个以逗号分隔)
+log.retention.bytes=1073741824  # (kafka数据量最大值，超出范围自动清理，和log.retention.hours 配合使用，注意其最大值设定不可超磁盘大小）
+zookeeper.connect:192.168.56.11:2181 #(zookeeper连接ip及port,多个以逗号分隔)
+EOF
 ```
 
 ## 3、启动和停止
