@@ -65,4 +65,6 @@ docker restart prometheus
 
 https://blog.csdn.net/weixin_33911824/article/details/91529872
 
+https://blog.csdn.net/qq_25934401/article/details/84840740   Prometheus监控之kafka
+
 
