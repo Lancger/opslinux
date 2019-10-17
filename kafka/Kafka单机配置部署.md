@@ -1,11 +1,13 @@
-# 一、下载zookeeper安装包
+# 一、zookeeper安装
+
+## 1、下载zookeeper安装包
 
 ```
 cd /usr/local/src/
 wget https://archive.apache.org/dist/zookeeper/zookeeper-3.4.10/zookeeper-3.4.10.tar.gz
 ```
 
-# 二、安装zookeeper
+## 2、安装zookeeper
 ```bash
 #首先创建Zookeeper项目目录
 
@@ -31,7 +33,7 @@ clientPort=2181
 EOF
 ```
 
-# 三、服务启动
+## 3、服务启动
 ```
 #服务启动
 /usr/local/zookeeper/bin/zkServer.sh start /usr/local/zookeeper/conf/zoo.cfg
@@ -49,7 +51,7 @@ vim /etc/rc.local 添加：
 /usr/local/zookeeper/bin/zkServer.sh start /usr/local/zookeeper/conf/zoo.cfg
 ```
 
-# 四、检查状态
+## 4、检查状态
 ```
 /usr/local/zookeeper/bin/zkServer.sh status /usr/local/zookeeper/conf/zoo.cfg
 
@@ -58,12 +60,16 @@ Using config: /usr/local/zookeeper/conf/zoo.cfg
 Mode: leader
 ```
 
-# 五、连接测试
+## 5、连接测试
 
 ```
 /usr/local/zookeeper/bin/zkCli.sh -server 192.168.56.11:2181
 
 ```
+
+# 二、kafka安装
+
+
 参考资料：
 
 https://segmentfault.com/a/1190000009983727
