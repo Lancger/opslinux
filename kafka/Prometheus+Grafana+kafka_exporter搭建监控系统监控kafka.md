@@ -29,6 +29,32 @@ tar -zxvf kafka_exporter-1.2.0.linux-amd64.tar.gz
 cd kafka_exporter-1.2.0.linux-amd64
 ./kafka_exporter --kafka.server=kafkaIP或者域名:9092 &
 ss -tunl
+
+注：9308是kafka_exporter的端口
 ```
+
+# 登陆到prometheus服务器
+
+编写/home/prometheus/prometheus.yml文件
+
+```
+cat > /home/prometheus/prometheus.yml << -EOF
+scrape_configs:
+
+# The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
+
+   - job_name: 'prometheus'
+     static_configs:
+      - targets: ['localhost:9090']
+
+  - job_name: 'kafka'
+     static_configs:
+      - targets: ['192.168.56.11:9308']
+        labels:
+          #instance: kafka@kafkaIP或者域名
+          instance: 192.168.56.12
+EOF
+```
+
 
 
