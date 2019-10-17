@@ -35,6 +35,29 @@ docker run -itd \
 -p 9000:9000 \
 -e ZK_HOSTS="192.168.56.11:2181" \
 sheepkiller/kafka-manager
+
+4、测试发送消息
+执行Docker ps，找到kafka的Container ID，进入容器内部:
+
+```
+
+# 四、测试发送消息
+```
+1、创建一个主题
+
+bin/kafka-topics.sh --create --zookeeper zookeeper:2181 --replication-factor 1 --partitions 1 --topic mykafka
+
+
+2、运行一个消生产者，指定topic为刚刚创建的主题
+
+bin/kafka-console-producer.sh --broker-list localhost:9092 --topic mykafka 
+
+3、运行一个消费者，指定同样的主题
+
+bin/kafka-console-consumer.sh --zookeeper zookeeper:2181 --topic mykafka --from-beginning 
+
+这时在生产者输入测试消息，在消费者就可以接收消息了
+
 ```
 
 参考资料：
