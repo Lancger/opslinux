@@ -8,13 +8,15 @@ docker logs -f my_zookeeper
 docker run -it --rm --link my_zookeeper:zookeeper zookeeper zkCli.sh -server zookeeper
 ```
 
-# 二、
+# 二、安装docker-compose
 ```
-docker pull wurstmeister/kafka
+export Version="1.24.0"
 
-docker pull wurstmeister/zookeeper
+curl -L "https://github.com/docker/compose/releases/download/${Version}/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 
-docker pull sheepkiller/kafka-manager
+chmod +x /usr/local/bin/docker-compose
+
+docker-compose --version
 ```
 
 # 三、
