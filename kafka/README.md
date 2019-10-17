@@ -147,6 +147,114 @@ docker-compose up -d
 docker-compose scale kafka=3
 ```
 
+# 六、多zk多broker节点集群
+```
+cat > docker-compose.yml <<-EOF
+version: '2'
+services:
+    zoo1:
+        image: zookeeper
+        restart: always
+        container_name: zoo1
+        ports:
+            - "2181:2181"
+        environment:
+            ZOO_MY_ID: 1
+            ZOO_SERVERS: server.1=zoo1:2888:3888 server.2=zoo2:2888:3888 server.3=zoo3:2888:3888 server.4=zoo4:2888:3888:observer
+
+    zoo2:
+        image: zookeeper
+        restart: always
+        container_name: zoo2
+        ports:
+            - "2182:2181"
+        environment:
+            ZOO_MY_ID: 2
+            ZOO_SERVERS: server.1=zoo1:2888:3888 server.2=zoo2:2888:3888 server.3=zoo3:2888:3888 server.4=zoo4:2888:3888:observer
+
+    zoo3:
+        image: zookeeper
+        restart: always
+        container_name: zoo3
+        ports:
+            - "2183:2181"
+        environment:
+            ZOO_MY_ID: 3
+            ZOO_SERVERS: server.1=zoo1:2888:3888 server.2=zoo2:2888:3888 server.3=zoo3:2888:3888 server.4=zoo4:2888:3888:observer
+    zoo4:
+        image: zookeeper
+        restart: always
+        container_name: zoo4
+        ports:
+            - "2184:2181"
+        environment:
+            ZOO_MY_ID: 4
+            PEER_TYPE: observer
+            ZOO_SERVERS: server.1=zoo1:2888:3888 server.2=zoo2:2888:3888 server.3=zoo3:2888:3888 server.4=zoo4:2888:388:observer
+
+    broker1:
+        image: wurstmeister/kafka
+        restart: always
+        container_name: broker1
+        ports:
+          - "9091:9092"
+        depends_on:
+          - zoo1
+          - zoo2
+          - zoo3
+          - zoo4
+        environment:
+          KAFKA_BROKER_ID: 1
+          KAFKA_ADVERTISED_HOST_NAME: broker1
+          KAFKA_ADVERTISED_PORT: 9092
+          KAFKA_HOST_NAME: broker1
+          KAFKA_ZOOKEEPER_CONNECT: zoo1:2181,zoo2:2181,zoo3:2181,zoo4:2181
+          KAFKA_LISTENERS: PLAINTEXT://broker1:9092
+          KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://broker1:9092
+
+    broker2:
+        image: wurstmeister/kafka
+        restart: always
+        container_name: broker2
+        ports:
+          - "9092:9092"
+        depends_on:
+          - zoo1
+          - zoo2
+          - zoo3
+          - zoo4
+        environment:
+          KAFKA_BROKER_ID: 2
+          KAFKA_ADVERTISED_HOST_NAME: broker2
+          KAFKA_ADVERTISED_PORT: 9092
+          KAFKA_HOST_NAME: broker2
+          KAFKA_ZOOKEEPER_CONNECT: zoo1:2181,zoo2:2181,zoo3:2181,zoo4:2181
+          KAFKA_LISTENERS: PLAINTEXT://broker2:9092
+          KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://broker2:9092
+
+    broker3:
+        image: wurstmeister/kafka
+        restart: always
+        container_name: broker3
+        ports:
+          - "9093:9092"
+        depends_on:
+          - zoo1
+          - zoo2
+          - zoo3
+          - zoo4
+        environment:
+          KAFKA_BROKER_ID: 3
+          KAFKA_ADVERTISED_HOST_NAME: broker3
+          KAFKA_ADVERTISED_PORT: 9092
+          KAFKA_HOST_NAME: broker3
+          KAFKA_ZOOKEEPER_CONNECT: zoo1:2181,zoo2:2181,zoo3:2181,zoo4:2181
+          KAFKA_LISTENERS: PLAINTEXT://broker3:9092
+          KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://broker3:9092
+EOF
+
+docker-compose up -d
+```
 
 
 参考资料：
