@@ -38,21 +38,18 @@ ss -tunl
 编写/home/prometheus/prometheus.yml文件
 
 ```
-cat > /home/prometheus/prometheus.yml << -EOF
+cat > /home/prometheus/prometheus.yml <<\EOF
 scrape_configs:
-
 # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
-
    - job_name: 'prometheus'
      static_configs:
       - targets: ['localhost:9090']
-
   - job_name: 'kafka'
      static_configs:
       - targets: ['192.168.56.11:9308']
         labels:
           #instance: kafka@kafkaIP或者域名
-          instance: 192.168.56.12
+          instance: 192.168.56.11
 EOF
 
 重启prometheus
