@@ -88,6 +88,7 @@ log.dirs=/usr/local/kafka/data    # 数据目录
 log.retention.hours=168   # kafka数据保留时间单位为hour 默认 168小时即 7天 
 log.retention.bytes=1073741824  # (kafka数据量最大值，超出范围自动清理，和log.retention.hours 配合使用，注意其最大值设定不可超磁盘大小）
 zookeeper.connect:192.168.56.11:2181 #(zookeeper连接ip及port,多个以逗号分隔)
+offsets.topic.replication.factor=1 #topic的offset的备份数，建议设置更高的数字保证更高的可用性
 EOF
 
 #注意不能有注释
@@ -98,6 +99,7 @@ log.dirs=/usr/local/kafka/data
 log.retention.hours=168
 log.retention.bytes=1073741824
 zookeeper.connect:192.168.56.11:2181
+offsets.topic.replication.factor=1
 EOF
 ```
 
