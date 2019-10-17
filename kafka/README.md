@@ -18,7 +18,7 @@ docker pull sheepkiller/kafka-manager
 ```
 
 # 三、
-```
+```bash
 1、启动zookeeper
 
 docker run -d --name zookeeper --restart always -p 2181 -t wurstmeister/zookeeper
@@ -31,7 +31,7 @@ docker run -itd \
 --restart=always \
 --name=kafka-manager \
 -p 9000:9000 \
--e ZK_HOSTS="192.168.56.11：2181" \
+-e ZK_HOSTS="192.168.56.11:2181" \
 sheepkiller/kafka-manager
 ```
 
