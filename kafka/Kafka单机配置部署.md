@@ -4,7 +4,7 @@
 
 ```
 cd /usr/local/src/
-wget https://archive.apache.org/dist/zookeeper/zookeeper-3.4.10/zookeeper-3.4.10.tar.gz
+wget https://mirrors.tuna.tsinghua.edu.cn/apache/zookeeper/zookeeper-3.4.14/zookeeper-3.4.14.tar.gz
 ```
 
 ## 2、安装zookeeper
@@ -17,8 +17,8 @@ mkdir zkdata
 mkdir zkdatalog
 
 cd /usr/local/src/
-tar zxvf zookeeper-3.4.10.tar.gz
-mv zookeeper-3.4.10/ /usr/local/zookeeper
+tar zxvf zookeeper-3.4.14.tar.gz
+mv zookeeper-3.4.14/ /usr/local/zookeeper
 cp -rf /usr/local/zookeeper/conf/zoo_sample.cfg /usr/local/zookeeper/conf/zoo.cfg
 
 #zoo.cfg配置文件
