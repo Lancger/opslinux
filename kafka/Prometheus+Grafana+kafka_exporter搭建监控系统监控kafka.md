@@ -54,6 +54,9 @@ scrape_configs:
           #instance: kafka@kafkaIP或者域名
           instance: 192.168.56.12
 EOF
+
+重启prometheus
+docker restart prometheus
 ```
 
 
