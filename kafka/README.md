@@ -17,6 +17,9 @@ curl -L "https://github.com/docker/compose/releases/download/${Version}/docker-c
 chmod +x /usr/local/bin/docker-compose
 
 docker-compose --version
+
+# 删除所有容器 
+docker rm -f `docker ps -a -q` 
 ```
 
 # 三、
