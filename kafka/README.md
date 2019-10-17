@@ -50,8 +50,9 @@ bash-4.4# cd /opt/kafka_2.12-2.3.0/
 
 2、创建一个主题
 
-bin/kafka-topics.sh --create --zookeeper zookeeper:2181 --replication-factor 1 --partitions 1 --topic mykafka
+bash-4.4# bin/kafka-topics.sh --create --zookeeper zookeeper:2181 --replication-factor 1 --partitions 1 --topic mykafka
 
+Created topic mykafka.
 
 2、运行一个消生产者，指定topic为刚刚创建的主题
 
