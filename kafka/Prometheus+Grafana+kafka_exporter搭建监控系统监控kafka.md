@@ -44,7 +44,7 @@ scrape_configs:
    - job_name: 'prometheus'
      static_configs:
       - targets: ['localhost:9090']
-  - job_name: 'kafka'
+   - job_name: 'kafka'
      static_configs:
       - targets: ['192.168.56.11:9308']
         labels:
