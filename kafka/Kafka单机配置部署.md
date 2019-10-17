@@ -69,10 +69,48 @@ Mode: leader
 
 # 二、kafka安装
 
+## 1、下载kafka安装包
+```
+cd /usr/local/src/
+https://mirrors.tuna.tsinghua.edu.cn/apache/kafka/2.1.1/kafka_2.12-2.1.1.tgz
+
+```
+
+## 2、修改文件server.properties
+```
+broker.id=1     # 唯一ID同一集群下broker.id不能重复
+listeners=PLAINTEXT://localhost:9092   # 监听地址
+log.dirs=/opt/kafka_2.11-1.0.1/data      # 数据目录
+log.retention.hours=168   # kafka数据保留时间单位为hour 默认 168小时即 7天 
+log.retention.bytes=1073741824  #(kafka数据量最大值，超出范围自动清理，和 log.retention.hours配合使用，注意其最大值设定不可超磁盘大小）
+zookeeper.connect:192.168.56.11:2181  #(zookeeper连接ip及port,多个以逗号分隔)
+```
+
+## 3、启动和停止
+```
+./bin/kafka-server-start.sh config/server.propertiess
+./bin/kafka-server-stop.sh
+```
+
+## 4、创建topic
+```
+创建topic:
+bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test
+
+展示topic:
+bin/kafka-topics.sh --list --zookeeper localhost:2181
+
+生产者：
+bin/kafka-console-producer.sh --broker-list localhost:9092 --topic test
+
+消费者：
+bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic test --from-beginning
+```
+
+
 
 参考资料：
 
 https://segmentfault.com/a/1190000009983727
-参考资料：
 
 https://www.cnblogs.com/wonglu/p/8687488.html  Kafka单机配置部署
