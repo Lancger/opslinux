@@ -42,7 +42,13 @@ root># docker port fe73af90eff1
 
 # 三、测试发送消息
 ```
-1、创建一个主题
+1、登录的容器内部
+
+root># docker exec -it kafka /bin/bash
+
+bash-4.4# cd /opt/kafka_2.12-2.3.0/
+
+2、创建一个主题
 
 bin/kafka-topics.sh --create --zookeeper zookeeper:2181 --replication-factor 1 --partitions 1 --topic mykafka
 
