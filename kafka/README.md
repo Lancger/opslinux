@@ -1,14 +1,4 @@
-# 一、zookeeper部署
-```
-docker pull zookeeper
-docker run -d --name=my_zookeeper --restart=always -p 2181:2181 zookeeper:latest
-docker logs -f my_zookeeper
-
-#使用 ZK 命令行客户端连接 ZK
-docker run -it --rm --link my_zookeeper:zookeeper zookeeper zkCli.sh -server zookeeper
-```
-
-# 二、安装docker-compose
+# 一、安装docker-compose
 ```
 export Version="1.24.0"
 
@@ -22,11 +12,15 @@ docker-compose --version
 docker rm -f `docker ps -a -q` 
 ```
 
-# 三、
+# 二、docker安装zk和kafka
 ```bash
 1、启动zookeeper
 
 docker run -d --name zookeeper --restart always -p 2181 -t wurstmeister/zookeeper
+
+#使用 ZK 命令行客户端连接 ZK
+
+docker run -it --rm --link my_zookeeper:zookeeper zookeeper zkCli.sh -server zookeeper
 
 2、启动kafka
 
@@ -44,6 +38,25 @@ sheepkiller/kafka-manager
 4、查看docker端口
 root># docker port fe73af90eff1
 9000/tcp -> 0.0.0.0:9000
+
+```
+
+# 三、测试发送消息
+```
+1、创建一个主题
+
+bin/kafka-topics.sh --create --zookeeper zookeeper:2181 --replication-factor 1 --partitions 1 --topic mykafka
+
+
+2、运行一个消生产者，指定topic为刚刚创建的主题
+
+bin/kafka-console-producer.sh --broker-list localhost:9092 --topic mykafka 
+
+3、运行一个消费者，指定同样的主题
+
+bin/kafka-console-consumer.sh --zookeeper zookeeper:2181 --topic mykafka --from-beginning 
+
+这时在生产者输入测试消息，在消费者就可以接收消息了
 
 ```
 
@@ -113,24 +126,7 @@ docker-compose up -d
 docker-compose scale kafka=3
 ```
 
-# 六、测试发送消息
-```
-1、创建一个主题
 
-bin/kafka-topics.sh --create --zookeeper zookeeper:2181 --replication-factor 1 --partitions 1 --topic mykafka
-
-
-2、运行一个消生产者，指定topic为刚刚创建的主题
-
-bin/kafka-console-producer.sh --broker-list localhost:9092 --topic mykafka 
-
-3、运行一个消费者，指定同样的主题
-
-bin/kafka-console-consumer.sh --zookeeper zookeeper:2181 --topic mykafka --from-beginning 
-
-这时在生产者输入测试消息，在消费者就可以接收消息了
-
-```
 
 参考资料：
 
