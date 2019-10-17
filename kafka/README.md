@@ -147,8 +147,10 @@ docker-compose up -d
 docker-compose scale kafka=3
 ```
 
-# 六、多zk多broker节点集群
+# 六、多个broker+多个zookeeper的kafka集群
 ```
+docker rm -f `docker ps -a -q`
+
 cat > docker-compose.yml <<-EOF
 version: '2'
 services:
