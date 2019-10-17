@@ -71,7 +71,7 @@ Mode: leader
 
 ## 1、下载kafka安装包
 ```
-export VER="2.1.1"
+export VER="2.2.1"
 cd /usr/local/src/
 wget https://mirrors.tuna.tsinghua.edu.cn/apache/kafka/${VER}/kafka_2.12-${VER}.tgz
 tar -zxvf kafka_2.12-${VER}.tgz
