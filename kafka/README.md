@@ -77,12 +77,16 @@ version: '2'
 services:
   zookeeper:
     image: wurstmeister/zookeeper   ## 镜像
+    restart: always
+    container_name: zookeeper
     ports:
       - "2181:2181"                 ## 对外暴露的端口号
   kafka:
     image: wurstmeister/kafka       ## 镜像
+    restart: always
+    container_name: kafka
     volumes: 
-        - /etc/localtime:/etc/localtime ## 挂载位置（kafka镜像和宿主机器之间时间保持一直）
+        - /etc/localtime:/etc/localtime  ## 挂载位置（kafka镜像和宿主机器之间时间保持一直）
     ports:
       - "9092:9092"
     environment:
