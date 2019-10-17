@@ -1,14 +1,14 @@
-# zookeeper部署
+# 一、zookeeper部署
 ```
 docker pull zookeeper
-
 docker run --name my_zookeeper -d zookeeper:latest
-
 docker logs -f my_zookeeper
 
 #使用 ZK 命令行客户端连接 ZK
 docker run -it --rm --link my_zookeeper:zookeeper zookeeper zkCli.sh -server zookeeper
 ```
+
+
 
 参考资料：
 
