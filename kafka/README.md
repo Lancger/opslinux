@@ -36,8 +36,9 @@ docker run -itd \
 -e ZK_HOSTS="192.168.56.11:2181" \
 sheepkiller/kafka-manager
 
-4、测试发送消息
-执行Docker ps，找到kafka的Container ID，进入容器内部:
+4、查看docker端口
+root># docker port fe73af90eff1
+9000/tcp -> 0.0.0.0:9000
 
 ```
 
