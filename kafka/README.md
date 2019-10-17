@@ -46,7 +46,7 @@ root># docker port fe73af90eff1
 
 # 四、docker-compose运行单机版kafka
 ```
-cat > docker-compose.yml << -EOF
+cat > docker-compose.yml <<-EOF
 version: '2'
 services:
   zookeeper:
@@ -79,7 +79,7 @@ EOF
 
 1、先运行单机版kafka
 
-cat > docker-compose.yml << -EOF
+cat > docker-compose.yml <<-EOF
 version: '2'
 services:
   zookeeper:
