@@ -97,6 +97,8 @@ enp7s0f0  ---为内网网卡
 enp7s0f1  ---为外网网卡
 -A POSTROUTING -s 10.33.35.41/32 -o enp7s0f1 -j SNAT --to-source 180.97.87.111  这里需要指定从外网口出去（-o enp7s0f1）
 
+注意NAT Server需要放开内网主机53端口的策略，或者直接全部放开(否则会能ping通IP,ping域名有问题)
+
 5、#删除规则
 iptables -t nat -D PREROUTING -p tcp -m tcp --dport 20003 -j DNAT --to-destination 10.65.11.117:22
 
