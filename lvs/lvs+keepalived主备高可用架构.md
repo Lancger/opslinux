@@ -5,6 +5,9 @@ yum install -y gcc make openssl openssl-devel httpd
 yum install keepalived
  
 yum -y install ipvsadm
+
+systemctl start keepalived
+systemctl status keepalived
 ```
 
 # 二、Real_server.sh脚本
