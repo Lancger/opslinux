@@ -9,7 +9,7 @@ yum -y install ipvsadm
 
 # 二、Real_server.sh脚本
 
-(注意是在 Real_server 机器需要执行这操作，绑定在 lo 环回口)
+注意是在 Real_server 机器需要执行这操作，绑定在 lo 环回口
 
 ```bash
 root># cat lvs_realserver.sh
