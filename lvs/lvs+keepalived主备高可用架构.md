@@ -1,5 +1,5 @@
 # 一、管理工具安装
-```
+```bash
 yum install -y gcc make openssl openssl-devel httpd
  
 yum install keepalived
@@ -8,7 +8,7 @@ yum -y install ipvsadm
 ```
 
 # 二、Real_server.sh脚本(注意是在 Real_server 机器需要执行这操作，绑定在 lo 环回口)
-```
+```bash
 root># cat lvs_realserver.sh
 #!/bin/sh
 # chkconfig: 34 87 13
