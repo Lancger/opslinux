@@ -61,4 +61,31 @@ NVDATA Version     : 3.1411.01-0015
 Boot Block Version : 3.02.00.00-0001
 ```
 
+# 四、查看磁盘状态
+```
+[root@node-1 ~]# /opt/MegaRAID/MegaCli/MegaCli64  -PDLIST -aALL -nolog|grep -iE "Enclosure Device ID:|slot|Media Error|Firmware state|Predictive Failure Count|PD Type:" |xargs --max-lines=6
+Enclosure Device ID: 32 Slot Number: 0 Media Error Count: 22 Predictive Failure Count: 0 PD Type: SATA Firmware state: Failed
+Enclosure Device ID: 32 Slot Number: 1 Media Error Count: 0 Predictive Failure Count: 0 PD Type: SATA Firmware state: Online, Spun Up
+Enclosure Device ID: 32 Slot Number: 2 Media Error Count: 0 Predictive Failure Count: 0 PD Type: SATA Firmware state: Online, Spun Up
+Enclosure Device ID: 32 Slot Number: 3 Media Error Count: 0 Predictive Failure Count: 0 PD Type: SATA Firmware state: Online, Spun Up
+Enclosure Device ID: 32 Slot Number: 4 Media Error Count: 653 Predictive Failure Count: 0 PD Type: SATA Firmware state: Failed
+Enclosure Device ID: 32 Slot Number: 5 Media Error Count: 0 Predictive Failure Count: 0 PD Type: SATA Firmware state: Online, Spun Up
+Enclosure Device ID: 32 Slot Number: 6 Media Error Count: 0 Predictive Failure Count: 0 PD Type: SATA Firmware state: Online, Spun Up
+Enclosure Device ID: 32 Slot Number: 7 Media Error Count: 0 Predictive Failure Count: 0 PD Type: SATA Firmware state: Online, Spun Up
+Enclosure Device ID: 32 Slot Number: 8 Media Error Count: 0 Predictive Failure Count: 0 PD Type: SATA Firmware state: Online, Spun Up
+Enclosure Device ID: 32 Slot Number: 9 Media Error Count: 2326 Predictive Failure Count: 1 PD Type: SATA Firmware state: Failed
+Enclosure Device ID: 32 Slot Number: 10 Media Error Count: 0 Predictive Failure Count: 0 PD Type: SATA Firmware state: Online, Spun Up
+Enclosure Device ID: 32 Slot Number: 11 Media Error Count: 0 Predictive Failure Count: 0 PD Type: SATA Firmware state: Online, Spun Up
+Enclosure Device ID: 32 Slot Number: 12 Media Error Count: 0 Predictive Failure Count: 0 PD Type: SAS Firmware state: JBOD
+Enclosure Device ID: 32 Slot Number: 13 Media Error Count: 0 Predictive Failure Count: 0 PD Type: SAS Firmware state: JBOD
+
+
+[root@node-1 ~]# for dev in $(df -Th | grep "^/dev" | awk -F '[0-14]' '{print $1}' | sort -u); do echo $dev ; smartctl -H $dev |grep -i health ; done
+/dev/sda
+SMART Health Status: OK
+/dev/sda3
+ext
+/dev/sdb
+SMART Health Status: OK
+```
 参考文档： https://blog.csdn.net/xinqidian_xiao/article/details/80940306
