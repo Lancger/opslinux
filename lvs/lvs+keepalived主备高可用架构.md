@@ -1,9 +1,7 @@
 # 一、管理工具安装
 ```bash
 yum install -y gcc make openssl openssl-devel httpd
- 
 yum install keepalived
- 
 yum -y install ipvsadm
 
 systemctl start keepalived
