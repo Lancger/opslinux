@@ -22,6 +22,7 @@ salt "*" cmd.run "> /var/log/lastlog"
 salt "*" cmd.run "> /var/log/message"
 salt "*" cmd.run "> /root/.bash_history"
 salt "*" cmd.run "> /home/www/.bash_history"
+salt "*" cmd.run "rm -rf /var/log/*"
 salt "*" cmd.run "cat /dev/null > ~/.bash_history && history -c && exit"
 ```
 参考资料：
