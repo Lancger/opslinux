@@ -31,9 +31,9 @@ case "$1" in
         echo "lo:101 port starting"
         echo "lo:102 port starting"
  
-        /sbin/ifconfig lo:100 $VIP1 broadcast $VIP netmask 255.255.255.255 up
-        /sbin/ifconfig lo:101 $VIP2 broadcast $VIP netmask 255.255.255.255 up
-        /sbin/ifconfig lo:102 $VIP3 broadcast $VIP netmask 255.255.255.255 up
+        /sbin/ifconfig lo:100 $VIP1 broadcast $VIP1 netmask 255.255.255.255 up
+        /sbin/ifconfig lo:101 $VIP2 broadcast $VIP2 netmask 255.255.255.255 up
+        /sbin/ifconfig lo:102 $VIP3 broadcast $VIP3 netmask 255.255.255.255 up
 
         /sbin/route add -host $VIP1 dev lo:100
         /sbin/route add -host $VIP2 dev lo:101
@@ -61,8 +61,8 @@ case "$1" in
         ;;
     status)
         # Status of LVS-DR real server.
-        islothere=`/sbin/ifconfig lo:100 | grep $VIP`
-        isrothere=`netstat -rn | grep "lo:100" | grep $VIP`
+        islothere=`/sbin/ifconfig lo:100 | grep $VIP1`
+        isrothere=`netstat -rn | grep "lo:100" | grep $VIP1`
 
         if [ ! "$islothere" -o ! "isrothere" ];then
             # Either the route or the lo:100 device not found.
