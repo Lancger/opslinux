@@ -14,6 +14,16 @@ EOF
 
 #root用户在/etc/skel/.bash_logout中添加代码,将对所有用户生效。
 ```
+
+```
+salt "*" cmd.run "> /var/log/wtmp"
+salt "*" cmd.run "> /var/log/btmp"
+salt "*" cmd.run "> /var/log/lastlog"
+salt "*" cmd.run "> /var/log/message"
+salt "*" cmd.run "> /root/.bash_history"
+salt "*" cmd.run "> /home/www/.bash_history"
+salt "*" cmd.run "cat /dev/null > ~/.bash_history && history -c && exit"
+```
 参考资料：
 
 https://blog.csdn.net/counsellor/article/details/87082207    Linux下清理删除last登录日志
