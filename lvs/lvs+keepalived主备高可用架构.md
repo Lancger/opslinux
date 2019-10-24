@@ -13,7 +13,7 @@ systemctl status keepalived
 注意是在 Real_server 机器需要执行这操作，绑定在 lo 环回口
 
 ```bash
-root># cat lvs_realserver.sh
+cat >/usr/local/bin/lvs_realserver.sh<< \EOF
 #!/bin/sh
 # chkconfig: 34 87 13
 # description: Config realserver lo:100 port and apply arp patch
@@ -75,4 +75,10 @@ case "$1" in
         echo "Usage: $0 {start|stop}"
         exit 1
 esac
+EOF
+chmod +x /usr/local/bin/lvs_realserver.sh
+#在realserver机器上面执行脚本绑定vip到lo口
+
+sh /usr/local/bin/lvs_realserver.sh stop
+sh /usr/local/bin/lvs_realserver.sh start
 ```
