@@ -2,6 +2,7 @@
 
 ![子网掩码对照表](https://github.com/Lancger/opslinux/blob/master/images/%E5%AD%90%E7%BD%91%E6%8E%A9%E7%A0%81%E5%AF%B9%E7%85%A7%E8%A1%A8.png)
 
+26位掩码对应的子网掩码为255.255.255.192，可用IP个数为62个，需要注意配置的时候在这个范围里面
 
 参考文档：
 
