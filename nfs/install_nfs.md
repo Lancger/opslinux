@@ -53,7 +53,7 @@ $ rpcinfo -p localhost
     100021    3   tcp  27131  nlockmgr
     100021    4   tcp  27131  nlockmgr
 
-#修改/etc/hosts.allow放开rpcbind
+#修改/etc/hosts.allow放开rpcbind(nfs服务端和客户端都要加上)
 chattr -i /etc/hosts.allow
 echo "nfsd:all" >>/etc/hosts.allow
 echo "rpcbind:all" >>/etc/hosts.allow
