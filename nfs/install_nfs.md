@@ -53,6 +53,9 @@ $ rpcinfo -p localhost
     100021    3   tcp  27131  nlockmgr
     100021    4   tcp  27131  nlockmgr
 
+#修改/etc/hosts.allow放开rpcbind
+rpcbind: ALL
+
 #showmount测试
 showmount -e 192.168.56.11
 ```
