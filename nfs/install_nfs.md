@@ -78,7 +78,9 @@ mount -a挂载
 
 参考文档：
 
-https://yq.aliyun.com/articles/694065
 
+https://blog.rot13.org/2012/05/rpcbind-is-new-portmap-or-how-to-make-nfs-secure.html   
+
+https://yq.aliyun.com/articles/694065
 
 https://www.crifan.com/linux_fstab_and_mount_nfs_syntax_and_parameter_meaning/  Linux中fstab的语法和参数含义和mount NFS时相关参数含义
