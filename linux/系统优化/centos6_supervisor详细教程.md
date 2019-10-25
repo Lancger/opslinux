@@ -129,7 +129,6 @@ systemctl stop supervisord
 systemctl restart supervisord
 supervisorctl status
 ps -ef|grep salt-minion
-
 ```
 
 参考资料：
