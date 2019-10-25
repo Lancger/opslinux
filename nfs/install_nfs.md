@@ -91,6 +91,7 @@ mount -a
 
 参考文档：
 
+http://www.mydlq.club/article/3/  CentOS7 搭建 NFS 服务器
 
 https://blog.rot13.org/2012/05/rpcbind-is-new-portmap-or-how-to-make-nfs-secure.html   
 
