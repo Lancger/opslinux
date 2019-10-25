@@ -2,14 +2,11 @@
 ```
 yum install -y epel-release supervisor
 
-/etc/init.d/supervisord reload
-/etc/init.d/supervisord restart
-
-/etc/init.d/supervisord status
-
 ps -ef|grep supervisord          # 查看是否存在supervisord进程
 
 #完整配置
+mkdir -p /etc/supervisord.d/
+
 sudo tee /etc/supervisord.conf << 'EOF'
 [supervisord]
 http_port=/var/tmp/supervisor.sock ; (default is to run a UNIX domain socket server)
@@ -65,6 +62,11 @@ serverurl=unix:///var/tmp/supervisor.sock ; use a unix:// URL  for a unix socket
 [include]
 files = /etc/supervisord.d/*.conf
 EOF
+
+
+/etc/init.d/supervisord reload
+/etc/init.d/supervisord restart
+/etc/init.d/supervisord status
 ```
 
 # 二、配置supervisord开机启动
