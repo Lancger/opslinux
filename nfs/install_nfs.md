@@ -23,8 +23,35 @@ exportfs
 systemctl restart rpcbind && systemctl enable rpcbind
 systemctl restart nfs && systemctl enable nfs
 
-#查看 RPC 服务的注册状况
-rpcinfo -p localhost
+#查看 RPC 服务的注册状况  (注意/etc/hosts.deny 里面需要放开以下服务)
+$ rpcinfo -p localhost      
+   program vers proto   port  service
+    100000    4   tcp    111  portmapper
+    100000    3   tcp    111  portmapper
+    100000    2   tcp    111  portmapper
+    100000    4   udp    111  portmapper
+    100000    3   udp    111  portmapper
+    100000    2   udp    111  portmapper
+    100005    1   udp  20048  mountd
+    100005    1   tcp  20048  mountd
+    100005    2   udp  20048  mountd
+    100005    2   tcp  20048  mountd
+    100005    3   udp  20048  mountd
+    100005    3   tcp  20048  mountd
+    100024    1   udp  34666  status
+    100024    1   tcp   7951  status
+    100003    3   tcp   2049  nfs
+    100003    4   tcp   2049  nfs
+    100227    3   tcp   2049  nfs_acl
+    100003    3   udp   2049  nfs
+    100003    4   udp   2049  nfs
+    100227    3   udp   2049  nfs_acl
+    100021    1   udp  31088  nlockmgr
+    100021    3   udp  31088  nlockmgr
+    100021    4   udp  31088  nlockmgr
+    100021    1   tcp  27131  nlockmgr
+    100021    3   tcp  27131  nlockmgr
+    100021    4   tcp  27131  nlockmgr
 
 #showmount测试
 showmount -e 192.168.56.11
