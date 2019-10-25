@@ -1,10 +1,11 @@
 # 一、安装
 ```
 yum install -y epel-release supervisor
-systemctl enable supervisord
-systemctl restart supervisord
 
-systemctl status supervisord
+service reload supervisord
+service restart supervisord
+
+service status supervisord
 ps -ef|grep supervisord          # 查看是否存在supervisord进程
 
 创建supervisor配置文件
@@ -160,28 +161,10 @@ EOF
 # 二、配置supervisord开机启动
 
 ```
-sudo tee /usr/lib/systemd/system/supervisord.service << 'EOF'
-[Unit]
-Description=Supervisor daemon 
+chkconfig supervisor on
+chkconfig --list|grep supervisord
 
-[Service]
-Type=forking
-ExecStart=/bin/supervisord -c /etc/supervisord.conf
-ExecStop=/bin/supervisorctl shutdown
-ExecReload=/bin/supervisorctl reload
-KillMode=process
-Restart=on-failure
-RestartSec=42s 
-
-[Install]
-WantedBy=multi-user.target
-EOF
-
-systemctl daemon-reload
-systemctl restart supervisord
-systemctl enable supervisord
-systemctl is-enabled supervisord
-systemctl status supervisord
+#supervisord     0:off   1:off   2:on    3:on    4:on    5:on    6:off
 ```
 
 # 三、测试
