@@ -54,7 +54,9 @@ $ rpcinfo -p localhost
     100021    4   tcp  27131  nlockmgr
 
 #修改/etc/hosts.allow放开rpcbind
-rpcbind: ALL
+chattr -i /etc/hosts.allow
+echo "rpcbind: ALL" >> /etc/hosts.allow
+chattr +i /etc/hosts.allow
 
 #showmount测试
 showmount -e 192.168.56.11
