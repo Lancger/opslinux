@@ -55,7 +55,9 @@ $ rpcinfo -p localhost
 
 #修改/etc/hosts.allow放开rpcbind
 chattr -i /etc/hosts.allow
-echo "rpcbind: ALL" >> /etc/hosts.allow
+echo "nfsd:all" >>/etc/hosts.allow
+echo "rpcbind:all" >>/etc/hosts.allow
+echo "mountd:all" >>/etc/hosts.allow
 chattr +i /etc/hosts.allow
 
 #showmount测试
