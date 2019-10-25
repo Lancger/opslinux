@@ -73,7 +73,7 @@ ps -ef|grep supervisord          # 查看是否存在supervisord进程
 # 二、配置supervisord开机启动
 
 ```
-chkconfig supervisor on
+chkconfig supervisord on
 chkconfig --list|grep supervisord
 
 #supervisord     0:off   1:off   2:on    3:on    4:on    5:on    6:off
