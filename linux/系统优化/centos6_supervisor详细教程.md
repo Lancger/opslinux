@@ -2,8 +2,6 @@
 ```
 yum install -y epel-release supervisor
 
-ps -ef|grep supervisord          # 查看是否存在supervisord进程
-
 #完整配置
 mkdir -p /etc/supervisord.d/
 
@@ -67,6 +65,9 @@ EOF
 /etc/init.d/supervisord reload
 /etc/init.d/supervisord restart
 /etc/init.d/supervisord status
+
+
+ps -ef|grep supervisord          # 查看是否存在supervisord进程
 ```
 
 # 二、配置supervisord开机启动
