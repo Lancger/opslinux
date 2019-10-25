@@ -62,6 +62,11 @@ chattr +i /etc/hosts.allow
 
 #showmount测试
 showmount -e 192.168.56.11
+
+# tcpdmatch rpcbind 192.168.56.11
+client:   address  192.168.56.11
+server:   process  rpcbind
+access:   granted
 ```
 
 ## 二、nfs客户端
