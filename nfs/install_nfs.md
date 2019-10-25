@@ -85,7 +85,8 @@ mount -t nfs 192.168.56.11:/nfs/data  /mnt/nfs
 vim /etc/fstab
 192.168.56.11:/nfs/data /mnt/nfs/ nfs auto,noatime,nolock,bg,nfsvers=4,intr,tcp,actimeo=1800 0 0
 
-mount -a挂载
+#挂载
+mount -a
 ```
 
 参考文档：
