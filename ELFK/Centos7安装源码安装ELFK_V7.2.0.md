@@ -476,10 +476,10 @@ filter {
 }
 
 output {
-    if [fields][file_tag] == "nginx-access-beat" {
+    if [fields][file_tag] == "nginx-log-beat" {
         elasticsearch {
             hosts => ["server-01:9200", "server-02:9200", "server-03:9200"]
-            index => "nginx-access-es-%{+YYYY.MM.dd}"
+            index => "nginx-log-es-%{+YYYY.MM.dd}"
         }
     }
     if [fields][file_tag] == "secure-beat" {
