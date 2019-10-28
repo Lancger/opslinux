@@ -232,3 +232,30 @@ SELECT @@innodb_buffer_pool_size;
 
 SET GLOBAL innodb_buffer_pool_size=4*1024*1024*1024;
 ```
+
+## 十五、Mysql修改表字段类型
+```
+mysql> desc orders ;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| shipaddress | varchar(20) | YES  | MUL | NULL    |       |
+| shipcity    | varchar(20) | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+2 rows in set (0.13 sec)
+
+
+mysql> alter table orders modify column shipaddress int(20) ;
+Query OK, 0 rows affected (0.85 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc orders ;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| shipaddress | int(20)     | YES  | MUL | NULL    |       |
+| shipcity    | varchar(20) | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+————————————————
+```
