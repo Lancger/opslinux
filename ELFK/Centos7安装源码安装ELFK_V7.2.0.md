@@ -281,11 +281,15 @@ su - elk
 /usr/local/elk/elasticsearch-cold/bin/elasticsearch -d
 
 #停止服务,清理数据
-ps -ef|grep elasticsearch|grep -v grep|awk '{print $2}'|xargs kill
+ps -ef|grep elasticsearch|grep -v grep|awk '{print $2}'|xargs kill -9
 
 rm -rf /data0/database/elasticsearch/*
 rm -rf /data0/database/elasticsearch-hot/*
 rm -rf /data0/database/elasticsearch-cold/*
+
+rm -rf /data1/database/elasticsearch/*
+rm -rf /data1/database/elasticsearch-hot/*
+rm -rf /data1/database/elasticsearch-cold/*
 
 rm -rf /usr/local/elk/elasticsearch/logs/*
 rm -rf /usr/local/elk/elasticsearch-hot/logs/*
