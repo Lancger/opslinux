@@ -506,6 +506,9 @@ nohup /usr/local/elk/logstash/bin/logstash -f /usr/local/elk/logstash/config/log
 #--config.reload.automatic自动监听配置修改而无需重启，跟nginx -s reload一样，挺实用的
 cd /usr/local/elk/logstash/bin
 nohup ./logstash -f ../config/logstash-es.conf --config.reload.automatic &
+
+#停止服务
+ps -ef|grep logstash|grep -v grep|awk '{print $2}'|xargs kill
 ```
 
 # 七、准备filebeat
