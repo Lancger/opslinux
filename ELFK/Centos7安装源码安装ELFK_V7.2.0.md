@@ -279,6 +279,8 @@ su - elk
 /usr/local/elk/elasticsearch-hot/bin/elasticsearch -d
 
 /usr/local/elk/elasticsearch-cold/bin/elasticsearch -d
+
+ps -ef|grep elasticsearch|grep -v grep|awk '{print $2}'|xargs kill
 ```
 
 # 三、集群健康检查
