@@ -411,7 +411,7 @@ i18n.locale: "zh-CN"
 EOF
 
 cd /usr/local/elk/kibana/bin
-nohup ./kibana --allow-root > /dev/null &
+nohup ./kibana --allow-root >/dev/null 2>&1 &
 
 http://localhost:5601/status
 ```
@@ -520,7 +520,7 @@ nohup /usr/local/elk/logstash/bin/logstash -f /usr/local/elk/logstash/config/log
 
 #--config.reload.automatic自动监听配置修改而无需重启，跟nginx -s reload一样，挺实用的
 cd /usr/local/elk/logstash/bin
-nohup ./logstash -f ../config/logstash-es.conf --config.reload.automatic &
+nohup ./logstash -f ../config/logstash-es.conf --config.reload.automatic >/dev/null 2>&1 &
 
 #停止服务
 ps -ef|grep logstash|grep -v grep|awk '{print $2}'|xargs kill
