@@ -557,6 +557,7 @@ mv filebeat /usr/local/elk/
 #file采集的日志输出到logstash集群（9600 logstash端口）
 tee /usr/local/elk/filebeat/filebeat.yml << 'EOF'
 filebeat.inputs:
+######nginx_log######
 - type: log
   enabled: true
   paths:
@@ -565,6 +566,9 @@ filebeat.inputs:
   tags: ["nginx-log"]
   fields:
     file_tag: nginx-log-beat
+######nginx_log#######
+
+######secure_log######
 - type: log
   enabled: true
   paths:
@@ -573,6 +577,19 @@ filebeat.inputs:
   tags: ["secure"]
   fields:
     file_tag: secure-beat
+######secure_log######
+
+######tomcat_log######
+- type: log
+  enabled: true
+  paths:
+    /data0/opt/tomcat7_18081_home_web/logs/*.out
+  exclude_files: ['.gz$']
+  tags: ["secure"]
+  fields:
+    file_tag: tomcat7_18081_home_web
+######tomcat_log######
+
 filebeat.config.modules:
   path: ${path.config}/modules.d/*.yml
   reload.enabled: false
