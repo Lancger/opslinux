@@ -529,11 +529,11 @@ filebeat.inputs:
 - type: log
   enabled: true
   paths:
-    /var/log/nginx/access.log
+    /var/log/nginx/*.log
   exclude_files: ['.gz$']
-  tags: ["nginx-access"]
+  tags: ["nginx-log"]
   fields:
-    file_tag: nginx-access-beat
+    file_tag: nginx-log-beat
 - type: log
   enabled: true
   paths:
