@@ -241,9 +241,9 @@ node.master: false
 #指定该节点是否存储索引数据，默认为true。
 node.data: true
 #配置data存放的路径，磁盘为ssd磁盘
-path.data: /data0/database/elasticsearch/,/data1/database/elasticsearch/
+path.data: /data0/database/elasticsearch-cold/,/data1/database/elasticsearch-cold/
 #配置日志存放的路径
-path.logs: /usr/local/elk/elasticsearch/logs
+path.logs: /usr/local/elk/elasticsearch-cold/logs
 #配置是否使用内存交换分区
 bootstrap.memory_lock: false 
 #配置是否启用检测
