@@ -513,6 +513,12 @@ output {
             index => "secure-es-%{+YYYY.MM.dd}"
         }
     }
+    if [fields][file_tag] == "tomcat7_18081_home_web" {
+        elasticsearch {
+            hosts => ["server-01:9200", "server-02:9200", "server-03:9200"]
+            index => "tomcat7_18081_home_web-%{+YYYY.MM.dd}"
+        }
+    }
     #stdout { 
     #    codec => rubydebug 
     #}
