@@ -313,6 +313,16 @@ ip         heap.percent ram.percent cpu load_1m load_5m load_15m node.role maste
 10.10.0.18           20          29   0    0.00    0.04     0.09 mi        *      es-master1
 10.10.0.9            22          22   0    0.00    0.02     0.05 mi        -      es-master3
 10.10.0.5            22          23   0    0.00    0.02     0.06 mi        -      es-master2
+
+3、调整分片和副本数（kibana里面的devtools）
+PUT _template/default_template
+{
+  "index_patterns" : ["*"], 
+  "settings": {
+    "number_of_shards": 3,
+    "number_of_replicas" : 1
+  }
+}
 ```
 
 # 四、插件安装
