@@ -21,19 +21,21 @@ kill id
 ```
 1.查看下在锁的事务 
 SELECT * FROM INFORMATION_SCHEMA.INNODB_TRX;
-￼
 
 2.杀死进程id（就是上面命令的trx_mysql_thread_id列）
 kill 线程ID
+
 例子：
-查出死锁进程：SHOW PROCESSLIST 杀掉进程          KILL 420821;
+查出死锁进程：SHOW PROCESSLIST  
+
+杀掉进程          KILL 420821;
 
 其它关于查看死锁的命令：
-1：查看当前的事务 SELECT * FROM INFORMATION_SCHEMA.INNODB_TRX;
+1：查看当前的事务
+SELECT * FROM INFORMATION_SCHEMA.INNODB_TRX;
 
 2：查看当前锁定的事务
 SELECT * FROM INFORMATION_SCHEMA.INNODB_LOCKS;
-
 
 3：查看当前等锁的事务 SELECT * FROM INFORMATION_SCHEMA.INNODB_LOCK_WAITS;
 
