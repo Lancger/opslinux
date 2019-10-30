@@ -9,6 +9,15 @@ innobackupex --default-file=/etc/my.cnf --user=root --password=xxxx --stream=tar
 gh-ost --user="root" --password="xxxxxx" --host=127.0.0.1  --database="coredump_log" --table="coredump_log_1"  --alter="engine innodb" --allow-on-master --execute
 
 
+#查看表数量
+mysql> select count('id') from i_miner_basic_info;
++-------------+
+| count('id') |
++-------------+
+|     2020744 |
++-------------+
+1 row in set (0.41 sec)
+
 gh-ost --user="root" --password="***" --host=127.0.0.1  --database="pass_center" --table="i_miner_basic_info"  --alter="add device_type TINYINT(3) UNSIGNED NOT NULL DEFAULT '1' COMMENT '设备类型 1:cloud 2:qt 3:clud_cash 4:x86'" --allow-on-master --initially-drop-ghost-table --execute
 
 ```
