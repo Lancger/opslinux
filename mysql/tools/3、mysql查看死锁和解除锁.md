@@ -27,13 +27,15 @@ SELECT * FROM INFORMATION_SCHEMA.INNODB_TRX;
 kill 线程ID
 例子：
 查出死锁进程：SHOW PROCESSLIST 杀掉进程          KILL 420821;
+
 其它关于查看死锁的命令：
 1：查看当前的事务 SELECT * FROM INFORMATION_SCHEMA.INNODB_TRX;
+
 2：查看当前锁定的事务
 SELECT * FROM INFORMATION_SCHEMA.INNODB_LOCKS;
+
+
 3：查看当前等锁的事务 SELECT * FROM INFORMATION_SCHEMA.INNODB_LOCK_WAITS;
-
-
 
 mysql> show variables like 'innodb_lock_wait_timeout';
 +--------------------------+-------+
