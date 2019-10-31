@@ -331,7 +331,10 @@ EOF
 docker-compose -f docker-compose-kafka.yml up -d
 
 5、#验证
+http://192.168.56.11:9000/
 
+#Cluster Zookeeper Hosts中填入:
+zoo1:2181/kafka1,zoo2:2181/kafka1,zoo3:2181/kafka1
 
 https://www.cnblogs.com/yingww/p/9188701.html   docker下部署kafka集群(多个broker+多个zookeeper)
 ```
