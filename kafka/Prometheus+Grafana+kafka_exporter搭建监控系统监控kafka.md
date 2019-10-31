@@ -15,11 +15,11 @@ docker run -d --name=grafana -v /etc/localtime:/etc/localtime:ro --restart=alway
 # prometheus启动
 
 ```
-docker run -d --name=prometheus -p 9090:9090 --restart=always -v /etc/localtime:/etc/localtime:ro  -v /home/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml  prom/prometheus
-
 注：提前将需要挂载的目录创建好
 mkdir -pv /home/prometheus/
 touch /home/prometheus/prometheus.yml
+
+docker run -d --name=prometheus -p 9090:9090 --restart=always -v /etc/localtime:/etc/localtime:ro  -v /home/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml  prom/prometheus
 ```
 
 # 登陆到kafka服务器下载kafka_exporter
