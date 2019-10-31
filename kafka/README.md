@@ -12,7 +12,7 @@ docker rm -f `docker ps -a -q`
 # 二、docker安装zk和kafka
 ```bash
 1、启动zookeeper
-docker run -d --name my_zookeeper --restart always -p 2181 -t wurstmeister/zookeeper
+docker run -d --name my_zookeeper --restart always -p 2181:2181 -t wurstmeister/zookeeper
 
 #使用 ZK 命令行客户端连接 ZK
 docker run -it --rm --link my_zookeeper:zookeeper zookeeper zkCli.sh -server zookeeper
@@ -256,6 +256,14 @@ docker-compose up -d
 https://www.cnblogs.com/yingww/p/9188701.html   docker下部署kafka集群(多个broker+多个zookeeper)
 ```
 
+# 七、问题
+```
+1、修复问题
+Yikes! Ask timed out on [ActorSelection[Anchor(akka://kafka-manager-system/), Path(/user/kafka-manager)]] after [5000 ms]
+
+原因为连接不上zookeeper报错导致
+
+```
 
 参考资料：
 
