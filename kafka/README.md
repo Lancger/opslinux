@@ -154,113 +154,203 @@ docker-compose scale kafka=3
 
 # 六、多个broker+多个zookeeper的kafka集群
 ```
+#清理集群
 docker rm -f `docker ps -a -q`
 
-cat > docker-compose.yml <<-EOF
+#新建docker网络
+docker network create viemall-zookeeper
+docker network ls
+
+#创建zookeeper集群
+cat > docker-compose-zk.yml <<-EOF
 version: '2'
 services:
-    zoo1:
-        image: zookeeper
-        restart: always
-        container_name: zoo1
-        ports:
-            - "2181:2181"
-        environment:
-            ZOO_MY_ID: 1
-            ZOO_SERVERS: server.1=zoo1:2888:3888 server.2=zoo2:2888:3888 server.3=zoo3:2888:3888 server.4=zoo4:2888:3888:observer
+  zoo1:
+    image: zookeeper:3.4 # 镜像名称
+    restart: always # 当发生错误时自动重启
+    hostname: zoo1
+    container_name: zoo1
+    privileged: true
+    ports: # 端口
+      - 2181:2181
+    volumes: # 挂载数据卷
+      - ./zoo1/data:/data
+      - ./zoo1/datalog:/datalog 
+    environment:
+      TZ: Asia/Shanghai
+      ZOO_MY_ID: 1 # 节点ID
+      ZOO_PORT: 2181 # zookeeper端口号
+      ZOO_SERVERS: server.1=zoo1:2888:3888 server.2=zoo2:2888:3888 server.3=zoo3:2888:3888 # zookeeper节点列表
+    networks:
+      default:
+        ipv4_address: 172.23.0.11
 
-    zoo2:
-        image: zookeeper
-        restart: always
-        container_name: zoo2
-        ports:
-            - "2182:2181"
-        environment:
-            ZOO_MY_ID: 2
-            ZOO_SERVERS: server.1=zoo1:2888:3888 server.2=zoo2:2888:3888 server.3=zoo3:2888:3888 server.4=zoo4:2888:3888:observer
+  zoo2:
+    image: zookeeper:3.4
+    restart: always
+    hostname: zoo2
+    container_name: zoo2
+    privileged: true
+    ports:
+      - 2182:2181
+    volumes:
+      - ./zoo2/data:/data
+      - ./zoo2/datalog:/datalog
+    environment:
+      TZ: Asia/Shanghai
+      ZOO_MY_ID: 2
+      ZOO_PORT: 2181
+      ZOO_SERVERS: server.1=zoo1:2888:3888 server.2=zoo2:2888:3888 server.3=zoo3:2888:3888
+    networks:
+      default:
+        ipv4_address: 172.23.0.12
 
-    zoo3:
-        image: zookeeper
-        restart: always
-        container_name: zoo3
-        ports:
-            - "2183:2181"
-        environment:
-            ZOO_MY_ID: 3
-            ZOO_SERVERS: server.1=zoo1:2888:3888 server.2=zoo2:2888:3888 server.3=zoo3:2888:3888 server.4=zoo4:2888:3888:observer
-    zoo4:
-        image: zookeeper
-        restart: always
-        container_name: zoo4
-        ports:
-            - "2184:2181"
-        environment:
-            ZOO_MY_ID: 4
-            PEER_TYPE: observer
-            ZOO_SERVERS: server.1=zoo1:2888:3888 server.2=zoo2:2888:3888 server.3=zoo3:2888:3888 server.4=zoo4:2888:388:observer
+  zoo3:
+    image: zookeeper:3.4
+    restart: always
+    hostname: zoo3
+    container_name: zoo3
+    privileged: true
+    ports:
+      - 2183:2181
+    volumes:
+      - ./zoo3/data:/data
+      - ./zoo3/datalog:/datalog
+    environment:
+      TZ: Asia/Shanghai
+      ZOO_MY_ID: 3
+      ZOO_PORT: 2181
+      ZOO_SERVERS: server.1=zoo1:2888:3888 server.2=zoo2:2888:3888 server.3=zoo3:2888:3888
+    networks:
+      default:
+        ipv4_address: 172.23.0.13
 
-    broker1:
-        image: wurstmeister/kafka
-        restart: always
-        container_name: broker1
-        ports:
-          - "9091:9092"
-        depends_on:
-          - zoo1
-          - zoo2
-          - zoo3
-          - zoo4
-        environment:
-          KAFKA_BROKER_ID: 1
-          KAFKA_ADVERTISED_HOST_NAME: broker1
-          KAFKA_ADVERTISED_PORT: 9092
-          KAFKA_HOST_NAME: broker1
-          KAFKA_ZOOKEEPER_CONNECT: zoo1:2181,zoo2:2181,zoo3:2181,zoo4:2181
-          KAFKA_LISTENERS: PLAINTEXT://broker1:9092
-          KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://broker1:9092
-
-    broker2:
-        image: wurstmeister/kafka
-        restart: always
-        container_name: broker2
-        ports:
-          - "9092:9092"
-        depends_on:
-          - zoo1
-          - zoo2
-          - zoo3
-          - zoo4
-        environment:
-          KAFKA_BROKER_ID: 2
-          KAFKA_ADVERTISED_HOST_NAME: broker2
-          KAFKA_ADVERTISED_PORT: 9092
-          KAFKA_HOST_NAME: broker2
-          KAFKA_ZOOKEEPER_CONNECT: zoo1:2181,zoo2:2181,zoo3:2181,zoo4:2181
-          KAFKA_LISTENERS: PLAINTEXT://broker2:9092
-          KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://broker2:9092
-
-    broker3:
-        image: wurstmeister/kafka
-        restart: always
-        container_name: broker3
-        ports:
-          - "9093:9092"
-        depends_on:
-          - zoo1
-          - zoo2
-          - zoo3
-          - zoo4
-        environment:
-          KAFKA_BROKER_ID: 3
-          KAFKA_ADVERTISED_HOST_NAME: broker3
-          KAFKA_ADVERTISED_PORT: 9092
-          KAFKA_HOST_NAME: broker3
-          KAFKA_ZOOKEEPER_CONNECT: zoo1:2181,zoo2:2181,zoo3:2181,zoo4:2181
-          KAFKA_LISTENERS: PLAINTEXT://broker3:9092
-          KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://broker3:9092
+networks:
+  default:
+    external:
+      name: zoo_kafka
 EOF
 
-docker-compose up -d
+docker-compose -f docker-compose-zk.yml up -d
+
+
+#创建kafka集群
+cat > docker-compose-kafka.yml <<-EOF
+version: '2'
+services:
+  broker1:
+    image: wurstmeister/kafka
+    restart: always
+    hostname: broker1
+    container_name: broker1
+    privileged: true
+    ports:
+      - "9091:9092"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_LISTENERS: PLAINTEXT://broker1:9092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://broker1:9092
+      KAFKA_ADVERTISED_HOST_NAME: broker1
+      KAFKA_ADVERTISED_PORT: 9092
+      KAFKA_ZOOKEEPER_CONNECT: zoo1:2181/kafka1,zoo2:2181/kafka1,zoo3:2181/kafka1
+      JMX_PORT: 9988
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./broker1:/kafka/kafka\-logs\-broker1
+    external_links:
+    - zoo1
+    - zoo2
+    - zoo3
+    networks:
+      default:
+        ipv4_address: 172.23.0.14
+
+  broker2:
+    image: wurstmeister/kafka
+    restart: always
+    hostname: broker2
+    container_name: broker2
+    privileged: true
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_BROKER_ID: 2
+      KAFKA_LISTENERS: PLAINTEXT://broker2:9092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://broker2:9092
+      KAFKA_ADVERTISED_HOST_NAME: broker2
+      KAFKA_ADVERTISED_PORT: 9092
+      KAFKA_ZOOKEEPER_CONNECT: zoo1:2181/kafka1,zoo2:2181/kafka1,zoo3:2181/kafka1
+      JMX_PORT: 9988
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./broker2:/kafka/kafka\-logs\-broker2
+    external_links:  # 连接本compose文件以外的container
+    - zoo1
+    - zoo2
+    - zoo3
+    networks:
+      default:
+        ipv4_address: 172.23.0.15
+
+  broker3:
+    image: wurstmeister/kafka
+    restart: always
+    hostname: broker3
+    container_name: broker3
+    privileged: true
+    ports:
+      - "9093:9092"
+    environment:
+      KAFKA_BROKER_ID: 3
+      KAFKA_LISTENERS: PLAINTEXT://broker3:9092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://broker3:9092
+      KAFKA_ADVERTISED_HOST_NAME: broker3
+      KAFKA_ADVERTISED_PORT: 9092
+      KAFKA_ZOOKEEPER_CONNECT: zoo1:2181/kafka1,zoo2:2181/kafka1,zoo3:2181/kafka1
+      JMX_PORT: 9988
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./broker3:/kafka/kafka\-logs\-broker3
+    external_links:  # 连接本compose文件以外的container
+    - zoo1
+    - zoo2
+    - zoo3
+    networks:
+      default:
+        ipv4_address: 172.23.0.16
+
+  kafka-manager:
+    image: sheepkiller/kafka-manager:latest
+    restart: always
+    container_name: kafka-manager
+    hostname: kafka-manager
+    ports:
+      - "9000:9000"
+    links:            # 连接本compose文件创建的container
+      - broker1
+      - broker2
+      - broker3
+    external_links:   # 连接本compose文件以外的container
+      - zoo1
+      - zoo2
+      - zoo3
+    environment:
+      ZK_HOSTS: zoo1:2181/kafka1,zoo2:2181/kafka1,zoo3:2181/kafka1
+      KAFKA_BROKERS: broker1:9092,broker2:9092,broker3:9092
+      APPLICATION_SECRET: letmein
+      KM_ARGS: -Djava.net.preferIPv4Stack=true
+    networks:
+      default:
+        ipv4_address: 172.23.0.10
+
+networks:
+  default:
+    external:   # 使用已创建的网络
+      name: zoo_kafka
+EOF
+
+docker-compose -f docker-compose-kafka.yml up -d
+
 
 https://www.cnblogs.com/yingww/p/9188701.html   docker下部署kafka集群(多个broker+多个zookeeper)
 ```
