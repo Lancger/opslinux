@@ -14,11 +14,11 @@ docker rm -f `docker ps -a -q`
 ```bash
 1、启动zookeeper
 
-docker run -d --name zookeeper --restart always -p 2181 -t wurstmeister/zookeeper
+docker run -d --name my_zookeeper --restart always -p 2181 -t wurstmeister/zookeeper
 
 #使用 ZK 命令行客户端连接 ZK
 
-docker run -it --rm --link zookeeper:zookeeper zookeeper zkCli.sh -server zookeeper
+docker run -it --rm --link my_zookeeper:zookeeper zookeeper zkCli.sh -server zookeeper
 
 #这个命令的含义是:
     #1、启动一个 zookeeper 镜像, 并运行这个镜像内的 zkCli.sh 命令, 命令参数是 "-server zookeeper"
@@ -27,7 +27,7 @@ docker run -it --rm --link zookeeper:zookeeper zookeeper zkCli.sh -server zookee
 
 2、启动kafka
 
-docker run -d --name kafka --restart always -p 9092:9092 --link zookeeper --env KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181 --env KAFKA_ADVERTISED_HOST_NAME=127.0.0.1 --env KAFKA_ADVERTISED_PORT=9092 --volume /etc/localtime:/etc/localtime wurstmeister/kafka:latest
+docker run -d --name kafka --restart always -p 9092:9092 --link my_zookeeper --env KAFKA_ZOOKEEPER_CONNECT=my_zookeeper:2181 --env KAFKA_ADVERTISED_HOST_NAME=127.0.0.1 --env KAFKA_ADVERTISED_PORT=9092 --volume /etc/localtime:/etc/localtime wurstmeister/kafka:latest
 
 3、启动kafka管理工具
 
