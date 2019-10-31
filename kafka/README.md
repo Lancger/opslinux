@@ -13,6 +13,7 @@ docker rm -f `docker ps -a -q`
 
 1、启动zookeeper
 ```bash
+#启动 ZK 服务端
 docker run -d --name my_zookeeper --restart always -p 2181:2181 -t wurstmeister/zookeeper
 
 #使用 ZK 命令行客户端连接 ZK
