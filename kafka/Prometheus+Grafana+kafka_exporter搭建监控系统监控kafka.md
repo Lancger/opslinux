@@ -31,7 +31,8 @@ cd /usr/local/src/
 wget -O kafka_exporter-1.2.0.linux-amd64.tar.gz https://github.com/danielqsj/kafka_exporter/releases/download/v1.2.0/kafka_exporter-1.2.0.linux-amd64.tar.gz
 tar -zxvf kafka_exporter-1.2.0.linux-amd64.tar.gz
 cd kafka_exporter-1.2.0.linux-amd64
-./kafka_exporter --kafka.server=kafkaIP或者域名:9092 &
+#./kafka_exporter --kafka.server=kafkaIP或者域名:9092 &
+./kafka_exporter --kafka.server=192.168.56.11:9092 &
 
 ss -tunl
 #注：9308是kafka_exporter的端口
