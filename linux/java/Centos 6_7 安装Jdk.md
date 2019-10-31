@@ -8,6 +8,7 @@ yum -y install java-11-openjdk
 
 #2、源码安装
 #wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" https://download.oracle.com/otn/java/jdk/8u211-b12/478a62b7d4e34b78b671c754eaaf38ab/jdk-8u211-linux-x64.tar.gz
+cd /usr/local/src/
 wget http://download.devops.com/jdk-8u211-linux-x64.tar.gz
 
 mkdir /opt/java && cd /opt/java 
