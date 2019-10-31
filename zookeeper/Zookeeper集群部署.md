@@ -81,10 +81,18 @@ Mode: leader
 
 # 六、连接测试
 
-```
+```bash
 /usr/local/zookeeper/bin/zkCli.sh -server 172.18.8.24:2181
+
+#查看zookeeper的配置
+echo conf | nc 127.0.0.1 2181
+
+#查看哪个节点被选择作为follower或者leader
+echo stat|nc 127.0.0.1 2181
 
 ```
 参考资料：
 
 https://segmentfault.com/a/1190000009983727
+
+https://blog.csdn.net/zero__007/article/details/81090194  nc命令获取zookeeper信息 
