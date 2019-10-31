@@ -14,8 +14,8 @@ cd /usr/local/src/
 mkdir -p /opt/java
 wget http://download.devops.com/jdk-8u211-linux-x64.tar.gz
 tar -zxvf jdk-8u211-linux-x64.tar.gz
-mv jdk1.8.0_211 /opt/java
-ls -l /opt/java
+mv jdk1.8.0_211 /opt/java/
+ls -l /opt/java/
 
 vim /etc/profile
 #在最后一行添加
