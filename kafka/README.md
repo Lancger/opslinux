@@ -276,6 +276,8 @@ Yikes! Ask timed out on [ActorSelection[Anchor(akka://kafka-manager-system/), Pa
 
 参考资料：
 
+https://yq.aliyun.com/articles/716134  Docker如何搭建Zookeeper、Kafka集群？
+
 https://www.cnblogs.com/yingww/p/9188701.html  docker下部署kafka集群(多个broker+多个zookeeper)
 
 https://www.jianshu.com/p/240d9166aaaf   Docker容器安装单机Kafka
