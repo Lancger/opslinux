@@ -1,3 +1,4 @@
+# 一、代理配置
 ```bash
 cat >/etc/nginx/conf.d/download.conf<<\EOF
 server {
@@ -24,4 +25,9 @@ server {
 EOF
 
 systemctl restart nginx
+```
+
+# 下载测试
+```
+wget http://download.devops.com/a.tar.gz
 ```
