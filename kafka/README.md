@@ -43,6 +43,8 @@ sheepkiller/kafka-manager
 root># docker port fe73af90eff1
 9000/tcp -> 0.0.0.0:9000
 
+5、访问kafka-manager
+http://192.168.56.11:9000/
 ```
 
 # 三、测试发送消息
