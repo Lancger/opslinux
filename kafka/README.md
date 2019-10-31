@@ -181,9 +181,6 @@ services:
       ZOO_MY_ID: 1 # 节点ID
       ZOO_PORT: 2181 # zookeeper端口号
       ZOO_SERVERS: server.1=zoo1:2888:3888 server.2=zoo2:2888:3888 server.3=zoo3:2888:3888 # zookeeper节点列表
-    networks:
-      default:
-        ipv4_address: 172.23.0.11
 
   zoo2:
     image: zookeeper:3.4
@@ -201,9 +198,6 @@ services:
       ZOO_MY_ID: 2
       ZOO_PORT: 2181
       ZOO_SERVERS: server.1=zoo1:2888:3888 server.2=zoo2:2888:3888 server.3=zoo3:2888:3888
-    networks:
-      default:
-        ipv4_address: 172.23.0.12
 
   zoo3:
     image: zookeeper:3.4
@@ -221,9 +215,6 @@ services:
       ZOO_MY_ID: 3
       ZOO_PORT: 2181
       ZOO_SERVERS: server.1=zoo1:2888:3888 server.2=zoo2:2888:3888 server.3=zoo3:2888:3888
-    networks:
-      default:
-        ipv4_address: 172.23.0.13
 
 networks:
   default:
@@ -261,9 +252,6 @@ services:
     - zoo1
     - zoo2
     - zoo3
-    networks:
-      default:
-        ipv4_address: 172.23.0.14
 
   broker2:
     image: wurstmeister/kafka
@@ -288,9 +276,6 @@ services:
     - zoo1
     - zoo2
     - zoo3
-    networks:
-      default:
-        ipv4_address: 172.23.0.15
 
   broker3:
     image: wurstmeister/kafka
@@ -315,9 +300,6 @@ services:
     - zoo1
     - zoo2
     - zoo3
-    networks:
-      default:
-        ipv4_address: 172.23.0.16
 
   kafka-manager:
     image: sheepkiller/kafka-manager:latest
@@ -339,9 +321,6 @@ services:
       KAFKA_BROKERS: broker1:9092,broker2:9092,broker3:9092
       APPLICATION_SECRET: letmein
       KM_ARGS: -Djava.net.preferIPv4Stack=true
-    networks:
-      default:
-        ipv4_address: 172.23.0.10
 
 networks:
   default:
