@@ -65,6 +65,12 @@ Mode: leader
 ```
 /usr/local/zookeeper/bin/zkCli.sh -server 192.168.56.11:2181
 
+#查看zookeeper的配置
+echo conf | nc 127.0.0.1 2181
+
+#查看哪个节点被选择作为follower或者leader
+echo stat|nc 127.0.0.1 2181
+
 ```
 
 # 二、kafka安装
