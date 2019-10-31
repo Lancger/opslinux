@@ -154,14 +154,14 @@ docker-compose scale kafka=3
 
 # 六、多个broker+多个zookeeper的kafka集群
 ```
-#清理集群
+1、#清理集群
 docker rm -f `docker ps -a -q`
 
-#新建docker网络
+2、#新建docker网络
 docker network create viemall-zookeeper
 docker network ls
 
-#创建zookeeper集群
+3、#创建zookeeper集群
 cat > docker-compose-zk.yml <<-EOF
 version: '2'
 services:
@@ -234,7 +234,7 @@ EOF
 docker-compose -f docker-compose-zk.yml up -d
 
 
-#创建kafka集群
+4、#创建kafka集群
 cat > docker-compose-kafka.yml <<-EOF
 version: '2'
 services:
@@ -350,6 +350,8 @@ networks:
 EOF
 
 docker-compose -f docker-compose-kafka.yml up -d
+
+5、#验证
 
 
 https://www.cnblogs.com/yingww/p/9188701.html   docker下部署kafka集群(多个broker+多个zookeeper)
