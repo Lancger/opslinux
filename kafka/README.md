@@ -47,7 +47,8 @@ root># docker port kafka-manager
 ```
 
 5、访问kafka-manager
-`http://192.168.56.11:9000/`
+```
+http://192.168.56.11:9000/
 ```
 
 # 三、测试发送消息
