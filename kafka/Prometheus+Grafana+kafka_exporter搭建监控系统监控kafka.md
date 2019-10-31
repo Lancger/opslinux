@@ -27,7 +27,8 @@ docker run -d --name=prometheus -p 9090:9090 --restart=always -v /etc/localtime:
 # 登陆到kafka服务器下载kafka_exporter
 
 ```
-wget https://github.com/danielqsj/kafka_exporter/releases/download/v1.2.0/kafka_exporter-1.2.0.linux-amd64.tar.gz
+cd /usr/local/src/
+wget -O kafka_exporter-1.2.0.linux-amd64.tar.gz https://github.com/danielqsj/kafka_exporter/releases/download/v1.2.0/kafka_exporter-1.2.0.linux-amd64.tar.gz
 tar -zxvf kafka_exporter-1.2.0.linux-amd64.tar.gz 
 cd kafka_exporter-1.2.0.linux-amd64
 ./kafka_exporter --kafka.server=kafkaIP或者域名:9092 &
