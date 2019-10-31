@@ -15,8 +15,8 @@ docker run -d --name=grafana -v /etc/localtime:/etc/localtime:ro --restart=alway
 
 # prometheus启动
 
-```
-注：提前将需要挂载的目录创建好
+```bash
+#注：提前将需要挂载的目录创建好
 mkdir -p /home/prometheus/
 touch /home/prometheus/prometheus.yml
 docker rm -f prometheus
@@ -26,15 +26,15 @@ docker run -d --name=prometheus -p 9090:9090 --restart=always -v /etc/localtime:
 
 # 登陆到kafka服务器下载kafka_exporter
 
-```
+```bash
 cd /usr/local/src/
 wget -O kafka_exporter-1.2.0.linux-amd64.tar.gz https://github.com/danielqsj/kafka_exporter/releases/download/v1.2.0/kafka_exporter-1.2.0.linux-amd64.tar.gz
-tar -zxvf kafka_exporter-1.2.0.linux-amd64.tar.gz 
+tar -zxvf kafka_exporter-1.2.0.linux-amd64.tar.gz
 cd kafka_exporter-1.2.0.linux-amd64
 ./kafka_exporter --kafka.server=kafkaIP或者域名:9092 &
-ss -tunl
 
-注：9308是kafka_exporter的端口
+ss -tunl
+#注：9308是kafka_exporter的端口
 ```
 
 # 登陆到prometheus服务器
