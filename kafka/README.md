@@ -42,7 +42,7 @@ sheepkiller/kafka-manager
 
 4、查看docker端口
 ```
-root># docker port fe73af90eff1
+root># docker port kafka-manager
 9000/tcp -> 0.0.0.0:9000
 ```
 
