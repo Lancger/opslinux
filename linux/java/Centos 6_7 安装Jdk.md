@@ -24,9 +24,9 @@ export JAVA_HOME=/opt/java/jdk1.8.0_211
 export CLASSPATH=.:${JAVA_HOME}/jre/lib/rt.jar:${JAVA_HOME}/lib/dt.jar:${JAVA_HOME}/lib/tools.jar
 export PATH=$PATH:${JAVA_HOME}/bin
 
-source /etc/profile  (生效环境变量)
+source /etc/profile  #(生效环境变量)
 
-java -version       (检查安装 是否成功)
+java -version        #(检查安装 是否成功)
 ```
 
 # 二、Activemq安装部署
