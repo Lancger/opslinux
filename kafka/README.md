@@ -12,7 +12,7 @@ docker rm -f `docker ps -a -q`
 # 二、docker安装zk和kafka
 ```bash
 1、启动zookeeper
-docker run -d --name my_zookeeper --restart always -p 2181:2181 -t wurstmeister/zookeeper
+docker run -d --name my_zookeeper --restart always -p 2181 -t wurstmeister/zookeeper
 
 #使用 ZK 命令行客户端连接 ZK
 docker run -it --rm --link my_zookeeper:zookeeper zookeeper zkCli.sh -server zookeeper
