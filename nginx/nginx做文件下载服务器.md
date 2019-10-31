@@ -1,3 +1,4 @@
+```bash
 cat >/etc/nginx/conf.d/download.conf<<\EOF
 server {
     listen       80 default_server;
@@ -23,3 +24,4 @@ server {
 EOF
 
 systemctl restart nginx
+```
