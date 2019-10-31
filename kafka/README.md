@@ -26,7 +26,6 @@ docker run -it --rm --link my_zookeeper:zookeeper zookeeper zkCli.sh -server zoo
     #3、当我们执行了这个命令后, 就可以像正常使用 ZK 命令行客户端一样操作 ZK 服务了.
 
 2、启动kafka
-
 docker run -d --name kafka --restart always -p 9092:9092 --link my_zookeeper:zookeeper --env KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181 --env KAFKA_ADVERTISED_HOST_NAME=127.0.0.1 --env KAFKA_ADVERTISED_PORT=9092 --volume /etc/localtime:/etc/localtime wurstmeister/kafka:latest
 
 3、启动kafka管理工具
@@ -39,7 +38,6 @@ docker run -itd \
 sheepkiller/kafka-manager
 
 4、查看docker端口
-
 root># docker port fe73af90eff1
 9000/tcp -> 0.0.0.0:9000
 
