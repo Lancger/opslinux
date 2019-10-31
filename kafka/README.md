@@ -6,18 +6,15 @@ chmod +x /usr/local/bin/docker-compose
 docker-compose --version
 
 # 删除所有容器 
-
 docker rm -f `docker ps -a -q`
 ```
 
 # 二、docker安装zk和kafka
 ```bash
 1、启动zookeeper
-
 docker run -d --name my_zookeeper --restart always -p 2181 -t wurstmeister/zookeeper
 
 #使用 ZK 命令行客户端连接 ZK
-
 docker run -it --rm --link my_zookeeper:zookeeper zookeeper zkCli.sh -server zookeeper
 
 #这个命令的含义是:
@@ -29,7 +26,6 @@ docker run -it --rm --link my_zookeeper:zookeeper zookeeper zkCli.sh -server zoo
 docker run -d --name kafka --restart always -p 9092:9092 --link my_zookeeper:zookeeper --env KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181 --env KAFKA_ADVERTISED_HOST_NAME=127.0.0.1 --env KAFKA_ADVERTISED_PORT=9092 --volume /etc/localtime:/etc/localtime wurstmeister/kafka:latest
 
 3、启动kafka管理工具
-
 docker run -itd \
 --restart=always \
 --name=kafka-manager \
