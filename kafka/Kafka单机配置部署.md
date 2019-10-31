@@ -34,7 +34,7 @@ EOF
 ```
 
 ## 3、服务启动
-```
+```bash
 #服务启动
 /usr/local/zookeeper/bin/zkServer.sh start /usr/local/zookeeper/conf/zoo.cfg
 
@@ -52,7 +52,7 @@ vim /etc/rc.local 添加：
 ```
 
 ## 4、检查状态
-```
+```bash
 /usr/local/zookeeper/bin/zkServer.sh status /usr/local/zookeeper/conf/zoo.cfg
 
 ZooKeeper JMX enabled by default
@@ -62,7 +62,7 @@ Mode: leader
 
 ## 5、连接测试
 
-```
+```bash
 /usr/local/zookeeper/bin/zkCli.sh -server 192.168.56.11:2181
 
 #查看zookeeper的配置
@@ -86,7 +86,7 @@ mkdir /usr/local/kafka/data/
 ```
 
 ## 2、修改文件server.properties
-```
+```bash
 cat > /usr/local/kafka/config/server.properties<<\EOF
 broker.id=1    # 唯一ID同一集群下broker.id不能重复
 listeners=PLAINTEXT://localhost:9092   # 监听地址
@@ -117,7 +117,7 @@ nohup ./bin/kafka-server-start.sh config/server.properties &
 ```
 
 ## 4、创建topic
-```
+```bash
 创建topic:
 bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test
 
