@@ -27,7 +27,7 @@ docker run -it --rm --link my_zookeeper:zookeeper zookeeper zkCli.sh -server zoo
 
 2、启动kafka
 
-docker run -d --name kafka --restart always -p 9092:9092 --link my_zookeeper --env KAFKA_ZOOKEEPER_CONNECT=my_zookeeper:2181 --env KAFKA_ADVERTISED_HOST_NAME=127.0.0.1 --env KAFKA_ADVERTISED_PORT=9092 --volume /etc/localtime:/etc/localtime wurstmeister/kafka:latest
+docker run -d --name kafka --restart always -p 9092:9092 --link my_zookeeper:zookeeper --env KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181 --env KAFKA_ADVERTISED_HOST_NAME=127.0.0.1 --env KAFKA_ADVERTISED_PORT=9092 --volume /etc/localtime:/etc/localtime wurstmeister/kafka:latest
 
 3、启动kafka管理工具
 
