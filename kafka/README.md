@@ -158,7 +158,7 @@ docker-compose scale kafka=3
 docker rm -f `docker ps -a -q`
 
 2、#新建docker网络
-docker network create viemall-zookeeper
+docker network create zoo_kafka
 docker network ls
 
 3、#创建zookeeper集群
