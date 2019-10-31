@@ -10,8 +10,9 @@ docker rm -f `docker ps -a -q`
 ```
 
 # 二、docker安装zk和kafka
-```bash
+
 1、启动zookeeper
+```bash
 docker run -d --name my_zookeeper --restart always -p 2181:2181 -t wurstmeister/zookeeper
 
 #使用 ZK 命令行客户端连接 ZK
@@ -21,24 +22,29 @@ docker run -it --rm --link my_zookeeper:zookeeper zookeeper zkCli.sh -server zoo
     #1、启动一个 zookeeper 镜像, 并运行这个镜像内的 zkCli.sh 命令, 命令参数是 "-server zookeeper"
     #2、将我们先前启动的名为 zookeeper 的容器连接(link) 到我们新建的这个容器上, 并将其主机名命名为 zookeeper
     #3、当我们执行了这个命令后, 就可以像正常使用 ZK 命令行客户端一样操作 ZK 服务了.
+```
 
 2、启动kafka
-docker run -d --name kafka --restart always -p 9092:9092 --link my_zookeeper:zookeeper --env KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181 --env KAFKA_ADVERTISED_HOST_NAME=192.168.56.11 --env KAFKA_ADVERTISED_PORT=9092 --volume /etc/localtime:/etc/localtime wurstmeister/kafka:latest
+`docker run -d --name kafka --restart always -p 9092:9092 --link my_zookeeper:zookeeper --env KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181 --env KAFKA_ADVERTISED_HOST_NAME=192.168.56.11 --env KAFKA_ADVERTISED_PORT=9092 --volume /etc/localtime:/etc/localtime wurstmeister/kafka:latest`
 
 3、启动kafka管理工具
+```
 docker run -itd \
 --restart=always \
 --name=kafka-manager \
 -p 9000:9000 \
 -e ZK_HOSTS="192.168.56.11:2181" \
 sheepkiller/kafka-manager
+```
 
 4、查看docker端口
+```
 root># docker port fe73af90eff1
 9000/tcp -> 0.0.0.0:9000
+```
 
 5、访问kafka-manager
-http://192.168.56.11:9000/
+`http://192.168.56.11:9000/`
 ```
 
 # 三、测试发送消息
