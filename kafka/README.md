@@ -44,31 +44,25 @@ http://192.168.56.11:9000/
 # 三、测试发送消息
 ```
 1、登录的容器内部
-
 root># docker exec -it kafka /bin/bash
 
 bash-4.4# cd /opt/kafka_2.12-2.3.0/
 
 2、创建一个主题
-
 /opt/kafka/bin/kafka-topics.sh --create --zookeeper zookeeper:2181 --replication-factor 1 --partitions 1 --topic my-test
 
 Created topic my-test.
 
 3、查看topic列表
-
 /opt/kafka/bin/kafka-topics.sh --list --zookeeper zookeeper:2181
 
 4、运行一个消生产者，指定topic为刚刚创建的主题（发送消息）
-
 /opt/kafka/bin/kafka-console-producer.sh --broker-list localhost:9092 --topic my-test
 
 5、运行一个消费者，指定同样的主题
-
 /opt/kafka/bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic my-test --from-beginning
 
 这时在生产者输入测试消息，在消费者就可以接收消息了
-
 ```
 
 # 四、docker-compose运行单机版kafka
