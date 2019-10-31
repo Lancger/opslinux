@@ -82,7 +82,7 @@ cd /usr/local/src/
 wget https://mirrors.tuna.tsinghua.edu.cn/apache/kafka/${VER}/kafka_2.12-${VER}.tgz
 tar -zxvf kafka_2.12-${VER}.tgz
 mv kafka_2.12-${VER} /usr/local/kafka
-mkdir /usr/local/kafka/data/
+mkdir -p /usr/local/kafka/data/
 ```
 
 ## 2、修改文件server.properties
