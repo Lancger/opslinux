@@ -13,6 +13,7 @@ find ./ -mmin +600 -print | xargs ls -l
 find ./ -mmin +600 -print | xargs rm -f
 
 #找出10天以前的文件
+find ./ -mtime +10 -print | xargs ls -l
 find ./ -mtime +10 -print | xargs rm -f
 ```
 ```
