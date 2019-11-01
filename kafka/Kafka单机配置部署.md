@@ -116,6 +116,7 @@ cd /usr/local/kafka/
 nohup ./bin/kafka-server-start.sh config/server.properties &
 
 #停止
+cd /usr/local/kafka/
 ./bin/kafka-server-stop.sh
 ```
 
