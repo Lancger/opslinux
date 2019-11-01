@@ -22,7 +22,11 @@ export KAFKA_OPTS="-javaagent:/usr/local/kafka/jmx_prometheus_javaagent-0.6.jar=
 
 # 三、然后重启kafka。
 ```
-访问 http://localhost:9991/metrics 可以看到各种指标了。
+cd /usr/local/kafka/
+./bin/kafka-server-stop.sh
+nohup ./bin/kafka-server-start.sh config/server.properties &
+
+#访问 http://localhost:9991/metrics 可以看到各种指标了。
 ```
 
 参考资料：
