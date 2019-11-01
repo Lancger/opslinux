@@ -67,6 +67,8 @@ docker restart prometheus
 
 参考链接：
 
+https://github.com/danielqsj/kafka_exporter#run-binary   kafka_exporter github官网
+
 https://zhuanlan.zhihu.com/p/57704357   kafka_export 自定义端口
 
 https://blog.csdn.net/weixin_33911824/article/details/91529872
