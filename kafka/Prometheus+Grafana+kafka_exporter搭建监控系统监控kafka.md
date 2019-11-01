@@ -29,20 +29,21 @@ docker run -d --name=prometheus -p 9090:9090 --restart=always -v /etc/localtime:
 ```bash
 cd /usr/local/src/
 wget -O kafka_exporter-1.2.0.linux-amd64.tar.gz https://github.com/danielqsj/kafka_exporter/releases/download/v1.2.0/kafka_exporter-1.2.0.linux-amd64.tar.gz
+
 tar -zxvf kafka_exporter-1.2.0.linux-amd64.tar.gz
 cd kafka_exporter-1.2.0.linux-amd64
-#./kafka_exporter --kafka.server=kafkaIP或者域名:9092 &
-./kafka_exporter --kafka.server=192.168.56.11:9092 &
+
+#./kafka_exporter --kafka.server=kafka_server1:9091 --kafka.server=kafka_server2:9092 ...&  支持多个kafka_server
+./kafka_exporter --kafka.server=192.168.56.11:9091 --kafka.server=192.168.56.11:9092 --kafka.server=192.168.56.11:9093 &
 
 ss -tunl
-#注：9308是kafka_exporter的端口
+#注：9308是kafka_exporter的默认端口
 ```
 
 # 登陆到prometheus服务器
 
-编写/home/prometheus/prometheus.yml文件
-
 ```
+#编写/home/prometheus/prometheus.yml文件
 cat > /home/prometheus/prometheus.yml <<\EOF
 scrape_configs:
 # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
