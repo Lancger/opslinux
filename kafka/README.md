@@ -312,7 +312,7 @@ services:
     - zoo3
 
   kafka-manager:
-    image: sheepkiller/kafka-manager:latest
+    image: hlebalbau/kafka-manager:latest
     restart: always
     container_name: kafka-manager
     hostname: kafka-manager
@@ -329,8 +329,11 @@ services:
     environment:
       ZK_HOSTS: zoo1:2181,zoo2:2181,zoo3:2181
       KAFKA_BROKERS: broker1:9092,broker2:9092,broker3:9092
-      APPLICATION_SECRET: letmein
-      KM_ARGS: -Djava.net.preferIPv4Stack=true
+      APPLICATION_SECRET: "random-secret"
+      KAFKA_MANAGER_AUTH_ENABLED: "true"
+      KAFKA_MANAGER_USERNAME: "admin"
+      KAFKA_MANAGER_PASSWORD: "password"
+    command: -Dpidfile.path=/dev/null
 
 networks:
   default:
@@ -361,6 +364,8 @@ Yikes! Ask timed out on [ActorSelection[Anchor(akka://kafka-manager-system/), Pa
 ```
 
 参考资料：
+
+http://zhongmingmao.me/2018/10/08/kafka-install-cluster-docker/   kafka-manager认证
 
 https://yq.aliyun.com/articles/716134  Docker如何搭建Zookeeper、Kafka集群？
 
