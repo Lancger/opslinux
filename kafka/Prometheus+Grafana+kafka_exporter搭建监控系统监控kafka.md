@@ -45,6 +45,11 @@ nohup ./kafka_exporter --kafka.server=192.168.56.11:9091 --kafka.server=192.168.
 
 ss -tunl
 #注：9308是kafka_exporter的默认端口
+
+#查看指标
+http://192.168.56.11:9308/metrics
+http://192.168.56.11:9309/metrics
+http://192.168.56.11:9310/metrics
 ```
 
 # 登陆到prometheus服务器
