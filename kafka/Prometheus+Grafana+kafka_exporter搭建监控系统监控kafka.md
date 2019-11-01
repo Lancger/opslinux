@@ -33,8 +33,15 @@ wget -O kafka_exporter-1.2.0.linux-amd64.tar.gz https://github.com/danielqsj/kaf
 tar -zxvf kafka_exporter-1.2.0.linux-amd64.tar.gz
 cd kafka_exporter-1.2.0.linux-amd64
 
+#独立服务
+nohup ./kafka_exporter --kafka.server=192.168.56.11:9091 --log.level=info >> kafka_exporter1.log --web.listen-address=:9308 &
+nohup ./kafka_exporter --kafka.server=192.168.56.11:9092 --log.level=info >> kafka_exporter2.log --web.listen-address=:9309 &
+nohup ./kafka_exporter --kafka.server=192.168.56.11:9093 --log.level=info >> kafka_exporter3.log --web.listen-address=:9310 &
+
+
+#汇总服务
 #./kafka_exporter --kafka.server=kafka_server1:9091 --kafka.server=kafka_server2:9092 ...&  支持多个kafka_server
-./kafka_exporter --kafka.server=192.168.56.11:9091 --kafka.server=192.168.56.11:9092 --kafka.server=192.168.56.11:9093 &
+nohup ./kafka_exporter --kafka.server=192.168.56.11:9091 --kafka.server=192.168.56.11:9092 --kafka.server=192.168.56.11:9093 &
 
 ss -tunl
 #注：9308是kafka_exporter的默认端口
