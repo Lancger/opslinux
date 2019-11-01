@@ -240,10 +240,11 @@ services:
     environment:
       KAFKA_BROKER_ID: 1
       KAFKA_LISTENERS: PLAINTEXT://broker1:9092
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://broker1:9092
+      #KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://broker1:9092  修复外部网络不能使用docker容器kafka集群问题
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://192.168.56.11:9091
       KAFKA_ADVERTISED_HOST_NAME: broker1
       KAFKA_ADVERTISED_PORT: 9092
-      KAFKA_ZOOKEEPER_CONNECT: zoo1:2181/kafka1,zoo2:2181/kafka1,zoo3:2181/kafka1
+      KAFKA_ZOOKEEPER_CONNECT: zoo1:2181,zoo2:2181,zoo3:2181
       JMX_PORT: 9988
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
@@ -264,10 +265,11 @@ services:
     environment:
       KAFKA_BROKER_ID: 2
       KAFKA_LISTENERS: PLAINTEXT://broker2:9092
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://broker2:9092
+      #KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://broker2:9092   
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://192.168.56.11:9092
       KAFKA_ADVERTISED_HOST_NAME: broker2
       KAFKA_ADVERTISED_PORT: 9092
-      KAFKA_ZOOKEEPER_CONNECT: zoo1:2181/kafka1,zoo2:2181/kafka1,zoo3:2181/kafka1
+      KAFKA_ZOOKEEPER_CONNECT: zoo1:2181,zoo2:2181,zoo3:2181
       JMX_PORT: 9988
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
@@ -288,10 +290,11 @@ services:
     environment:
       KAFKA_BROKER_ID: 3
       KAFKA_LISTENERS: PLAINTEXT://broker3:9092
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://broker3:9092
+      #KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://broker3:9092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://192.168.56.11:9093
       KAFKA_ADVERTISED_HOST_NAME: broker3
       KAFKA_ADVERTISED_PORT: 9092
-      KAFKA_ZOOKEEPER_CONNECT: zoo1:2181/kafka1,zoo2:2181/kafka1,zoo3:2181/kafka1
+      KAFKA_ZOOKEEPER_CONNECT: zoo1:2181,zoo2:2181,zoo3:2181
       JMX_PORT: 9988
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
@@ -317,7 +320,7 @@ services:
       - zoo2
       - zoo3
     environment:
-      ZK_HOSTS: zoo1:2181/kafka1,zoo2:2181/kafka1,zoo3:2181/kafka1
+      ZK_HOSTS: zoo1:2181,zoo2:2181,zoo3:2181
       KAFKA_BROKERS: broker1:9092,broker2:9092,broker3:9092
       APPLICATION_SECRET: letmein
       KM_ARGS: -Djava.net.preferIPv4Stack=true
