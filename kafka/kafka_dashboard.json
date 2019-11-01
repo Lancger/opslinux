@@ -16,7 +16,7 @@
   "editable": true,
   "gnetId": 9018,
   "graphTooltip": 0,
-  "id": 4,
+  "id": 2,
   "links": [],
   "panels": [
     {
@@ -3312,7 +3312,6 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "Prometheus",
-      "description": "请求(producer,Fetch-Consumer,Fetch-Follower)在请求队列中的等待时间",
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -3321,14 +3320,13 @@
         "x": 0,
         "y": 98
       },
-      "id": 126,
+      "id": 54,
       "legend": {
         "avg": false,
         "current": false,
         "max": false,
         "min": false,
-        "rightSide": true,
-        "show": false,
+        "show": true,
         "total": false,
         "values": false
       },
@@ -3349,10 +3347,10 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(kafka_network_requestmetrics_requestqueuetimems{request =~ \"Produce|FetchConsumer|FetchFollower\"}[5m])",
+          "expr": "max(kafka_controller_kafkacontroller_activecontrollercount) by (instance)",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "{{instance}}-{{request}}",
+          "legendFormat": "",
           "refId": "A"
         }
       ],
@@ -3360,7 +3358,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "请求在请求队列等待时间",
+      "title": "活跃的 Controller 的数量",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -3507,7 +3505,7 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "Prometheus",
-      "description": "Time the request waits in the response queue",
+      "description": "请求(producer,Fetch-Consumer,Fetch-Follower)在请求队列中的等待时间",
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -3516,7 +3514,7 @@
         "x": 0,
         "y": 107
       },
-      "id": 132,
+      "id": 126,
       "legend": {
         "avg": false,
         "current": false,
@@ -3544,10 +3542,10 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(kafka_network_requestmetrics_responsequeuetimems{request =~ \"Produce|FetchConsumer|FetchFollower\"}[5m])",
+          "expr": "rate(kafka_network_requestmetrics_requestqueuetimems{request =~ \"Produce|FetchConsumer|FetchFollower\"}[5m])",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "{{instance}}{{request}}",
+          "legendFormat": "{{instance}}-{{request}}",
           "refId": "A"
         }
       ],
@@ -3555,7 +3553,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "请求在响应队列中等待的时间",
+      "title": "请求在请求队列等待时间",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -3689,7 +3687,7 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "Prometheus",
-      "description": "一个请求(producer,Fetch-Consumer,Fetch-Follower)耗费的所有时间",
+      "description": "Time the request waits in the response queue",
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -3698,7 +3696,7 @@
         "x": 0,
         "y": 116
       },
-      "id": 128,
+      "id": 132,
       "legend": {
         "avg": false,
         "current": false,
@@ -3726,10 +3724,10 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(kafka_network_requestmetrics_totaltimems{request =~ \"Produce|FetchConsumer|FetchFollower\"}[5m])",
+          "expr": "rate(kafka_network_requestmetrics_responsequeuetimems{request =~ \"Produce|FetchConsumer|FetchFollower\"}[5m])",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "{{instance}}-{{request}}",
+          "legendFormat": "{{instance}}{{request}}",
           "refId": "A"
         }
       ],
@@ -3737,7 +3735,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "(producer,Fetch-Consumer,Fetch-Follower)请求耗费的所有时间",
+      "title": "请求在响应队列中等待的时间",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -3871,13 +3869,104 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "Prometheus",
+      "description": "一个请求(producer,Fetch-Consumer,Fetch-Follower)耗费的所有时间",
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 125
+      },
+      "id": 128,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": false,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "rate(kafka_network_requestmetrics_totaltimems{request =~ \"Produce|FetchConsumer|FetchFollower\"}[5m])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "{{instance}}-{{request}}",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "(producer,Fetch-Consumer,Fetch-Follower)请求耗费的所有时间",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "Prometheus",
       "description": "Time to send the response",
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
-        "h": 11,
-        "w": 24,
-        "x": 0,
+        "h": 9,
+        "w": 12,
+        "x": 12,
         "y": 125
       },
       "id": 130,
@@ -3965,7 +4054,7 @@
     "list": []
   },
   "time": {
-    "from": "now-1h",
+    "from": "now-5m",
     "to": "now"
   },
   "timepicker": {
@@ -3996,5 +4085,5 @@
   "timezone": "",
   "title": "Kafka Dashboard",
   "uid": "Vbm7Botmk",
-  "version": 3
+  "version": 8
 }
