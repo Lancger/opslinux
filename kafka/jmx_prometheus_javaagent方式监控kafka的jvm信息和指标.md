@@ -29,6 +29,27 @@ nohup ./bin/kafka-server-start.sh config/server.properties &
 #访问 http://localhost:9991/metrics 可以看到各种指标了。
 ```
 
+# 四、修改prometheus配置
+```
+cat > /home/prometheus/prometheus.yml <<\EOF
+scrape_configs:
+# The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
+   - job_name: 'prometheus'
+     static_configs:
+      - targets: ['localhost:9090']
+
+   - job_name: 'kafka'
+     static_configs:
+      - targets: ['192.168.56.11:9991']
+        labels:
+          #instance: kafkaIP或者域名
+          instance: 192.168.56.11_9091
+EOF
+
+#重启prometheus
+docker restart prometheus
+```
+
 参考资料：
 
 https://blog.csdn.net/qq_25934401/article/details/84840740  Prometheus 监控之 kafka
