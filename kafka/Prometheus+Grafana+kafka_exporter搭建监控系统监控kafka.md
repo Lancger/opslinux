@@ -49,16 +49,28 @@ scrape_configs:
    - job_name: 'prometheus'
      static_configs:
       - targets: ['localhost:9090']
-   - job_name: 'kafka'
+
+   - job_name: 'kafka_broker1'
      static_configs:
       - targets: ['192.168.56.11:9308']
         labels:
-          #instance: kafka@kafkaIP或者域名
-          instance: 192.168.56.11
+          #instance: kafkaIP或者域名
+          instance: 192.168.56.11_9091
+
+   - job_name: 'kafka_broker2'
+     static_configs:
+      - targets: ['192.168.56.11:9309']
+        labels:
+          instance: 192.168.56.11_9092
+
+   - job_name: 'kafka_broker3'
+     static_configs:
+      - targets: ['192.168.56.11:9310']
+        labels:
+          instance: 192.168.56.11_9093
 EOF
 
-重启prometheus
-
+#重启prometheus
 docker restart prometheus
 ```
 
