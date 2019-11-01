@@ -20,7 +20,7 @@ export JMX_PORT="9999"
 export KAFKA_OPTS="-javaagent:/usr/local/kafka/jmx_prometheus_javaagent-0.6.jar=9991:/usr/local/kafka/kafka-0-8-2.yml"
 ```
 
-# 三、然后重启kafka。
+# 三、然后重启kafka
 ```
 cd /usr/local/kafka/
 ./bin/kafka-server-stop.sh
