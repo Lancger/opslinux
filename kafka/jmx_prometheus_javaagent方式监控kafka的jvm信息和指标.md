@@ -1,6 +1,7 @@
 # 一、下载jmx_prometheus_javaagent和kafka.yml
 
 ```
+cd /usr/local/src/
 wget https://raw.githubusercontent.com/prometheus/jmx_exporter/master/example_configs/kafka-0-8-2.yml
 wget https://repo1.maven.org/maven2/io/prometheus/jmx/jmx_prometheus_javaagent/0.6/jmx_prometheus_javaagent-0.6.jar
 ```
