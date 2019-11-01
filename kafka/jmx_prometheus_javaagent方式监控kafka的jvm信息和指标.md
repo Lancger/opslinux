@@ -50,6 +50,14 @@ EOF
 docker restart prometheus
 ```
 
+# 五、grafna导入视图
+```
+https://github.com/Lancger/opslinux/blob/master/kafka/kafka_dashboard.json
+
+#注意使用在使用rate或者irate的时候，范围需要大于注意上报的最小时间间隔
+rate(process_cpu_seconds_total{job="kafka"}[5m])  
+```
+
 参考资料：
 
 https://blog.csdn.net/qq_25934401/article/details/84840740  Prometheus 监控之 kafka
