@@ -153,15 +153,21 @@ docker-compose scale kafka=3
 ```
 
 # 六、多个broker+多个zookeeper的kafka集群
+
+1、清理集群
+
 ```
-1、#清理集群
 docker rm -f `docker ps -a -q`
+```
 
 2、#新建docker网络
+```
 docker network create zoo_kafka
 docker network ls
+```
 
 3、#创建zookeeper集群
+```bash
 cat > docker-compose-zk.yml <<-EOF
 version: '2'
 services:
@@ -223,9 +229,10 @@ networks:
 EOF
 
 docker-compose -f docker-compose-zk.yml up -d
-
+```
 
 4、#创建kafka集群
+```bash
 cat > docker-compose-kafka.yml <<-EOF
 version: '2'
 services:
@@ -332,8 +339,10 @@ networks:
 EOF
 
 docker-compose -f docker-compose-kafka.yml up -d
+```
 
 5、#验证
+```bash
 http://192.168.56.11:9000/
 
 #Cluster Zookeeper Hosts中填入:
