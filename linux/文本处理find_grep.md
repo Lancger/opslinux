@@ -1,4 +1,14 @@
 ```
+#linux 下批量删除空文件（大小等于0的文件）的方法
+find . -name "*" -type f -size 0c|xargs -n 1 rm -f
+
+#用这个还可以删除指定大小的文件，只要修改对应的 -size 参数就行，例如
+find . -name "*" -type f -size 1024c|xargs -n 1 rm -f
+
+#查询出所有的空文件夹
+find -type d -empty 
+```
+```
 Linux Shell是一种基本功，由于怪异的语法加之较差的可读性，通常被Python等脚本代替。既然是基本功，那就需要掌握，毕竟学习Shell脚本的过程中，还是能了解到很多Linux系统的内容。
 
 Linux脚本大师不是人人都可以达到的，但是用一些简单的Shell实现一些常见的基本功能还是很有必要的。
