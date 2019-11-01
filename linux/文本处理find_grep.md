@@ -6,7 +6,14 @@ find . -name "*" -type f -size 0c|xargs -n 1 rm -f
 find . -name "*" -type f -size 1024c|xargs -n 1 rm -f
 
 #查询出所有的空文件夹
-find -type d -empty 
+find -type d -empty
+
+#找出10个小时以前的文件
+find ./ -mmin +600 -print | xargs ls -l
+find ./ -mmin +600 -print | xargs rm -f
+
+#找出10天以前的文件
+find ./ -mtime +10 -print | xargs rm -f
 ```
 ```
 Linux Shell是一种基本功，由于怪异的语法加之较差的可读性，通常被Python等脚本代替。既然是基本功，那就需要掌握，毕竟学习Shell脚本的过程中，还是能了解到很多Linux系统的内容。
