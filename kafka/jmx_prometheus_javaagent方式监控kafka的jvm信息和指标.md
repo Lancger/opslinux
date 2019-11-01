@@ -11,9 +11,9 @@ mv kafka-0-8-2.yml /usr/local/kafka/
 mv jmx_prometheus_javaagent-0.6.jar /usr/local/kafka/
 ```
 
-# 二、打开
+# 二、编辑启动脚本
 ```bash
-#打开 kafka-server-start.sh 文件
+#打开 kafka-server-start.sh 文件，注意加在脚本前面
 vim /usr/local/kafka/bin/kafka-server-start.sh
 
 export JMX_PORT="9999"
