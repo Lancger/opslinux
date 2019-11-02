@@ -1,6 +1,6 @@
 # 一、下载jmx_prometheus_javaagent和zookeeper.yaml
 
-```
+```bash
 #下载jmx程序包
 cd /usr/local/src/
 wget https://raw.githubusercontent.com/prometheus/jmx_exporter/master/example_configs/zookeeper.yaml
@@ -21,7 +21,7 @@ EOF
 ```
 
 # 三、然后重启zookeeper
-```
+```bash
 #服务停止
 /usr/local/zookeeper/bin/zkServer.sh stop
 
@@ -33,7 +33,7 @@ curl localhost:9505/metrics
 ```
 
 # 四、修改prometheus配置
-```
+```bash
 cat > /home/prometheus/prometheus.yml <<\EOF
 scrape_configs:
 # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
@@ -49,7 +49,7 @@ docker restart prometheus
 ```
 
 # 五、grafna导入视图
-```
+```bash
 https://github.com/Lancger/opslinux/blob/master/kafka/kafka_dashboard.json
 
 #注意使用在使用rate或者irate的时候，范围需要大于注意上报的最小时间间隔
