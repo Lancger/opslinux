@@ -58,6 +58,8 @@ rate(process_cpu_seconds_total{job="zookeeper"}[5m])
 
 参考资料：
 
+https://blog.csdn.net/jiankunking/article/details/80764883
+
 https://www.cnblogs.com/bigberg/p/10118555.html  Prometheus jvm_exporter监控zookeeper
 
 https://blog.csdn.net/qq_25934401/article/details/84345905  Prometheus 监控之 zookeeper
