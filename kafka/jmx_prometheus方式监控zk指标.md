@@ -6,7 +6,7 @@ cd /usr/local/src/
 wget https://raw.githubusercontent.com/prometheus/jmx_exporter/master/example_configs/zookeeper.yaml
 wget https://repo1.maven.org/maven2/io/prometheus/jmx/jmx_prometheus_javaagent/0.6/jmx_prometheus_javaagent-0.6.jar
 
-#移动到kafka程序目录
+#移动到zookeeper程序目录
 mkdir /usr/local/zookeeper/prometheus/
 mv zookeeper.yaml /usr/local/zookeeper/prometheus/
 mv jmx_prometheus_javaagent-0.6.jar /usr/local/zookeeper/prometheus/
