@@ -23,8 +23,8 @@ then
 fi
 
 ## 新增javaagent
-JMX_DIR="/usr/local/zookeeper/prometheus"
-JVMFLAGS="$JVMFLAGS -javaagent:$JMX_DIR/jmx_prometheus_javaagent-0.6.jar=9505:$JMX_DIR/zookeeper.yml"
+export JMX_DIR="/usr/local/zookeeper/prometheus"
+export JVMFLAGS="$JVMFLAGS -javaagent:$JMX_DIR/jmx_prometheus_javaagent-0.6.jar=9505:$JMX_DIR/zookeeper.yml"
 
 if [ "x$2" != "x" ]
 then
