@@ -35,7 +35,9 @@ docker restart prometheus
 
 # 五、grafna导入视图
 ```bash
-https://github.com/jiankunking/grafana-dashboards/blob/master/Prometheus_Zookeeper_Overview.json
+#https://github.com/jiankunking/grafana-dashboards/blob/master/Prometheus_Zookeeper_Overview.json
+
+https://github.com/Lancger/opslinux/blob/master/kafka/zookeeper_dashboard.json
 ```
 
 参考资料：
