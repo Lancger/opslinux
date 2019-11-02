@@ -60,4 +60,7 @@ rate(process_cpu_seconds_total{job="kafka"}[5m])
 
 参考资料：
 
+https://www.cnblogs.com/bigberg/p/10118555.html  Prometheus jvm_exporter监控zookeeper
+
 https://blog.csdn.net/qq_25934401/article/details/84840740  Prometheus 监控之 kafka
+
