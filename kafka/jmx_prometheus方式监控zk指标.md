@@ -16,7 +16,7 @@ mv jmx_prometheus_javaagent-0.6.jar /usr/local/zookeeper/prometheus/
 ```bash
 cat > /usr/local/zookeeper/conf/java.env <<\EOF
 export JMX_DIR="/usr/local/zookeeper/prometheus"
-export SERVER_JVMFLAGS="-javaagent:$JMX_DIR/jmx_prometheus_javaagent-0.6.jar=9505:$JMX_DIR/zookeeper.yml $SERVER_JVMFLAGS"
+export SERVER_JVMFLAGS="-javaagent:$JMX_DIR/jmx_prometheus_javaagent-0.6.jar=9505:$JMX_DIR/zookeeper.yaml $SERVER_JVMFLAGS"
 EOF
 ```
 
