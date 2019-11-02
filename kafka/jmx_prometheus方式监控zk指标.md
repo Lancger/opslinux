@@ -32,13 +32,16 @@ then
 fi
 ```
 
-# 三、然后重启kafka
+# 三、然后重启zookeeper
 ```
-cd /usr/local/kafka/
-./bin/kafka-server-stop.sh
-nohup ./bin/kafka-server-start.sh config/server.properties &
+#服务停止
+/usr/local/zookeeper/bin/zkServer.sh stop
 
-#访问 http://localhost:9991/metrics 可以看到各种指标了。
+#服务启动
+/usr/local/zookeeper/bin/zkServer.sh start /usr/local/zookeeper/conf/zoo.cfg
+
+#查看指标了
+curl localhost:9505/metrics
 ```
 
 # 四、修改prometheus配置
@@ -46,16 +49,11 @@ nohup ./bin/kafka-server-start.sh config/server.properties &
 cat > /home/prometheus/prometheus.yml <<\EOF
 scrape_configs:
 # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
-   - job_name: 'prometheus'
+   - job_name: 'zookeeper'
      static_configs:
-      - targets: ['localhost:9090']
-
-   - job_name: 'kafka'
-     static_configs:
-      - targets: ['192.168.56.11:9991']
+      - targets: ['192.168.56.11:9505']
         labels:
-          #instance: kafkaIP或者域名
-          instance: 192.168.56.11_9091
+          instance: 192.168.56.11_9505
 EOF
 
 #重启prometheus
