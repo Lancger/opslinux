@@ -12,24 +12,12 @@ mv zookeeper.yaml /usr/local/zookeeper/prometheus/
 mv jmx_prometheus_javaagent-0.6.jar /usr/local/zookeeper/prometheus/
 ```
 
-# 二、编辑启动脚本
+# 二、配置jmx_prometheus
 ```bash
-#打开 zkServer.sh 文件，注意加在脚本前面
-vim /usr/local/zookeeper/bin/zkServer.sh
-
-if [ "x$SERVER_JVMFLAGS"  != "x" ]
-then
-    JVMFLAGS="$SERVER_JVMFLAGS $JVMFLAGS"
-fi
-
-## 新增javaagent
+cat > /usr/local/zookeeper/conf/java.env <<-EOF
 export JMX_DIR="/usr/local/zookeeper/prometheus"
-export JVMFLAGS="$JVMFLAGS -javaagent:$JMX_DIR/jmx_prometheus_javaagent-0.6.jar=9505:$JMX_DIR/zookeeper.yml"
-
-if [ "x$2" != "x" ]
-then
-    ZOOCFG="$ZOOCFGDIR/$2"
-fi
+export SERVER_JVMFLAGS="-javaagent:$JMX_DIR/jmx_prometheus_javaagent-0.6.jar=9505:$JMX_DIR/zookeeper.yml $SERVER_JVMFLAGS"
+EOF
 ```
 
 # 三、然后重启zookeeper
