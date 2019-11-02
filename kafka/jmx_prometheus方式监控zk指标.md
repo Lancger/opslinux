@@ -50,10 +50,10 @@ docker restart prometheus
 
 # 五、grafna导入视图
 ```bash
-https://github.com/Lancger/opslinux/blob/master/kafka/kafka_dashboard.json
+https://grafana.com/grafana/dashboards/9236
 
 #注意使用在使用rate或者irate的时候，范围需要大于注意上报的最小时间间隔
-rate(process_cpu_seconds_total{job="kafka"}[5m])  
+rate(process_cpu_seconds_total{job="zookeeper"}[5m])  
 ```
 
 参考资料：
