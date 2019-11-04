@@ -54,6 +54,8 @@ echo > /var/log/wtmp
 echo > /var/log/lastlog
 echo > /var/log/btmp
 echo > /var/run/utmp
+echo > /root/.bash_history
+echo > /home/www/.bash_history
 history -c
 ```
 # salt下发
