@@ -57,7 +57,7 @@ echo > /var/run/utmp
 history -c
 ```
 # salt下发
-```
+```bash
 salt "*" cmd.run 'find /var/log -name "audit*" |xargs ls -l'
 salt "*" cmd.run 'find /var/log -name "audit*" |xargs chattr -i'
 salt "*" cmd.run 'find /var/log -name "audit*" |xargs chattr -a'
