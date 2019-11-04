@@ -30,6 +30,7 @@ salt "*" cmd.run "cat /dev/null > ~/.bash_history && history -c && exit"
 ```bash
 find /var/log -name "audit*" |xargs ls -l
 find /var/log -name "audit*" |xargs chattr -i
+find /var/log -name "audit*" |xargs chattr -a
 find /var/log -name "audit*" |xargs rm -f
 
 find /var/log -name "secure*" |xargs ls -l
