@@ -55,3 +55,8 @@ default-character-set=utf8
 character-set-server=utf8
 
 ```
+
+# 修改已有表的字符集
+```
+ALTER TABLE  表名 DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci
+```
