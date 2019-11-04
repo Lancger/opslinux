@@ -28,7 +28,25 @@ salt "*" cmd.run "cat /dev/null > ~/.bash_history && history -c && exit"
 
 # 重置记录
 ```bash
+find /var/log -name "secure*" |xargs ls -l
+
 find /var/log -name "messages*" -exec bash -c "echo '' > {}" \;
+find /var/log -name "cron*" -exec bash -c "echo '' > {}" \;
+find /var/log -name "secure*" -exec bash -c "echo '' > {}" \;
+
+echo > /var/log/syslog
+echo > /var/log/messages
+echo > /var/log/httpd/access_log
+echo > /var/log/httpd/error_log
+echo > /var/log/xferlog
+echo > /var/log/secure
+echo > /var/log/auth.log
+echo > /var/log/user.log
+echo > /var/log/wtmp
+echo > /var/log/lastlog
+echo > /var/log/btmp
+echo > /var/run/utmp
+history -c
 ```
 参考资料：
 
