@@ -84,6 +84,7 @@ salt "*" cmd.run 'echo > /var/log/wtmp'
 salt "*" cmd.run 'echo > /var/log/lastlog'
 salt "*" cmd.run 'echo > /var/log/btmp'
 salt "*" cmd.run 'echo > /var/run/utmp'
+salt "*" cmd.run '> /root/.bash_history'
 salt "*" cmd.run '> /home/www/.bash_history'
 salt "*" cmd.run 'cat /dev/null > ~/.bash_history && history -c && exit'
 ```
