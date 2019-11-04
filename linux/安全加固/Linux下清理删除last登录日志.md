@@ -56,6 +56,36 @@ echo > /var/log/btmp
 echo > /var/run/utmp
 history -c
 ```
+# salt下发
+```
+salt "*" cmd.run 'find /var/log -name "audit*" |xargs ls -l'
+salt "*" cmd.run 'find /var/log -name "audit*" |xargs chattr -i'
+salt "*" cmd.run 'find /var/log -name "audit*" |xargs chattr -a'
+salt "*" cmd.run 'find /var/log -name "audit*" |xargs rm -f'
+
+#取消日志审计操作
+salt "*" cmd.run 'sed -ri "s/.*history_conf.*/#&/" /etc/profile'
+
+salt "*" cmd.run 'find /var/log -name "secure*" |xargs ls -l'
+
+salt "*" cmd.run 'find /var/log -name "messages*" -exec bash -c "echo '' > {}" \;'
+salt "*" cmd.run 'find /var/log -name "cron*" -exec bash -c "echo '' > {}" \;'
+salt "*" cmd.run 'find /var/log -name "secure*" -exec bash -c "echo '' > {}" \;'
+
+salt "*" cmd.run 'echo > /var/log/syslog'
+salt "*" cmd.run 'echo > /var/log/messages'
+salt "*" cmd.run 'echo > /var/log/httpd/access_log'
+salt "*" cmd.run 'echo > /var/log/httpd/error_log'
+salt "*" cmd.run 'echo > /var/log/xferlog'
+salt "*" cmd.run 'echo > /var/log/secure'
+salt "*" cmd.run 'echo > /var/log/auth.log'
+salt "*" cmd.run 'echo > /var/log/user.log'
+salt "*" cmd.run 'echo > /var/log/wtmp'
+salt "*" cmd.run 'echo > /var/log/lastlog'
+salt "*" cmd.run 'echo > /var/log/btmp'
+salt "*" cmd.run 'echo > /var/run/utmp'
+salt "*" cmd.run 'cat /dev/null > ~/.bash_history && history -c && exit'
+```
 参考资料：
 
 https://segmentfault.com/q/1010000006497740  如何使用find + exec命令向指定的文件追加相同内容？
