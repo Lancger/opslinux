@@ -26,6 +26,7 @@ salt "*" cmd.run "rm -rf /var/log/*"
 salt "*" cmd.run "cat /dev/null > ~/.bash_history && history -c && exit"
 ```
 
+# 重置记录
 ```bash
 find /var/log -name "messages*" -exec bash -c "echo '' > {}" \;
 ```
