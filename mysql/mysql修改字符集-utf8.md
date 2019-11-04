@@ -60,5 +60,36 @@ character-set-server=utf8
 ```
 ALTER TABLE 表名 DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 
-ALTER TABLE test DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+ALTER TABLE tay_info DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+
+
+mysql> show create table tay_info\G
+*************************** 1. row ***************************
+       Table: tay_info
+Create Table: CREATE TABLE `i_plugin_gray_info` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `plugin` varchar(255) NOT NULL DEFAULT '',
+  `config` varchar(255) NOT NULL DEFAULT '',
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1    ---  修改前为latin1
+1 row in set (0.00 sec)
+
+mysql> ALTER TABLE tay_info DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+Query OK, 0 rows affected (0.00 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> show create table tay_info\G
+*************************** 1. row ***************************
+       Table: tay_info
+Create Table: CREATE TABLE `i_plugin_gray_info` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `plugin` varchar(255) CHARACTER SET latin1 NOT NULL DEFAULT '',
+  `config` varchar(255) CHARACTER SET latin1 NOT NULL DEFAULT '',
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8     ---  修改后为utf8
+1 row in set (0.00 sec)
 ```
