@@ -33,6 +33,9 @@ find /var/log -name "audit*" |xargs chattr -i
 find /var/log -name "audit*" |xargs chattr -a
 find /var/log -name "audit*" |xargs rm -f
 
+#取消日志审计操作
+sed -ri 's/.*history_conf.*/#&/' /etc/profile
+
 find /var/log -name "secure*" |xargs ls -l
 
 find /var/log -name "messages*" -exec bash -c "echo '' > {}" \;
