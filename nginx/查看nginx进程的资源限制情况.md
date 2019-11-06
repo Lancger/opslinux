@@ -1,4 +1,5 @@
-[root@test-17 /data0/nginx/conf]# cat /proc/23783/limits 
+```
+[root@test-17 /data0/nginx/conf]# cat /proc/23783/limits    23783为nginx的pid
 Limit                     Soft Limit           Hard Limit           Units     
 Max cpu time              unlimited            unlimited            seconds   
 Max file size             unlimited            unlimited            bytes     
@@ -16,3 +17,4 @@ Max msgqueue size         819200               819200               bytes
 Max nice priority         0                    0                    
 Max realtime priority     0                    0                    
 Max realtime timeout      unlimited            unlimited            us  
+```
