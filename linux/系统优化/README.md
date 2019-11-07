@@ -55,6 +55,29 @@ ls -l /home/
 #ln -s /data /data0  (前面为目标，后面为软链)
 ```
 
+# 四、java环境
+
+```
+echo "47.106.90.8 download.devops.com" >> /etc/hosts
+cd /usr/local/src/
+mkdir -p /opt/java
+wget http://download.devops.com/jdk-8u211-linux-x64.tar.gz
+tar -zxvf jdk-8u211-linux-x64.tar.gz
+mv jdk1.8.0_211 /opt/java/
+ls -l /opt/java/
+
+vim /etc/profile
+#在最后一行添加
+#java environment
+export JAVA_HOME=/opt/java/jdk1.8.0_211
+export CLASSPATH=.:${JAVA_HOME}/jre/lib/rt.jar:${JAVA_HOME}/lib/dt.jar:${JAVA_HOME}/lib/tools.jar
+export PATH=$PATH:${JAVA_HOME}/bin
+
+source /etc/profile  #(生效环境变量)
+
+java -version        #(检查安装 是否成功)
+```
+
 参考文档
 
 https://jaminzhang.github.io/shell/Automated-Disk-Partion-Via-Shell-Script/  Shell 脚本自动化分区
