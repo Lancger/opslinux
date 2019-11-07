@@ -78,6 +78,23 @@ source /etc/profile  #(生效环境变量)
 java -version        #(检查安装 是否成功)
 ```
 
+# 五、主机名修改
+```
+#修改主机名
+hostnamectl set-hostname test-001
+
+#安装salt-minion
+yum install -y epel-release
+yum install -y salt-minion
+
+sudo tee /etc/salt/minion << 'EOF'   # 默认使用主机名作为salt_minion_id
+master: 192.168.56.11
+EOF
+
+systemctl enable salt-minion
+systemctl restart salt-minion
+```
+
 参考文档
 
 https://jaminzhang.github.io/shell/Automated-Disk-Partion-Via-Shell-Script/  Shell 脚本自动化分区
