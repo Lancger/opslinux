@@ -76,11 +76,11 @@ do
 done
 
 if [ "$COOL" == "YES" ];then
-    echo "用户 $UserName 于北京时间 $LoginTime 登陆了服务器,其IP地址为 ${LoginIP} 安全IP,归属地 ${LoginPlace}" >> $SSHLoginLog
+    #echo "用户 $UserName 于北京时间 $LoginTime 登陆了服务器,其IP地址为 ${LoginIP} 安全IP,归属地 ${LoginPlace}" >> $SSHLoginLog
     subject="用户 ${UserName} 于北京时间 ${LoginTime} 登陆了服务器,其IP地址为 ${LoginIP} 安全IP,归属地 ${LoginPlace}"
     #SendMessageToTelegram
 elif [ $LoginIP ];then
-    echo "用户 $UserName 于北京时间 $LoginTime 登陆了服务器,其IP地址为 $LoginIP ,归属地 $LoginPlace " >> $SSHLoginLog
+    #echo "用户 $UserName 于北京时间 $LoginTime 登陆了服务器,其IP地址为 $LoginIP ,归属地 $LoginPlace " >> $SSHLoginLog
     subject="用户 ${UserName} 于北京时间 ${LoginTime} 登陆了服务器,其IP地址为 ${LoginIP},归属地 ${LoginPlace}"
     SendMessageToTelegram
 fi
