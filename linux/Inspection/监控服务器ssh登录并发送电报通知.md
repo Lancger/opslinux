@@ -86,6 +86,8 @@ elif [ $LoginIP ];then
 fi
 EOF
 
+chmod +x /usr/local/bin/ssh_login_monitor.sh
+
 /usr/local/bin/ssh_login_monitor.sh
 ```
   
