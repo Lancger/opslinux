@@ -1,6 +1,23 @@
 ```
-https://api.telegram.org/bot817459097:AAEoDoo6Ck_xv_JYF22UdmPrU5nbQtAAx34/getUpdates
+1、Create a bot
+2、Gets its API token (via @BotFather)
+3、Get the ID of the chat
+4、Add your bot to the chat
+Fetch bot updates and look for the chat id:
 
+curl https://api.telegram.org/bot$TELEGRAM_BOT_TOKEN/getUpdates | jq .message.chat.id
+
+OR, run bot.rb and @-mention your bot in the chat. The chat id will appear in bot.rb's output.
+The bot may need temporary message access: @BotFather > Bot Settings > Group Privacy > Turn off #注意需要打开这个权限
+
+Send a message via their HTTP API: https://core.telegram.org/bots/api#sendmessage
+
+curl -X POST \
+     -H 'Content-Type: application/json' \
+     -d '{"chat_id": "123456789", "text": "This is a test from curl", "disable_notification": true}' \
+     https://api.telegram.org/bot$TELEGRAM_BOT_TOKEN/sendMessage
+
+https://api.telegram.org/bot817459097:AAEoDoo6Ck_xv_JYF22UdmPrU5nbQtAAx34/getUpdates
 
 #组告警
 curl -X POST "https://api.telegram.org/bot817459097:AAEoDoo6Ck_xv_JYF22UdmPrU5nbQtAAx34/sendMessage" -d "chat_id=-393954337&text=my sample text"
