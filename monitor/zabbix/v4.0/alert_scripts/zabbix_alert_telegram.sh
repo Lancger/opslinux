@@ -8,7 +8,7 @@ import sys
 TOKEN="904193186:AAFan97mHMyZJUXR1hmynWt4nq7j1Y7YX4k"
 
 def Send_Message(chat_id, Content):
-    url="https://api.telegram.org/bot${TOKEN}/sendMessage"
+    url="https://api.telegram.org/bot%s/sendMessage"%(TOKEN)
     data = {
             "chat_id": chat_id,
             "text": Content, 
