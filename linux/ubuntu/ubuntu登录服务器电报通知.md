@@ -56,15 +56,18 @@ chmod  666  /var/log/login_access.log
 
 vim /etc/bash.bashrc
 
+CHAT_ID="-359015262"
+API_TOKEN="1037033953:AAEUhw1GwLSWJCXA_9gXYUubE3SFSY4nVfA"
+
 CommonlyIP=("192.168.56.10" "139.180.210.37" "120.237.124.116")             #  常用ssh登陆服务器的IP地址,即IP白名单
 
 function SendMessageToTelegram(){
-    url="https://api.telegram.org/bot856996817:AAH-J5Cz6EcOaGA4FWjrRkqBrMy38fjjROo/sendMessage"
+    url="https://api.telegram.org/bot${API_TOKEN}/sendMessage"
 
     res=`curl -X POST -s -L \
      -H "Content-Type: application/json" \
      -d "{ 
-        \"chat_id\": \"-368394046\", 
+        \"chat_id\": \"${CHAT_ID}\", 
         \"text\": \"=====服务器上线通知=====\n用户名 : $UserName\n主机名 : $Hostname\n来源IP : $LoginIP\n归属地 : $LoginPlace\n登录时间 : $LoginTime\",
         \"disable_notification\": true
         }" \
