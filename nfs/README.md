@@ -51,6 +51,7 @@ Export list for 10.33.35.5:
 2、# vim /etc/hosts.allow
 rpcbind : ALL : allow
 mountd : ALL : allow
+nfsd: ALL: allow
 ```
 参考文档：
 
