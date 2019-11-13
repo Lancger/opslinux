@@ -10,7 +10,7 @@ rm -rf /data/mysql/
 # 二、主库操作
 
 1、同步到失败的从库服务器对应的mysql存储目录
-```
+```bash
 #先在主库创建一个同步账号
 GRANT REPLICATION SLAVE ON *.* TO 'repluser'@'192.168.56.%’ IDENTIFIED BY 'repluser';
 FLUSH PRIVILEGES;
