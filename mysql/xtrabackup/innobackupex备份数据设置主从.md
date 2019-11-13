@@ -1,5 +1,5 @@
 # 一、master操作
-```
+```bash
 #安装软件包
 
 yum install -y https://repo.percona.com/yum/percona-release-latest.noarch.rpm
@@ -32,7 +32,7 @@ innobackupex --default-file=/etc/my.cnf --user=root --password=123456 –no-time
 
 # 二、salve操作
 
-```
+```bash
 #安装软件包
 
 yum install -y https://repo.percona.com/yum/percona-release-latest.noarch.rpm
