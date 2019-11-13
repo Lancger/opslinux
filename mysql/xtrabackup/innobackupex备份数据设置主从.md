@@ -40,6 +40,10 @@ yum install -y https://repo.percona.com/yum/percona-release-latest.noarch.rpm
 
 yum install -y percona-xtrabackup-24 pigz
 
+#查看binlog信息
+$ cat xtrabackup_binlog_info
+mysql-bin.000804        71457141
+
 #恢复数据到从库目录
 
 innobackupex --default-file=/etc/my.cnf --apply-log /data0/mysql_data
@@ -64,7 +68,7 @@ stop slave;
 
 reset slave;
 
-change master to master_host='192.168.52.88', master_user='repluser', master_password='repluser', master_port=3306, master_log_file='1.000002', master_log_pos=195025061, master_connect_retry=5;
+change master to master_host='192.168.52.88', master_user='repluser', master_password='repluser', master_port=3306, master_log_file='mysql-bin.000804', master_log_pos=71457141, master_connect_retry=5;
 
 start slave;
 
