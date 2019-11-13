@@ -10,7 +10,9 @@ yum install -y percona-xtrabackup-24 pigz
 
 ssh-copy-id root@192.168.52.132
 
-innobackupex --default-file=/etc/my.cnf --user=root --password=123456 --stream=tar  --tmpdir=/usr/local/mysql_bk/ /usr/local/mysql_bk/  |pigz -p 16 |ssh root@192.168.52.132 "pigz -d | tar -xf - -C /data0/mysql_data"
+#innobackupex --default-file=/etc/my.cnf --user=root --password=123456 --stream=tar  --tmpdir=/usr/local/mysql_bk/ /usr/local/mysql_bk/  |pigz -p 16 |ssh root@192.168.52.132 "pigz -d | tar -xf - -C /data0/mysql_data"
+
+innobackupex --default-file=/etc/my.cnf --user=root --password=123456 --stream=tar /usr/local/mysql_bk/ |pigz -p 16 |ssh root@192.168.52.132 "pigz -d | tar -xf - -C /data0/mysql_data"
 
 #指定数据库
 innobackupex --default-file=/etc/my.cnf --user=root --password=123456 --databases=change_center --stream=tar  --tmpdir=/usr/local/mysql_bk/ /usr/local/mysql_bk/  |pigz -p 4 |ssh root@192.168.52.132 "pigz -d | tar -xf - -C /data0/mysql"
