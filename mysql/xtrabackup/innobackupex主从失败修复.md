@@ -42,4 +42,18 @@ reset slave;
 change master to master_host='192.168.56.120', master_user='repluser', master_password='repluser', master_port=3306, master_log_file='mysql-bin.000804', master_log_pos=723895860, master_connect_retry=5;
 start slave;
 show slave status\G;
+
+#设置从库只读
+mysql> set global read_only = 1;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> show variables like '%read_only%';
++------------------+-------+
+| Variable_name    | Value |
++------------------+-------+
+| innodb_read_only | OFF   |
+| read_only        | ON    |
+| tx_read_only     | OFF   |
++------------------+-------+
+3 rows in set (0.00 sec)
 ```
