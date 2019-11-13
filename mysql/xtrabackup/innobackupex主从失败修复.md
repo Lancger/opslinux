@@ -1,20 +1,28 @@
-# 一、清理主从失败从库的数据
+# 一、从库操作
+
+1、清理主从失败从库的数据
+
 ```bash
 /etc/init.d/mysqld stop
 rm -rf /data/mysql/
 ```
 
-# 二、主库操作(同步到失败的从库服务器对应的mysql存储目录)
-```
-#主库远程同步数据到从库
-innobackupex --default-file=/etc/my.cnf --user=root --password=123456 --stream=tar /usr/local/mysql_bk/ |pigz -p 20 |ssh root@192.168.56.121 "pigz -d | tar -xf - -C /data/mysql"
-innobackupex --default-file=/etc/my.cnf --user=root --password=123456 --stream=tar /usr/local/mysql_bk/ |pigz -p 20 |ssh root@192.168.56.153 "pigz -d | tar -xf - -C /data/mysql"
+# 二、主库操作
 
+1、同步到失败的从库服务器对应的mysql存储目录
+```
 #先在主库创建一个同步账号
 GRANT REPLICATION SLAVE ON *.* TO 'repluser'@'192.168.56.%’ IDENTIFIED BY 'repluser';
 FLUSH PRIVILEGES;
 SHOW GRANTS for repluser@"192.168.56.%";
 
+#主库远程同步数据到从库(这里有2个失败的从库)
+innobackupex --default-file=/etc/my.cnf --user=root --password=123456 --stream=tar /usr/local/mysql_bk/ |pigz -p 20 |ssh root@192.168.56.121 "pigz -d | tar -xf - -C /data/mysql"
+innobackupex --default-file=/etc/my.cnf --user=root --password=123456 --stream=tar /usr/local/mysql_bk/ |pigz -p 20 |ssh root@192.168.56.153 "pigz -d | tar -xf - -C /data/mysql"
+```
+# 三、从库操作
+
+```bash
 #恢复数据
 innobackupex --default-file=/etc/my.cnf --apply-log /data/mysql
 chown -R mysql:mysql  /data/mysql/
@@ -23,10 +31,8 @@ chown -R mysql:mysql  /data/mysql/
 #查看binlog
 cat xtrabackup_binlog_info
 mysql-bin.000804        723895860
-```
 
-# 三、重装主从
-```bash
+#重装主从
 mysql -h127.0.0.1 -uroot -psd-9898w
 
 stop slave;
