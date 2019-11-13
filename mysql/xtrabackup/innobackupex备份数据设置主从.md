@@ -2,33 +2,25 @@
 
 ```bash
 #安装软件包
-
 yum install -y https://repo.percona.com/yum/percona-release-latest.noarch.rpm
-
 yum install -y percona-xtrabackup-24 pigz
 
-#备份数据远程输出到目标机器
-
-ssh-copy-id root@192.168.52.132
-
-#innobackupex --default-file=/etc/my.cnf --user=root --password=123456 --stream=tar  --tmpdir=/usr/local/mysql_bk/ /usr/local/mysql_bk/  |pigz -p 16 |ssh root@192.168.52.132 "pigz -d | tar -xf - -C /data0/mysql_data"
-
-innobackupex --default-file=/etc/my.cnf --user=root --password=123456 --stream=tar /usr/local/mysql_bk/ |pigz -p 16 |ssh root@192.168.52.132 "pigz -d | tar -xf - -C /data0/mysql_data"
-
-#指定数据库
-innobackupex --default-file=/etc/my.cnf --user=root --password=123456 --databases=change_center --stream=tar  --tmpdir=/usr/local/mysql_bk/ /usr/local/mysql_bk/  |pigz -p 4 |ssh root@192.168.52.132 "pigz -d | tar -xf - -C /data0/mysql"
-
-# 创建从库账号
-
-GRANT REPLICATION SLAVE ON *.* TO 'repluser'@'192.168.52.%' IDENTIFIED BY 'repluser';
-
+#创建同步账号
+GRANT REPLICATION SLAVE ON *.* TO 'repluser'@'192.168.56.%' IDENTIFIED BY 'repluser';
 FLUSH PRIVILEGES;
+SHOW GRANTS for repluser@"192.168.56.%";
 
-show grants for repluser@"192.168.52.%";
-
-#备份到本地
+1、#备份到本地
 innobackupex --default-file=/etc/my.cnf --user=root --password=123456 –no-timestamp --stream=tar /tmp |gzip > /data0/bak.tar
 
+2、#备份数据远程输出到目标机器
+ssh-copy-id root@192.168.52.132
+#innobackupex --default-file=/etc/my.cnf --user=root --password=123456 --stream=tar  --tmpdir=/usr/local/mysql_bk/ /usr/local/mysql_bk/  |pigz -p 16 |ssh root@192.168.52.132 "pigz -d | tar -xf - -C /data0/mysql_data"
+
+innobackupex --default-file=/etc/my.cnf --user=root --password=123456 --stream=tar /usr/local/mysql_bk/ |pigz -p 16 |ssh root@192.168.56.132 "pigz -d | tar -xf - -C /data0/mysql_data"
+
+3、#指定数据库远程输出到目标机器
+innobackupex --default-file=/etc/my.cnf --user=root --password=123456 --databases=change_center --stream=tar  --tmpdir=/usr/local/mysql_bk/ /usr/local/mysql_bk/  |pigz -p 4 |ssh root@192.168.56.132 "pigz -d | tar -xf - -C /data0/mysql"
 ```
 
 # 二、salve操作
