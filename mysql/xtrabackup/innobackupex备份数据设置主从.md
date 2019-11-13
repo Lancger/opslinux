@@ -25,6 +25,8 @@ innobackupex --default-file=/etc/my.cnf --user=root --password=123456 --database
 
 # 二、salve操作
 
+注意从库的bin-log和relay-log配置要先暂时关闭
+
 ```bash
 #安装软件包
 
