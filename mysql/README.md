@@ -259,3 +259,7 @@ mysql> desc orders ;
 2 rows in set (0.00 sec)
 ————————————————
 ```
+
+推荐文章:
+
+https://www.cnblogs.com/Dy1an/category/1492870.html  mysql文章专题
