@@ -6,12 +6,10 @@
 
 ```
 # CentOS or RedHat
-
 yum install epel-release -y
-yum install asciinema -y
+yum install asciinema -y   #(旧版本)
 
 # pip 
-
 pip3 install asciinema
 ```
 
