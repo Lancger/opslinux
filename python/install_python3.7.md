@@ -8,9 +8,9 @@ yum install libffi-devel -y
 
 ## 二、下载并安装python3.7
 ```bash
-wget https://www.python.org/ftp/python/3.7.2/Python-3.7.2.tgz
-tar -xzf Python-3.7.2.tgz 
-cd Python-3.7.2
+wget https://www.python.org/ftp/python/3.7.4/Python-3.7.4.tgz
+tar -xzf Python-3.7.4.tgz 
+cd Python-3.7.4
 ./configure --prefix=/usr/local/python3.7 --enable-shared
 make && make install
 ln -s /usr/local/python3.7/bin/python3.7 /usr/bin/python3
