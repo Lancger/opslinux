@@ -15,7 +15,7 @@ yum install asciinema -y
 ```bash
 $ cat ~/.bash_profile
 export LC_ALL=en_US.UTF-8
-/usr/local/bin/asciinema rec /tmp/$USER-$(date +%Y%m%d%H%M%S).log -q
+/usr/bin/asciinema rec /tmp/$USER-$(date +%Y%m%d%H%M%S).log -q
 ```
 
 添加export LC_ALL=en_US.UTF-8的原因是有可能系统会报错：
