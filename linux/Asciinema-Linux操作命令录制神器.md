@@ -52,7 +52,7 @@ asciinema rec ops-audit.cast
 # 三、播放
 
 ```bash
-asciinema play ops-audit.cast
+asciinema play -i 2 ops-audit.cast
 
 有两个参数可以使用：
 
