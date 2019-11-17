@@ -112,7 +112,7 @@ header很简单，字段的意思分别为：version版本，width和height分�
 ```bash
 $ cat ~/.bash_profile
 export LC_ALL=en_US.UTF-8
-/usr/bin/asciinema rec /tmp/$USER-$(date +%Y%m%d%H).log -q   #按小时的日志
+/usr/bin/asciinema rec /tmp/$USER-$(date +%Y%m%d%H).log -q --append  #按小时的日志,追加
 
 #/usr/bin/asciinema rec /tmp/$USER-$(date +%Y%m%d%H%M%S).log -q
 ```
