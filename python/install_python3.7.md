@@ -31,8 +31,10 @@ echo '/usr/local/lib' >> /etc/ld.so.conf
 
 ## 三、pip升级
 ```bash
-pip3 install --upgrade pip -i https://pypi.mirrors.ustc.edu.cn/simple/
+wget --no-check-certificate https://bootstrap.pypa.io/get-pip.py
+python3 get-pip.py
 
+pip3 install --upgrade pip -i https://pypi.mirrors.ustc.edu.cn/simple/
 pip3 install -i https://pypi.mirrors.ustc.edu.cn/simple/  -r requirements.txt    #可用的
 ```
 
