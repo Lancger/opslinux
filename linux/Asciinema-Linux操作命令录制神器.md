@@ -24,7 +24,7 @@ asciinema 2.0.2
 ```bash
 $ cat ~/.bash_profile
 export LC_ALL=en_US.UTF-8
-/usr/bin/asciinema rec /tmp/$USER-$(date +%Y%m%d%H%M%S).log -q
+/usr/local/python3.7/bin/asciinema rec /tmp/$USER-$(date +%Y%m%d%H%M%S).log -q
 ```
 
 添加export LC_ALL=en_US.UTF-8的原因是有可能系统会报错：
