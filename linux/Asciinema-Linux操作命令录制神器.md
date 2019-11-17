@@ -4,6 +4,10 @@
 
 yum install epel-release -y
 yum install asciinema -y
+
+# pip 
+
+pip3 install asciinema
 ```
 
 # 二、自动录制审计日志
