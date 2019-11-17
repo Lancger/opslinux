@@ -3,15 +3,16 @@
 注意：需要安装[python3.7环境](https://github.com/Lancger/opslinux/blob/master/python/install_python3.7.md)
 
 ```
-# CentOS or RedHat
+#CentOS or RedHat
 yum install epel-release -y
 yum install asciinema -y   #(旧版本)
 
-# pip 
+#pip 
 pip3 install asciinema
 
 #安装完成后查看版本
-/usr/local/python3.7/bin/asciinema --version
+$ /usr/local/python3.7/bin/asciinema --version
+asciinema 2.0.2
 ```
 
 # 二、自动录制审计日志
