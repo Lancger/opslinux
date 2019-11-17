@@ -1,6 +1,8 @@
 # 一、安装
 
-注意：需要python3.7环境(https://github.com/Lancger/opslinux/blob/master/python/install_python3.7.md)
+注意：需要python3.7环境
+
+(https://github.com/Lancger/opslinux/blob/master/python/install_python3.7.md)
 
 ```
 # CentOS or RedHat
