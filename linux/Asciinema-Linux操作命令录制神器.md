@@ -13,6 +13,8 @@ pip3 install asciinema
 #安装完成后查看版本
 $ /usr/local/python3.7/bin/asciinema --version
 asciinema 2.0.2
+
+cp /usr/local/python3.7/bin/asciinema /usr/bin/
 ```
 
 # 二、自动录制审计日志
