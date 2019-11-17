@@ -9,6 +9,9 @@ yum install asciinema -y   #(旧版本)
 
 # pip 
 pip3 install asciinema
+
+#安装完成后查看版本
+/usr/local/python3.7/bin/asciinema --version
 ```
 
 # 二、自动录制审计日志
