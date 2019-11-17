@@ -10,6 +10,7 @@ yum install libffi-devel -y
 ## 二、下载并安装python3.7
 ```bash
 #源码安装
+cd /usr/local/src/
 wget https://www.python.org/ftp/python/3.7.4/Python-3.7.4.tgz
 tar -xzf Python-3.7.4.tgz 
 cd Python-3.7.4
