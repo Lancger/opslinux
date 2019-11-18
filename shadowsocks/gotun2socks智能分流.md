@@ -24,9 +24,8 @@ wget -N --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubi/dou
 
 ## 1、安装shadowsocks-libev
 
-安装报错
-
 ```bash
+#安装报错
 Error: Package: shadowsocks-libev-3.1.3-1.el7.centos.x86_64 (librehat-shadowsocks)
            Requires: libsodium >= 1.0.4
 Error: Package: shadowsocks-libev-3.1.3-1.el7.centos.x86_64 (librehat-shadowsocks)
