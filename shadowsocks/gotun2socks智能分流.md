@@ -85,7 +85,6 @@ curl -s --socks5 127.0.0.1:1080 google.com
 The document has moved
 <A HREF="http://www.google.com/">here</A>.
 </BODY></HTML>
-
 如一切无误，此时ss-local已经开始正常工作。
 ```
 
