@@ -120,7 +120,7 @@ chmod +x tun2socks-linux-amd64
     link/none
     
 #添加路由
-ip route add 0.0.0.0 dev tun1
+ip route add 10.10.0.5/24 dev tun1
 ```
 
 
