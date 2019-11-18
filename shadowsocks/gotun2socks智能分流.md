@@ -38,7 +38,6 @@ yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarc
 
 wget https://copr.fedorainfracloud.org/coprs/librehat/shadowsocks/repo/epel-7/librehat-shadowsocks-epel-7.repo -O /etc/yum.repos.d/shadowsocks-epel-7.repo
 yum clean all
-yum repolist
 yum install -y shadowsocks-libev ipset
 ```
 
