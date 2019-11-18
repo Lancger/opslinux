@@ -121,10 +121,15 @@ chmod +x tun2socks-linux-amd64
     
 #添加路由(10.10.0.5/24为server段内网网段)
 ip route add 10.10.0.5/24 dev tun1
+
+#查看路由表内容
+
 ```
 
 
 参考资料：
+
+https://blog.csdn.net/u012758088/article/details/76255543  Linux系列—策略路由、ip rule、ip route
 
 https://luxing.im/socks5-as-a-vpn/  
 
