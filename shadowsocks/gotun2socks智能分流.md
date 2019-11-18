@@ -103,7 +103,7 @@ chmod +x tun2socks-linux-amd64
 ./tun2socks-linux-amd64
 2019/11/18 20:11:04 Running tun2socks
 
-ip addr add 192.168.0.1/24 dev tun1
+ip route add 0.0.0.0 dev tun1
 ```
 
 
