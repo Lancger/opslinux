@@ -92,6 +92,10 @@ The document has moved
 <A HREF="http://www.google.com/">here</A>.
 </BODY></HTML>
 如一切无误，此时ss-local已经开始正常工作。
+
+curl -s ip.sb
+
+curl -s members.3322.org/dyndns/getip
 ```
 
 # 四、安装gotun2socks
