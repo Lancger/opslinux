@@ -2,7 +2,7 @@
 
 本文采用Shadowsocks实现与外网通讯，如有需要，你也可以换成其他的软件，例如Gost/ShadowsocksR/V2Ray等。
 
-本教程基于Debian10 x86_64环境建立，其他环境大同小异。
+本教程基于Centos7 x86_64环境建立，其他环境大同小异。
 
 # 二、ss-server服务端
 ```bash
