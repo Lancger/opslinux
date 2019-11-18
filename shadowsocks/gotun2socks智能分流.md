@@ -90,7 +90,9 @@ The document has moved
 
 # 四、安装gotun2socks
 ```bash
+cd /usr/local/src/
 wget https://github.com/eycorsican/go-tun2socks/releases/download/v1.16.7/tun2socks-linux-amd64
+chmod +x tun2socks-linux-amd64
 ```
 
 
