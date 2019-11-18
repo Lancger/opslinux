@@ -4,7 +4,23 @@
 
 本教程基于Debian10 x86_64环境建立，其他环境大同小异。
 
-# 二、环境准备
+# 二、ss-server服务端
+```bash
+wget -N --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/ss-go.sh && chmod +x ss-go.sh && bash ss-go.sh
+ 
+Shadowsocks 用户配置：
+————————————————
+ 地址   : 202.182.106.129
+ 端口   : 11451
+ 密码   : 62903bcf7df17c6b
+ 加密   : aes-128-cfb
+ 链接  [ipv4] : ss://YWVzLTEyOC1jZmI6NjI5MDNiY2Y3ZGYxN2M2YkAyMDIuMTgyLjEwNi4xMjk6MTE0NTE 
+ 二维码[ipv4] : http://doub.pw/qr/qr.php?text=ss://YWVzLTEyOC1jZmI6NjI5MDNiY2Y3ZGYxN2M2YkAyMDIuMTgyLjEwNi4xMjk6MTE0NTE
+
+ 详细日志模式   : NO
+```
+
+# 三、环境准备
 
 ## 1、更新系统环境&校对时间
 ```bash
