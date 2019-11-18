@@ -107,6 +107,19 @@ chmod +x tun2socks-linux-amd64
 ./tun2socks-linux-amd64
 2019/11/18 20:11:04 Running tun2socks
 
+#查看网卡信息
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+    link/ether 00:0c:29:30:e7:42 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.56.11/24 brd 192.168.56.255 scope global eth0
+       valid_lft forever preferred_lft forever
+4: tun1: <POINTOPOINT,MULTICAST,NOARP> mtu 1500 qdisc noop state DOWN group default qlen 500
+    link/none
+    
+#添加路由
 ip route add 0.0.0.0 dev tun1
 ```
 
