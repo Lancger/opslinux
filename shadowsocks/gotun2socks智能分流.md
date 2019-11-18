@@ -67,8 +67,7 @@ Description=Shadowsocks-Libev Client Service
 After=network.target
 
 [Service]
-User=nobody
-Group=nogroup
+User=root
 LimitNOFILE=1048576
 CapabilityBoundingSet=~CAP_SYS_ADMIN
 ExecStart=/usr/bin/ss-local -u -c /etc/shadowsocks-libev/config.json
@@ -78,7 +77,9 @@ WantedBy=multi-user.target
 EOF
 
 #重启服务
-systemctl enable ss-local && systemctl start ss-local
+systemctl enable ss-local
+systemctl start ss-local
+systemctl status ss-local
 ```
 ## 5、测试验证
 ```bash
