@@ -38,6 +38,40 @@ cat >/etc/shadowsocks-libev/config.json<<\EOF
 EOF
 ```
 
+## 4、配置ss-local
+```bash
+cat >/etc/systemd/system/ss-local.service<<\EOF
+[Unit]
+Description=Shadowsocks-Libev Client Service
+After=network.target
+
+[Service]
+User=nobody
+Group=nogroup
+LimitNOFILE=1048576
+CapabilityBoundingSet=~CAP_SYS_ADMIN
+ExecStart=/usr/bin/ss-local -u -c /etc/shadowsocks-libev/config.json
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+#重启服务
+systemctl enable ss-local && systemctl start ss-local
+```
+## 5、测试验证
+```bash
+curl -s --socks5 127.0.0.1:1080 google.com
+
+<HTML><HEAD><meta http-equiv="content-type" content="text/html;charset=utf-8">
+<TITLE>301 Moved</TITLE></HEAD><BODY>
+<H1>301 Moved</H1>
+The document has moved
+<A HREF="http://www.google.com/">here</A>.
+</BODY></HTML>
+
+如一切无误，此时ss-local已经开始正常工作。
+```
 
 参考资料：
 
