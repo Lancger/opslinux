@@ -119,7 +119,7 @@ chmod +x tun2socks-linux-amd64
 4: tun1: <POINTOPOINT,MULTICAST,NOARP> mtu 1500 qdisc noop state DOWN group default qlen 500
     link/none
     
-#添加路由
+#添加路由(10.10.0.5/24为server段内网网段)
 ip route add 10.10.0.5/24 dev tun1
 ```
 
