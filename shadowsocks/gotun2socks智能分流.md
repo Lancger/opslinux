@@ -22,14 +22,19 @@ wget -N --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubi/dou
 
 # 三、环境准备
 
-## 1、更新系统环境&校对时间
+## 1、安装shadowsocks-libev
+
 ```bash
-apt-get update -y && apt-get upgrade -y && apt-get dist-upgrade -y
-apt-get install -y ca-certificates wget curl vim nano ntpdate git golang haveged proxychains
-cp -f /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && ntpdate time.nist.gov
+Error: Package: shadowsocks-libev-3.1.3-1.el7.centos.x86_64 (librehat-shadowsocks)
+           Requires: libsodium >= 1.0.4
+Error: Package: shadowsocks-libev-3.1.3-1.el7.centos.x86_64 (librehat-shadowsocks)
+           Requires: mbedtls
 ```
-## 2、安装shadowsocks-libev
+
 ```bash
+#需要首先启用 EPEL，再安装 shadowsocks-libev
+yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+
 wget https://copr.fedorainfracloud.org/coprs/librehat/shadowsocks/repo/epel-7/librehat-shadowsocks-epel-7.repo -O /etc/yum.repos.d/shadowsocks-epel-7.repo
 yum clean all
 yum repolist
