@@ -30,10 +30,10 @@ cp -f /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && ntpdate time.nist.gov
 ```
 ## 2、安装shadowsocks-libev
 ```bash
-apt-get install shadowsocks-libev -y
-systemctl stop shadowsocks-libev && systemctl disable shadowsocks-libev
-rm -f /lib/systemd/system/shadowsocks-libev.service
-systemctl daemon-reload
+wget https://copr.fedorainfracloud.org/coprs/librehat/shadowsocks/repo/epel-7/librehat-shadowsocks-epel-7.repo -O /etc/yum.repos.d/shadowsocks-epel-7.repo
+yum clean all
+yum repolist
+yum install -y shadowsocks-libev ipset
 ```
 
 ## 3、配置shadowsocks-libev
