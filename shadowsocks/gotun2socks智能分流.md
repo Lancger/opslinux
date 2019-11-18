@@ -78,7 +78,7 @@ EOF
 
 #重启服务
 systemctl enable ss-local
-systemctl start ss-local
+systemctl restart ss-local
 systemctl status ss-local
 ```
 ## 5、测试验证
