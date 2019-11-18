@@ -73,6 +73,10 @@ The document has moved
 如一切无误，此时ss-local已经开始正常工作。
 ```
 
+# 四、安装gotun2socks
+```bash
+wget https://github.com/eycorsican/go-tun2socks/releases/download/v1.16.7/tun2socks-linux-amd64
+```
 参考资料：
 
 https://luxing.im/socks5-as-a-vpn/  
