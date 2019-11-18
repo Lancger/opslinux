@@ -93,6 +93,9 @@ The document has moved
 cd /usr/local/src/
 wget https://github.com/eycorsican/go-tun2socks/releases/download/v1.16.7/tun2socks-linux-amd64
 chmod +x tun2socks-linux-amd64
+
+./tun2socks-linux-amd64
+2019/11/18 20:11:04 Running tun2socks
 ```
 
 
