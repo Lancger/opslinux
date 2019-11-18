@@ -92,6 +92,8 @@ The document has moved
 ```bash
 wget https://github.com/eycorsican/go-tun2socks/releases/download/v1.16.7/tun2socks-linux-amd64
 ```
+
+
 参考资料：
 
 https://luxing.im/socks5-as-a-vpn/  
