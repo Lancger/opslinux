@@ -62,7 +62,8 @@ Usage of ./tun2socks-linux-amd64:
     	Print version
 
 #mac下使用
-sudo ./tun2socks-darwin-10.6-amd64 -tunAddr 172.16.0.2 -tunGw 172.16.0.1 -proxyServer 127.0.0.1:1086 -tunDns 8.8.8.8,8.8.4.4 -tunName tun2 -loglevel info
+sudo su -
+nohup tun2socks-darwin-10.6-amd64 -tunAddr 172.16.0.2 -tunGw 172.16.0.1 -proxyServer 127.0.0.1:1086 -tunDns 8.8.8.8,8.8.4.4 -tunName tun2 -loglevel info > /tmp/proxy.log 2>&1 &
 
 #新增路由
 brew install iproute2mac
@@ -95,12 +96,15 @@ ssh -o ProxyCommand='nc -x 127.0.0.1:1086 %h %p' root@10.0.0.18
 ```bash
 ssh root@10.10.0.18
 ```
+
 3、查看日志tun2socks
 ```bash
 2019/11/19 12:17:42 Running tun2socks
 2019/11/19 12:19:15 new proxy connection to 10.10.0.18:22
 2019/11/19 12:19:33 new proxy connection to 10.10.0.9:22
 ```
+
+# 五、Linux下使用
 
 ## 1、安装shadowsocks-libev
 
@@ -180,7 +184,7 @@ curl -s members.3322.org/dyndns/getip
 
 
 
-# 五、Linux下使用
+
 ```bash
 #下载软件包
 cd /usr/local/src/
