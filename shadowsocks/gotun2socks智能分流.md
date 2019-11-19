@@ -170,6 +170,12 @@ ssh -o ProxyCommand='nc -x 127.0.0.1:1086 %h %p' root@10.0.0.18
 ```bash
 ssh root@10.10.0.18
 ```
+3、查看日志tun2socks
+```bash
+2019/11/19 12:17:42 Running tun2socks
+2019/11/19 12:19:15 new proxy connection to 10.10.0.18:22
+2019/11/19 12:19:33 new proxy connection to 10.10.0.9:22
+```
 
 参考资料：
 
