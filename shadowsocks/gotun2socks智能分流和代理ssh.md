@@ -91,12 +91,16 @@ curl -s --socks5 127.0.0.1:1086 google.com
 ssh -o ProxyCommand='nc -x 127.0.0.1:1086 %h %p' root@10.0.0.18
 ```
 
-2、验证ssh登录
+2、shadowsock配置
+
+  ![shadowsock-ng](https://github.com/Lancger/opslinux/blob/master/images/shadowsock-ng1.png)
+
+3、验证ssh登录
 ```bash
 ssh root@10.10.0.18
 ```
 
-3、查看日志tun2socks
+4、查看日志tun2socks
 ```bash
 2019/11/19 12:17:42 Running tun2socks
 2019/11/19 12:19:15 new proxy connection to 10.10.0.18:22
