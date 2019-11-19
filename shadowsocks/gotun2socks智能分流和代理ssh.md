@@ -186,7 +186,7 @@ chmod +x tun2socks-linux-amd64
 cp tun2socks-linux-amd64 /usr/bin/
 
 #centos7下使用
-tun2socks-darwin-10.6-amd64 -tunAddr 172.16.0.2 -tunGw 172.16.0.1 -proxyServer 127.0.0.1:1086 -tunDns 8.8.8.8,8.8.4.4 -tunName tun2 -loglevel info
+tun2socks-linux-amd64 -tunAddr 172.16.0.2 -tunGw 172.16.0.1 -proxyServer 127.0.0.1:1086 -tunDns 8.8.8.8,8.8.4.4 -tunName tun2 -loglevel info
 
 #新增路由
 brew install iproute2mac
