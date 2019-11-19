@@ -1,3 +1,22 @@
+Table of Contents
+=================
+
+   * [一、前言](#一前言)
+   * [二、服务端](#二服务端)
+      * [1、ss-server服务端安装](#1ss-server服务端安装)
+   * [三、客户端](#三客户端)
+      * [1、mac下使用](#1mac下使用)
+         * [1、安装软件](#1安装软件)
+         * [2、shadowsock配置](#2shadowsock配置)
+         * [3、验证ssh登录](#3验证ssh登录)
+         * [4、查看日志tun2socks](#4查看日志tun2socks)
+      * [2、Linux下使用](#2linux下使用)
+         * [1、安装shadowsocks-libev](#1安装shadowsocks-libev)
+         * [2、配置shadowsocks-libev](#2配置shadowsocks-libev)
+         * [3、配置ss-local](#3配置ss-local)
+         * [4、安装配置tun2socks](#4安装配置tun2socks)
+         * [5、测试验证](#5测试验证)
+         
 # 一、前言
 
 本文采用Shadowsocks实现与外网通讯，如有需要，你也可以换成其他的软件，例如Gost/ShadowsocksR/V2Ray等。
