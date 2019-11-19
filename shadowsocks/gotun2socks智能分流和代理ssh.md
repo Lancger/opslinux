@@ -84,6 +84,9 @@ Usage of ./tun2socks-linux-amd64:
 sudo su -
 nohup ./tun2socks-darwin-10.6-amd64 -tunAddr 172.16.0.2 -tunGw 172.16.0.1 -proxyServer 127.0.0.1:1086 -tunDns 8.8.8.8,8.8.4.4 -tunName tun2 -loglevel info > /tmp/proxy.log 2>&1 &
 
+#启动网卡
+ip link set utun2 up
+
 #新增路由
 ip route add 10.10.0.1/24 dev utun2
 
