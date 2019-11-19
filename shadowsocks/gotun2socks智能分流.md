@@ -159,6 +159,7 @@ default via 10.9.128.5 dev en0
 255.255.255.255/32 dev en0  scope link
 
 curl -4vLx socks5h://127.0.0.1:1086 https://www.google.com
+curl -s --socks5 127.0.0.1:1086 google.com
 
 ssh -o ProxyCommand='nc -x 127.0.0.1:1086 %h %p' root@10.0.0.18
 ```
