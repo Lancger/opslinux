@@ -85,7 +85,11 @@ Usage of ./tun2socks-linux-amd64:
 
 #mac下使用
 sudo su -
+kill `ps -ef|grep tun2socks-darwin|grep -v grep|awk '{print $2}'`
 nohup ./tun2socks-darwin-10.6-amd64 -tunAddr 172.16.0.2 -tunGw 172.16.0.1 -proxyServer 127.0.0.1:1086 -tunDns 8.8.8.8,8.8.4.4 -tunName tun2 -loglevel info > /tmp/proxy.log 2>&1 &
+
+#检查服务
+ps -ef|grep tun2socks-darwin
 
 #启动网卡
 ip link set utun2 up
