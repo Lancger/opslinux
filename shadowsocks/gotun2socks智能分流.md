@@ -52,7 +52,7 @@ cat >/etc/shadowsocks-libev/config.json<<\EOF
     "server":"202.182.106.129",
     "mode":"tcp_and_udp",
     "server_port":11451,
-    "local_port":1080,
+    "local_port":1086,
     "password":"62903bcf7df17c6b",
     "timeout":300,
     "fast_open":true,
@@ -85,7 +85,7 @@ systemctl status ss-local
 ```
 ## 5、测试验证
 ```bash
-curl -s --socks5 127.0.0.1:1080 google.com
+curl -s --socks5 127.0.0.1:1086 google.com
 
 <HTML><HEAD><meta http-equiv="content-type" content="text/html;charset=utf-8">
 <TITLE>301 Moved</TITLE></HEAD><BODY>
