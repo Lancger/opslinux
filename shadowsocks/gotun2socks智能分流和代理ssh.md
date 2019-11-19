@@ -6,7 +6,7 @@
 
 # 二、服务端
 
-## 1、ss-server服务端
+## 1、ss-server服务端安装
 ```bash
 wget -N --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/ss-go.sh && chmod +x ss-go.sh && bash ss-go.sh
  
@@ -31,11 +31,11 @@ wget -N --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubi/dou
 ```bash
 #下载软件包
 cd /usr/local/src/
-wget -N https://github.com/eycorsican/go-tun2socks/releases/download/v1.16.7/tun2socks-linux-amd64
-chmod +x tun2socks-linux-amd64
+wget -N https://github.com/eycorsican/go-tun2socks/releases/download/v1.16.7/tun2socks-darwin-10.6-amd64
+chmod +x tun2socks-darwin-10.6-amd64
 
 #查看启动参数
-./tun2socks-linux-amd64 -h
+./tun2socks-darwin-10.6-amd64 -h
 
 Usage of ./tun2socks-linux-amd64:
   -loglevel string
