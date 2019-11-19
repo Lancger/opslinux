@@ -39,6 +39,9 @@ wget -N --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubi/dou
 二维码[ipv4] : http://doub.pw/qr/qr.php?text=ss://YWVzLTEyOC1jZmI6NjI5MDNiY2Y3ZGYxN2M2YkAyMDIuMTgyLjEwNi4xMjk6MTE0NTE
 
 详细日志模式   : NO
+
+#验证端口
+nc -zv 202.182.106.129 11451
 ```
 
 # 三、客户端
