@@ -30,7 +30,6 @@ wget -N --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubi/dou
 
 ```bash
 #下载软件包
-cd /usr/local/src/
 wget -N https://github.com/eycorsican/go-tun2socks/releases/download/v1.16.7/tun2socks-darwin-10.6-amd64
 chmod +x tun2socks-darwin-10.6-amd64
 
@@ -86,9 +85,9 @@ default via 10.9.128.5 dev en0
 224.0.0.0/4 dev en0  scope link
 255.255.255.255/32 dev en0  scope link
 
+#验证socks服务是否OK
 curl -4vLx socks5h://127.0.0.1:1086 https://www.google.com
 curl -s --socks5 127.0.0.1:1086 google.com
-
 ssh -o ProxyCommand='nc -x 127.0.0.1:1086 %h %p' root@10.0.0.18
 ```
 
