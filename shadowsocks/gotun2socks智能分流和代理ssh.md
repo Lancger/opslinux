@@ -24,6 +24,84 @@ wget -N --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubi/dou
 
 # 三、客户端
 
+## 1、mac下使用
+
+1、安装软件
+
+```bash
+#下载软件包
+cd /usr/local/src/
+wget -N https://github.com/eycorsican/go-tun2socks/releases/download/v1.16.7/tun2socks-linux-amd64
+chmod +x tun2socks-linux-amd64
+
+#查看启动参数
+./tun2socks-linux-amd64 -h
+
+Usage of ./tun2socks-linux-amd64:
+  -loglevel string
+    	Logging level. (debug, info, warn, error, none) (default "info")
+  -proxyServer string
+    	Proxy server address (default "1.2.3.4:1087")
+  -proxyType string
+    	Proxy handler type (default "socks")
+  -tunAddr string
+    	TUN interface address (default "10.255.0.2")
+  -tunDns string
+    	DNS resolvers for TUN interface (only need on Windows) (default "8.8.8.8,8.8.4.4")
+  -tunGw string
+    	TUN interface gateway (default "10.255.0.1")
+  -tunMask string
+    	TUN interface netmask, it should be a prefixlen (a number) for IPv6 address (default "255.255.255.0")
+  -tunName string
+    	TUN interface name (default "tun1")
+  -tunPersist
+    	Persist TUN interface after the program exits or the last open file descriptor is closed (Linux only)
+  -udpTimeout duration
+    	UDP session timeout (default 1m0s)
+  -version
+    	Print version
+
+#mac下使用
+sudo ./tun2socks-darwin-10.6-amd64 -tunAddr 172.16.0.2 -tunGw 172.16.0.1 -proxyServer 127.0.0.1:1086 -tunDns 8.8.8.8,8.8.4.4 -tunName tun2 -loglevel info
+
+#新增路由
+brew install iproute2mac
+ip route add 10.10.0.1/24 dev utun2
+
+#查看路由
+$ ip route show
+default via 10.9.128.5 dev en0
+10.9.128.0/21 dev en0  scope link
+10.9.128.5/32 dev en0  scope link
+10.9.134.2/32 dev en0  scope link
+10.10.0.0/24 via utun2 dev utun2   --- 有这条路由
+127.0.0.0/8 via 127.0.0.1 dev lo0
+127.0.0.1/32 via 127.0.0.1 dev lo0
+169.254.0.0/16 dev en0  scope link
+172.16.0.1/32 via 172.16.0.2 dev utun2
+172.16.101.0/24 dev vmnet8  scope link
+192.168.56.0/24 dev vmnet2  scope link
+192.168.171.0/24 dev vmnet1  scope link
+224.0.0.0/4 dev en0  scope link
+255.255.255.255/32 dev en0  scope link
+
+curl -4vLx socks5h://127.0.0.1:1086 https://www.google.com
+curl -s --socks5 127.0.0.1:1086 google.com
+
+ssh -o ProxyCommand='nc -x 127.0.0.1:1086 %h %p' root@10.0.0.18
+```
+
+2、验证ssh登录
+```bash
+ssh root@10.10.0.18
+```
+3、查看日志tun2socks
+```bash
+2019/11/19 12:17:42 Running tun2socks
+2019/11/19 12:19:15 new proxy connection to 10.10.0.18:22
+2019/11/19 12:19:33 new proxy connection to 10.10.0.9:22
+```
+
 ## 1、安装shadowsocks-libev
 
 ```bash
@@ -100,82 +178,7 @@ curl -s ip.sb
 curl -s members.3322.org/dyndns/getip
 ```
 
-# 四、mac下使用
 
-1、安装软件
-```bash
-#下载软件包
-cd /usr/local/src/
-wget -N https://github.com/eycorsican/go-tun2socks/releases/download/v1.16.7/tun2socks-linux-amd64
-chmod +x tun2socks-linux-amd64
-
-#查看启动参数
-./tun2socks-linux-amd64 -h
-
-Usage of ./tun2socks-linux-amd64:
-  -loglevel string
-    	Logging level. (debug, info, warn, error, none) (default "info")
-  -proxyServer string
-    	Proxy server address (default "1.2.3.4:1087")
-  -proxyType string
-    	Proxy handler type (default "socks")
-  -tunAddr string
-    	TUN interface address (default "10.255.0.2")
-  -tunDns string
-    	DNS resolvers for TUN interface (only need on Windows) (default "8.8.8.8,8.8.4.4")
-  -tunGw string
-    	TUN interface gateway (default "10.255.0.1")
-  -tunMask string
-    	TUN interface netmask, it should be a prefixlen (a number) for IPv6 address (default "255.255.255.0")
-  -tunName string
-    	TUN interface name (default "tun1")
-  -tunPersist
-    	Persist TUN interface after the program exits or the last open file descriptor is closed (Linux only)
-  -udpTimeout duration
-    	UDP session timeout (default 1m0s)
-  -version
-    	Print version
-
-#mac下使用
-sudo ./tun2socks-darwin-10.6-amd64 -tunAddr 172.16.0.2 -tunGw 172.16.0.1 -proxyServer 127.0.0.1:1086 -tunDns 8.8.8.8,8.8.4.4 -tunName tun2 -loglevel info
-
-#新增路由
-brew install iproute2mac
-ip route add 10.10.0.1/24 dev utun2
-
-#查看路由
-$ ip route show
-default via 10.9.128.5 dev en0
-10.9.128.0/21 dev en0  scope link
-10.9.128.5/32 dev en0  scope link
-10.9.134.2/32 dev en0  scope link
-10.10.0.0/24 via utun2 dev utun2   --- 有这条路由
-127.0.0.0/8 via 127.0.0.1 dev lo0
-127.0.0.1/32 via 127.0.0.1 dev lo0
-169.254.0.0/16 dev en0  scope link
-172.16.0.1/32 via 172.16.0.2 dev utun2
-172.16.101.0/24 dev vmnet8  scope link
-192.168.56.0/24 dev vmnet2  scope link
-192.168.171.0/24 dev vmnet1  scope link
-224.0.0.0/4 dev en0  scope link
-255.255.255.255/32 dev en0  scope link
-
-curl -4vLx socks5h://127.0.0.1:1086 https://www.google.com
-curl -s --socks5 127.0.0.1:1086 google.com
-
-ssh -o ProxyCommand='nc -x 127.0.0.1:1086 %h %p' root@10.0.0.18
-```
-
-2、验证ssh登录
-```bash
-ssh root@10.10.0.18
-```
-3、查看日志tun2socks
-```bash
-2019/11/19 12:17:42 Running tun2socks
-2019/11/19 12:19:15 new proxy connection to 10.10.0.18:22
-2019/11/19 12:19:33 new proxy connection to 10.10.0.9:22
-```
 
 # 五、Linux下使用
 ```bash
