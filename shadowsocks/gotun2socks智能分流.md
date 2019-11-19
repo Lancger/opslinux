@@ -21,12 +21,6 @@ wget -N --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubi/dou
 
 详细日志模式   : NO
 ```
-## 2、gotun2socks服务端
-```bash
-cd /usr/local/src/
-wget -N https://github.com/eycorsican/go-tun2socks/releases/download/v1.16.7/tun2socks-linux-amd64
-chmod +x tun2socks-linux-amd64
-```
 
 # 三、客户端
 
@@ -108,27 +102,65 @@ curl -s members.3322.org/dyndns/getip
 
 # 四、安装gotun2socks
 ```bash
+#下载软件包
 cd /usr/local/src/
-wget https://github.com/eycorsican/go-tun2socks/releases/download/v1.16.7/tun2socks-linux-amd64
+wget -N https://github.com/eycorsican/go-tun2socks/releases/download/v1.16.7/tun2socks-linux-amd64
 chmod +x tun2socks-linux-amd64
 
-./tun2socks-linux-amd64
-2019/11/18 20:11:04 Running tun2socks
+#查看启动参数
+./tun2socks-linux-amd64 -h
 
-#查看网卡信息
-1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
-    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
-    inet 127.0.0.1/8 scope host lo
-       valid_lft forever preferred_lft forever
-2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
-    link/ether 00:0c:29:30:e7:42 brd ff:ff:ff:ff:ff:ff
-    inet 192.168.56.11/24 brd 192.168.56.255 scope global eth0
-       valid_lft forever preferred_lft forever
-4: tun1: <POINTOPOINT,MULTICAST,NOARP> mtu 1500 qdisc noop state DOWN group default qlen 500
-    link/none
-    
-#添加路由(10.10.0.5/24为server段内网网段)
-ip route add 10.10.0.5/24 dev tun1
+Usage of ./tun2socks-linux-amd64:
+  -loglevel string
+    	Logging level. (debug, info, warn, error, none) (default "info")
+  -proxyServer string
+    	Proxy server address (default "1.2.3.4:1087")
+  -proxyType string
+    	Proxy handler type (default "socks")
+  -tunAddr string
+    	TUN interface address (default "10.255.0.2")
+  -tunDns string
+    	DNS resolvers for TUN interface (only need on Windows) (default "8.8.8.8,8.8.4.4")
+  -tunGw string
+    	TUN interface gateway (default "10.255.0.1")
+  -tunMask string
+    	TUN interface netmask, it should be a prefixlen (a number) for IPv6 address (default "255.255.255.0")
+  -tunName string
+    	TUN interface name (default "tun1")
+  -tunPersist
+    	Persist TUN interface after the program exits or the last open file descriptor is closed (Linux only)
+  -udpTimeout duration
+    	UDP session timeout (default 1m0s)
+  -version
+    	Print version
+
+#mac下使用
+sudo ./tun2socks-darwin-10.6-amd64 -tunAddr 172.16.0.2 -tunGw 172.16.0.1 -proxyServer 127.0.0.1:1086 -tunDns 8.8.8.8,8.8.4.4 -tunName tun2 -loglevel info
+
+#新增路由
+brew install iproute2mac
+ip route add 10.10.0.1/24 dev utun2
+
+#查看路由
+$ ip route show
+default via 10.9.128.5 dev en0
+10.9.128.0/21 dev en0  scope link
+10.9.128.5/32 dev en0  scope link
+10.9.134.2/32 dev en0  scope link
+10.10.0.0/24 via utun2 dev utun2
+127.0.0.0/8 via 127.0.0.1 dev lo0
+127.0.0.1/32 via 127.0.0.1 dev lo0
+169.254.0.0/16 dev en0  scope link
+172.16.0.1/32 via 172.16.0.2 dev utun2
+172.16.101.0/24 dev vmnet8  scope link
+192.168.56.0/24 dev vmnet2  scope link
+192.168.171.0/24 dev vmnet1  scope link
+224.0.0.0/4 dev en0  scope link
+255.255.255.255/32 dev en0  scope link
+
+curl -4vLx socks5h://127.0.0.1:1086 https://www.google.com
+
+ssh -o ProxyCommand='nc -x 127.0.0.1:1086 %h %p' root@10.0.0.18
 
 #查看路由表内容
 
