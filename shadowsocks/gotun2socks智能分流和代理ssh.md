@@ -129,7 +129,7 @@ yum clean all
 yum install -y shadowsocks-libev ipset
 ```
 
-## 3、配置shadowsocks-libev
+## 2、配置shadowsocks-libev
 ```bash
 cd /etc/shadowsocks-libev
 
@@ -147,7 +147,7 @@ cat >/etc/shadowsocks-libev/config.json<<\EOF
 EOF
 ```
 
-## 4、配置ss-local
+## 3、配置ss-local
 ```bash
 cat >/etc/systemd/system/ss-local.service<<\EOF
 [Unit]
@@ -169,6 +169,42 @@ systemctl enable ss-local
 systemctl restart ss-local
 systemctl status ss-local
 ```
+
+## 四、安装配置tun2socks
+```bash
+#下载软件包
+cd /usr/local/src/
+wget -N https://github.com/eycorsican/go-tun2socks/releases/download/v1.16.7/tun2socks-linux-amd64
+chmod +x tun2socks-linux-amd64
+cp tun2socks-linux-amd64 /usr/bin/
+
+#centos7下使用
+nohup tun2socks-linux-amd64 -tunAddr 172.16.0.2 -tunGw 172.16.0.1 -proxyServer 127.0.0.1:1086 -tunDns 8.8.8.8,8.8.4.4 -tunName tun2 -loglevel info > /tmp/proxy.log 2>&1 &
+
+#启动网卡
+ip link set tun2 up
+
+root># ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+    link/ether 00:0c:29:30:e7:42 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.56.11/24 brd 192.168.56.255 scope global eth0
+       valid_lft forever preferred_lft forever
+6: tun2: <POINTOPOINT,MULTICAST,NOARP,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UNKNOWN group default qlen 500
+    link/none
+
+#新增路由
+ip addr add 10.10.0.1/24 dev tun2
+
+root># ip route show
+default via 192.168.56.2 dev eth0
+10.10.0.0/24 dev tun2 proto kernel scope link src 10.10.0.1
+192.168.56.0/24 dev eth0 proto kernel scope link src 192.168.56.11
+```
+
 ## 5、测试验证
 ```bash
 curl -s --socks5 127.0.0.1:1086 google.com
@@ -186,39 +222,6 @@ curl -s ip.sb
 curl -s members.3322.org/dyndns/getip
 ```
 
-```bash
-#下载软件包
-cd /usr/local/src/
-wget -N https://github.com/eycorsican/go-tun2socks/releases/download/v1.16.7/tun2socks-linux-amd64
-chmod +x tun2socks-linux-amd64
-cp tun2socks-linux-amd64 /usr/bin/
-
-#centos7下使用
-nohup tun2socks-linux-amd64 -tunAddr 172.16.0.2 -tunGw 172.16.0.1 -proxyServer 127.0.0.1:1086 -tunDns 8.8.8.8,8.8.4.4 -tunName tun2 -loglevel info > /tmp/proxy.log 2>&1 &
-
-#启动网卡
-$ ip link set tun2 up
-
-root># ip a
-1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
-    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
-    inet 127.0.0.1/8 scope host lo
-       valid_lft forever preferred_lft forever
-2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
-    link/ether 00:0c:29:30:e7:42 brd ff:ff:ff:ff:ff:ff
-    inet 192.168.56.11/24 brd 192.168.56.255 scope global eth0
-       valid_lft forever preferred_lft forever
-6: tun2: <POINTOPOINT,MULTICAST,NOARP,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UNKNOWN group default qlen 500
-    link/none
-
-
-#新增路由
-$ ip addr add 10.10.0.1/24 dev tun2
-root># ip route show
-default via 192.168.56.2 dev eth0
-10.10.0.0/24 dev tun2 proto kernel scope link src 10.10.0.1
-192.168.56.0/24 dev eth0 proto kernel scope link src 192.168.56.11
-```
 
 参考资料：
 
