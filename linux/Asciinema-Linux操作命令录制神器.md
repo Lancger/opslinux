@@ -127,6 +127,11 @@ rec命令进行录制时添加了-q 参数，这样在进入或者退出时都�
 
 # 六、录制上传
 ```
+#删除服务器的认证ID
+rm ~/.asciinema/install-id 
+rm ~/.config/asciinema/install-id
+
+#认证生成ID
 asciinema auth
 https://asciinema.org/
 
