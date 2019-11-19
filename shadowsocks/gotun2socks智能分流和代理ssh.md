@@ -26,7 +26,7 @@ wget -N --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubi/dou
 
 ## 1、mac下使用
 
-1、安装软件
+### 1、安装软件
 
 ```bash
 #下载软件包
@@ -91,16 +91,16 @@ curl -s --socks5 127.0.0.1:1086 google.com
 ssh -o ProxyCommand='nc -x 127.0.0.1:1086 %h %p' root@10.0.0.18
 ```
 
-2、shadowsock配置
+### 2、shadowsock配置
 
   ![shadowsock-ng](https://github.com/Lancger/opslinux/blob/master/images/shadowsock-ng1.png)
 
-3、验证ssh登录
+### 3、验证ssh登录
 ```bash
 ssh root@10.10.0.18
 ```
 
-4、查看日志tun2socks
+### 4、查看日志tun2socks
 ```bash
 tail -100f /tmp/proxy.log
 2019/11/19 12:17:42 Running tun2socks
@@ -108,9 +108,9 @@ tail -100f /tmp/proxy.log
 2019/11/19 12:19:33 new proxy connection to 10.10.0.9:22
 ```
 
-# 五、Linux下使用
+## 2、Linux下使用
 
-## 1、安装shadowsocks-libev
+### 1、安装shadowsocks-libev
 
 ```bash
 #安装报错
@@ -129,7 +129,7 @@ yum clean all
 yum install -y shadowsocks-libev ipset
 ```
 
-## 2、配置shadowsocks-libev
+### 2、配置shadowsocks-libev
 ```bash
 cd /etc/shadowsocks-libev
 
@@ -147,7 +147,7 @@ cat >/etc/shadowsocks-libev/config.json<<\EOF
 EOF
 ```
 
-## 3、配置ss-local
+### 3、配置ss-local
 ```bash
 cat >/etc/systemd/system/ss-local.service<<\EOF
 [Unit]
@@ -170,7 +170,7 @@ systemctl restart ss-local
 systemctl status ss-local
 ```
 
-## 四、安装配置tun2socks
+### 4、安装配置tun2socks
 ```bash
 #下载软件包
 cd /usr/local/src/
@@ -205,7 +205,7 @@ default via 192.168.56.2 dev eth0
 192.168.56.0/24 dev eth0 proto kernel scope link src 192.168.56.11
 ```
 
-## 5、测试验证
+### 5、测试验证
 ```bash
 curl -s --socks5 127.0.0.1:1086 google.com
 
@@ -221,7 +221,6 @@ curl -s ip.sb
 
 curl -s members.3322.org/dyndns/getip
 ```
-
 
 参考资料：
 
