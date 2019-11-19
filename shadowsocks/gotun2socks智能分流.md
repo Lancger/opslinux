@@ -149,7 +149,7 @@ default via 10.9.128.5 dev en0
 10.9.128.0/21 dev en0  scope link
 10.9.128.5/32 dev en0  scope link
 10.9.134.2/32 dev en0  scope link
-10.10.0.0/24 via utun2 dev utun2
+10.10.0.0/24 via utun2 dev utun2   --- 有这条路由
 127.0.0.0/8 via 127.0.0.1 dev lo0
 127.0.0.1/32 via 127.0.0.1 dev lo0
 169.254.0.0/16 dev en0  scope link
