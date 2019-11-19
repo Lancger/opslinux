@@ -239,6 +239,8 @@ The document has moved
 curl -s ip.sb
 
 curl -s members.3322.org/dyndns/getip
+
+ssh root@10.10.0.18
 ```
 
 参考资料：
