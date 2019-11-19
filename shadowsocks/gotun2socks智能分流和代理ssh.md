@@ -186,10 +186,11 @@ chmod +x tun2socks-linux-amd64
 cp tun2socks-linux-amd64 /usr/bin/
 
 #centos7下使用
-tun2socks-linux-amd64 -tunAddr 172.16.0.2 -tunGw 172.16.0.1 -proxyServer 127.0.0.1:1086 -tunDns 8.8.8.8,8.8.4.4 -tunName tun2 -loglevel info
+nohup tun2socks-linux-amd64 -tunAddr 172.16.0.2 -tunGw 172.16.0.1 -proxyServer 127.0.0.1:1086 -tunDns 8.8.8.8,8.8.4.4 -tunName tun2 -loglevel info > /tmp/proxy.log 2>&1 &
 
 #新增路由
 ip link set tun2 up
+
 ip addr add 10.10.0.1/24 dev tun2
 ```
 
