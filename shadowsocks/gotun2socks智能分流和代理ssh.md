@@ -100,7 +100,7 @@ curl -s ip.sb
 curl -s members.3322.org/dyndns/getip
 ```
 
-# 四、安装gotun2socks
+# 四、mac下使用
 
 1、安装软件
 ```bash
@@ -175,6 +175,22 @@ ssh root@10.10.0.18
 2019/11/19 12:17:42 Running tun2socks
 2019/11/19 12:19:15 new proxy connection to 10.10.0.18:22
 2019/11/19 12:19:33 new proxy connection to 10.10.0.9:22
+```
+
+# 五、Linux下使用
+```bash
+#下载软件包
+cd /usr/local/src/
+wget -N https://github.com/eycorsican/go-tun2socks/releases/download/v1.16.7/tun2socks-linux-amd64
+chmod +x tun2socks-linux-amd64
+cp tun2socks-linux-amd64 /usr/bin/
+
+#centos7下使用
+tun2socks-darwin-10.6-amd64 -tunAddr 172.16.0.2 -tunGw 172.16.0.1 -proxyServer 127.0.0.1:1086 -tunDns 8.8.8.8,8.8.4.4 -tunName tun2 -loglevel info
+
+#新增路由
+brew install iproute2mac
+ip route add 10.10.0.1/24 dev tun2
 ```
 
 参考资料：
