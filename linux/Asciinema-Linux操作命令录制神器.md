@@ -110,9 +110,11 @@ header很简单，字段的意思分别为：version版本，width和height分�
 非常简单，只需要在 devuser 用户的家目录下添加.bash_profile文件即可，内容如下：
 
 ```bash
+mkdir -p /tmp/audit/
+
 $ cat ~/.bash_profile
 export LC_ALL=en_US.UTF-8
-/usr/bin/asciinema rec /tmp/$USER-$(date +%Y%m%d%H%M%S).log -q
+/usr/bin/asciinema rec /tmp/audit/$USER-$(date +%Y%m%d%H%M%S).log -q
 ```
 
 添加export LC_ALL=en_US.UTF-8的原因是有可能系统会报错：
