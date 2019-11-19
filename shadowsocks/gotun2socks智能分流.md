@@ -21,9 +21,11 @@ wget -N --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubi/dou
 
 详细日志模式   : NO
 ```
-## 2、ss-server服务端
+## 2、gotun2socks服务端
 ```bash
-
+cd /usr/local/src/
+wget -N https://github.com/eycorsican/go-tun2socks/releases/download/v1.16.7/tun2socks-linux-amd64
+chmod +x tun2socks-linux-amd64
 ```
 
 # 三、客户端
