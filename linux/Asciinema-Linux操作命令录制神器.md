@@ -132,7 +132,7 @@ https://asciinema.org/
 
 #开启录制并上传
 asciinema rec ops-audit.cast
-asciinema upload ops-audit.cas
+asciinema upload ops-audit.cast
 ```
 参考资料：
 
