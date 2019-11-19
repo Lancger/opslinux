@@ -4,7 +4,9 @@
 
 本教程基于Centos7 x86_64环境建立，其他环境大同小异。
 
-# 二、ss-server服务端
+# 二、服务端
+
+## 1、ss-server服务端
 ```bash
 wget -N --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubi/doubi/master/ss-go.sh && chmod +x ss-go.sh && bash ss-go.sh
  
@@ -19,8 +21,12 @@ wget -N --no-check-certificate https://raw.githubusercontent.com/ToyoDAdoubi/dou
 
 详细日志模式   : NO
 ```
+## 2、ss-server服务端
+```bash
 
-# 三、环境准备
+```
+
+# 三、客户端
 
 ## 1、安装shadowsocks-libev
 
