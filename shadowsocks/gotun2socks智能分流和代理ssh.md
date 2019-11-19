@@ -62,7 +62,7 @@ Usage of ./tun2socks-linux-amd64:
 
 #mac下使用
 sudo su -
-nohup tun2socks-darwin-10.6-amd64 -tunAddr 172.16.0.2 -tunGw 172.16.0.1 -proxyServer 127.0.0.1:1086 -tunDns 8.8.8.8,8.8.4.4 -tunName tun2 -loglevel info > /tmp/proxy.log 2>&1 &
+nohup ./tun2socks-darwin-10.6-amd64 -tunAddr 172.16.0.2 -tunGw 172.16.0.1 -proxyServer 127.0.0.1:1086 -tunDns 8.8.8.8,8.8.4.4 -tunName tun2 -loglevel info > /tmp/proxy.log 2>&1 &
 
 #新增路由
 brew install iproute2mac
@@ -209,5 +209,7 @@ ip addr add 10.10.0.1/24 dev tun2
 https://blog.csdn.net/u012758088/article/details/76255543  Linux系列—策略路由、ip rule、ip route
 
 https://luxing.im/socks5-as-a-vpn/  
+
+https://medium.com/@TachyonDevel/%E6%95%99%E7%A8%8B-%E5%9C%A8-windows-%E4%B8%8A%E4%BD%BF%E7%94%A8-tun2socks-%E8%BF%9B%E8%A1%8C%E5%85%A8%E5%B1%80%E4%BB%A3%E7%90%86-aa51869dd0d  在 Windows 上使用 tun2socks 进行全局代理
 
 https://xn--m80a.ml/crossgfw/5.html#mdui-dialog
