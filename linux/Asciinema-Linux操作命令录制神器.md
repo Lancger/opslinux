@@ -128,8 +128,11 @@ rec命令进行录制时添加了-q 参数，这样在进入或者退出时都�
 # 六、录制上传
 ```
 asciinema auth
-
 https://asciinema.org/
+
+#开启录制并上传
+asciinema rec ops-audit.cast
+asciinema upload ops-audit.cas
 ```
 参考资料：
 
