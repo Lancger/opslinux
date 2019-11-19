@@ -190,7 +190,7 @@ tun2socks-linux-amd64 -tunAddr 172.16.0.2 -tunGw 172.16.0.1 -proxyServer 127.0.0
 
 #新增路由
 ip link set tun2 up
-ip route add 10.10.0.1/24 dev tun2
+ip addr add 10.10.0.1/24 dev tun2
 ```
 
 参考资料：
