@@ -101,6 +101,8 @@ curl -s members.3322.org/dyndns/getip
 ```
 
 # 四、安装gotun2socks
+
+1、安装软件
 ```bash
 #下载软件包
 cd /usr/local/src/
@@ -164,6 +166,10 @@ curl -s --socks5 127.0.0.1:1086 google.com
 ssh -o ProxyCommand='nc -x 127.0.0.1:1086 %h %p' root@10.0.0.18
 ```
 
+2、验证ssh登录
+```bash
+ssh root@10.10.0.18
+```
 
 参考资料：
 
