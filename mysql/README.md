@@ -260,6 +260,21 @@ mysql> desc orders ;
 ————————————————
 ```
 
+## 十六、索引
+
+```bash
+查看索引  
+show index from 数据库表名
+
+PRIMARY KEY（主键索引）
+ALTER TABLE `table_name` ADD PRIMARY KEY ( `column` )
+
+UNIQUE(唯一索引)
+ALTER TABLE `table_name` ADD UNIQUE (`column`)
+
+INDEX(普通索引)
+ALTER TABLE `table_name` ADD INDEX index_name ( `column` )
+```
 推荐文章:
 
 https://www.cnblogs.com/Dy1an/category/1492870.html mysql文章专题
