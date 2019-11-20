@@ -5,6 +5,7 @@ yum install -y keepalived
 yum install -y ipvsadm
 
 systemctl start keepalived
+systemctl enable keepalived
 systemctl status keepalived
 ```
 
