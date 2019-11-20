@@ -195,3 +195,5 @@ cp -rf vue-element-admin/. /opt/mysite/frontend
 
 rm -rf .*   删除隐藏文件
 ```
+
+https://blog.csdn.net/zhaoyanjun6/article/details/72284974 GitHub 实现多人协同提交代码并且权限分组管理
