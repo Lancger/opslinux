@@ -23,9 +23,9 @@ iptables -I INPUT 4 -p vrrp -j ACCEPT
 ```
 # 二、注意事项
 ```
-1、DR模式
+1、DR模式，real_server收到包后，直接通过real_server直接响应client请求，不再经过LVS-DR
 a、keepalived配置转发的端口要和后端端口保持一致，因为DR模式只会改写mac，不会改其他的信息
-b、后端real_server上VIP地址必须绑定在环回口，并且设置参数，开启ARP欺骗
+b、后端real_server上VIP地址必须绑定在环回口，并且设置参数，开启ARP欺骗并关闭源地址校验
 c、如果是使用公网地址做VIP,那么后端real_server的服务器的公网IP,需要跟VIP的公网地址在同一个VLAN,内网地址只要2层能通就行(arping -I bond0 10.198.2.43)
 d、防火墙要放开vrrp协议，不然会脑裂
 e、注意如果是多线机房，不同线路打了不同的vlan-tag，那么keepalived配置vip的时候，需要注意一定要指定不同的网口去发送arp请求，不然交换机不能刷新mac地址，会造成vip切换网络不通
@@ -73,15 +73,16 @@ net.ipv4.conf.all.rp_filter=0
 net.ipv4.conf.default.rp_filter=0
 
 或者
+sysctl -w net.ipv4.ip_forward=1
 sysctl -w net.ipv4.conf.all.rp_filter=0
 sysctl -w net.ipv4.conf.default.rp_filter=0
-sysctl -w net.ipv4.ip_forward=1
 
 检查
 sysctl -a | grep rp_filter
 ```
 
 参考文档：
+https://www.jianshu.com/p/717e6cd9d2bb  Linux内核参数之rp_filter
 
 https://www.jianshu.com/p/88589646aae8  LVS+Keepalived+Nginx实现HA
 
