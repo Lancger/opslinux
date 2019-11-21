@@ -60,7 +60,7 @@ tcpdump -i any -n host 28.17.161.129  #抓取办公区访问的包
 15:39:28.172538 IP 28.117.161.129.53762 > 16.21.206.159.http: Flags [S], seq 2548617820, win 65535, options [mss 1460,nop,wscale 6,nop,nop,TS val 130630923 ecr 0,sackOK,eol], length 0
 15:39:28.172540 IP 28.117.161.129.53762 > 16.21.206.159.http: Flags [S], seq 2548617820, win 65535, options [mss 1460,nop,wscale 6,nop,nop,TS val 130630923 ecr 0,sackOK,eol], length 0
 
-从上面的抓包看到，后端没有响应
+从上面的抓包看到，后端没有响应，是因为后端服务也是多线路的，需要刷对对应线路的回包路由策略，电信走电信路由，联通走联通路由，移动走移动路由
 
 
 可以通过arping观察下切换的时候mac地址的变换
