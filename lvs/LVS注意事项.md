@@ -28,6 +28,7 @@ a、keepalived配置转发的端口要和后端端口保持一致，因为DR模�
 b、后端real_server上VIP地址必须绑定在环回口，并且设置参数，开启ARP欺骗
 c、如果是使用公网地址做VIP,那么后端real_server的服务器的公网IP,需要跟VIP的公网地址在同一个VLAN,内网地址只要2层能通就行(arping -I bond0 10.198.2.43)
 d、防火墙要放开vrrp协议，不然会脑裂
+e、注意如果是多线机房，不同线路打了不同的vlan-tag，那么keepalived配置vip的时候，需要注意一定要指定不同的网口去发送arp请求，不然交换机不能刷新mac地址，会造成vip切换网络不通
 
 ```
 
