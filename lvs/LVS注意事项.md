@@ -30,9 +30,18 @@ c、如果是使用公网地址做VIP,那么后端real_server的服务器的公�
 d、防火墙要放开vrrp协议，不然会脑裂
 e、注意如果是多线机房，不同线路打了不同的vlan-tag，那么keepalived配置vip的时候，需要注意一定要指定不同的网口去发送arp请求，不然交换机不能刷新mac地址，会造成vip切换网络不通
 f、注意keepalived的配置文件权限，不然会报is not a regular non-executable file - skipping错误，配置文件不生效，调整权限
+
 chmod 644 /etc/keepalived/keepalived.conf
 cd /etc/keepalived/virtual_server/
 chmod 644 *
+
+g、内核开启IP转发和允许非本地IP绑定功能，如果是使用LVS的DR模式还需设置两个arp相关的参数
+
+#开启IP转发功能
+sysctl -w net.ipv4.ip_forward=1
+
+#开启允许绑定非本机的IP
+sysctl -w net.ipv4.ip_nonlocal_bind = 1
 
 https://blog.csdn.net/li66934791/article/details/85248357
 
