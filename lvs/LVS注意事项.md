@@ -38,6 +38,8 @@ e、注意如果是多线机房，不同线路打了不同的vlan-tag，那么ke
 
 参考文档：
 
+https://www.jianshu.com/p/88589646aae8  LVS+Keepalived+Nginx实现HA
+
 https://www.jianshu.com/p/e146a7a14b4b lvs+keepalived群集配置
 
 https://www.centos.bz/2017/07/lvs-keepalived-ha-loadbalace/  LVS Keepalived双机高可用负载均衡搭建
