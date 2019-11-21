@@ -45,6 +45,23 @@ sysctl -w net.ipv4.ip_nonlocal_bind = 1
 
 https://blog.csdn.net/li66934791/article/details/85248357
 
+h、后端服务启动成功了，访问vip，抓包后端不响应
+tcpdump -i any -n host 28.17.161.129  #抓取办公区访问的包
+
+15:39:27.919950 IP 28.117.161.129.53761 > 16.21.206.159.http: Flags [S], seq 781213085, win 65535, options [mss 1460,nop,wscale 6,nop,nop,TS val 130630673 ecr 0,sackOK,eol], length 0
+15:39:27.921157 ethertype IPv4, IP 28.117.161.129.53760 > 16.21.206.159.http: Flags [S], seq 1817390795, win 65535, options [mss 1460,nop,wscale 6,nop,nop,TS val 130630673 ecr 0,sackOK,eol], length 0
+15:39:27.921159 ethertype IPv4, IP 28.117.161.129.53760 > 16.21.206.159.http: Flags [S], seq 1817390795, win 65535, options [mss 1460,nop,wscale 6,nop,nop,TS val 130630673 ecr 0,sackOK,eol], length 0
+15:39:27.921159 IP 28.117.161.129.53760 > 16.21.206.159.http: Flags [S], seq 1817390795, win 65535, options [mss 1460,nop,wscale 6,nop,nop,TS val 130630673 ecr 0,sackOK,eol], length 0
+15:39:27.921750 IP 28.117.161.129.53760 > 16.21.206.159.http: Flags [S], seq 1817390795, win 65535, options [mss 1460,nop,wscale 6,nop,nop,TS val 130630673 ecr 0,sackOK,eol], length 0
+15:39:27.921752 IP 28.117.161.129.53760 > 16.21.206.159.http: Flags [S], seq 1817390795, win 65535, options [mss 1460,nop,wscale 6,nop,nop,TS val 130630673 ecr 0,sackOK,eol], length 0
+15:39:28.171940 ethertype IPv4, IP 28.117.161.129.53762 > 16.21.206.159.http: Flags [S], seq 2548617820, win 65535, options [mss 1460,nop,wscale 6,nop,nop,TS val 130630923 ecr 0,sackOK,eol], length 0
+15:39:28.171942 ethertype IPv4, IP 28.117.161.129.53762 > 16.21.206.159.http: Flags [S], seq 2548617820, win 65535, options [mss 1460,nop,wscale 6,nop,nop,TS val 130630923 ecr 0,sackOK,eol], length 0
+15:39:28.171943 IP 28.117.161.129.53762 > 16.21.206.159.http: Flags [S], seq 2548617820, win 65535, options [mss 1460,nop,wscale 6,nop,nop,TS val 130630923 ecr 0,sackOK,eol], length 0
+15:39:28.172538 IP 28.117.161.129.53762 > 16.21.206.159.http: Flags [S], seq 2548617820, win 65535, options [mss 1460,nop,wscale 6,nop,nop,TS val 130630923 ecr 0,sackOK,eol], length 0
+15:39:28.172540 IP 28.117.161.129.53762 > 16.21.206.159.http: Flags [S], seq 2548617820, win 65535, options [mss 1460,nop,wscale 6,nop,nop,TS val 130630923 ecr 0,sackOK,eol], length 0
+
+从上面的抓包看到，后端没有响应
+
 
 可以通过arping观察下切换的时候mac地址的变换
 (arping -I bond0 10.198.2.43)
