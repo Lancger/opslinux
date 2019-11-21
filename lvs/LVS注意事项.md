@@ -66,6 +66,19 @@ tcpdump -i any -n host 28.17.161.129  #抓取办公区访问的包
 可以通过arping观察下切换的时候mac地址的变换
 (arping -I bond0 10.198.2.43)
 
+i、内核参数添加不开启源地址校验（https://www.jianshu.com/p/717e6cd9d2bb）
+vim /etc/sysctl.conf
+net.ipv4.ip_forward=1
+net.ipv4.conf.all.rp_filter=0
+net.ipv4.conf.default.rp_filter=0
+
+或者
+sysctl -w net.ipv4.conf.all.rp_filter=0
+sysctl -w net.ipv4.conf.default.rp_filter=0
+sysctl -w net.ipv4.ip_forward=1
+
+检查
+sysctl -a | grep rp_filter
 ```
 
 参考文档：
