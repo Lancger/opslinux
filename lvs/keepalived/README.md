@@ -103,6 +103,19 @@ kepplived 配置中 state 为 MASTER 的节点启动后，查看网络状态，�
 
 当关掉当前节点的keeplived服务后将进行虚拟IP转移，将会推选state 为 BACKUP 的节点的某一节点为新的MASTER，可以在那台节点上查看网卡，将会查看到虚拟IP
 
+## 5、修改日志
+```bash
+1、修改/etc/sysconfig/keepalived
+把KEEPALIVED_OPTIONS="-D" 修改为：KEEPALIVED_OPTIONS="-D -d -S 0"
+
+2、在/etc/rsyslog.conf 末尾添加
+local0.*                                                /var/log/keepalived.log
+
+3、重启日志记录服务
+systemctl restart rsyslog
+systemctl restart keepalived
+tail -f /var/log/keepalived.log 
+```
 
 # 二、防火墙配置
 
