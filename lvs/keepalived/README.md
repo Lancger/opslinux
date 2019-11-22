@@ -105,10 +105,10 @@ kepplived 配置中 state 为 MASTER 的节点启动后，查看网络状态，�
 
 ## 5、修改日志
 ```bash
-1、修改/etc/sysconfig/keepalived
+1、修改vim /etc/sysconfig/keepalived
 把KEEPALIVED_OPTIONS="-D" 修改为：KEEPALIVED_OPTIONS="-D -d -S 0"
 
-2、在/etc/rsyslog.conf 末尾添加
+2、在vim /etc/rsyslog.conf 末尾添加
 local0.*                                                /var/log/keepalived.log
 
 3、重启日志记录服务
