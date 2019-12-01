@@ -10,7 +10,7 @@
 
 ## 然后可以使用下面的命令安装最新版本的redis：
 
-    yum --enablerepo=remi install redis
+    yum --enablerepo=remi install redis -y
 
 ## 安装完毕后，即可使用下面的命令启动redis服务
 
