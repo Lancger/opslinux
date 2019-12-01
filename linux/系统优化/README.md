@@ -61,7 +61,7 @@ ls -l /home/
 echo "47.106.90.8 download.devops.com" > /etc/hosts
 cd /usr/local/src/
 mkdir -p /opt/java
-wget http://download.devops.com/jdk-8u211-linux-x64.tar.gz
+wget -N http://download.devops.com/jdk-8u211-linux-x64.tar.gz
 tar -zxvf jdk-8u211-linux-x64.tar.gz
 mv jdk1.8.0_211 /opt/java/
 ls -l /opt/java/
