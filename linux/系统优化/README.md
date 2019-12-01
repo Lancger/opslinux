@@ -58,7 +58,7 @@ ls -l /home/
 # 四、java环境
 
 ```
-echo "47.106.90.8 download.devops.com" >> /etc/hosts
+echo "47.106.90.8 download.devops.com" > /etc/hosts
 cd /usr/local/src/
 mkdir -p /opt/java
 wget http://download.devops.com/jdk-8u211-linux-x64.tar.gz
