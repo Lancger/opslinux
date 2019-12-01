@@ -35,6 +35,8 @@
     chkconfig redis on
     或者
     systemctl enable redis.service
+    
+    /usr/lib/systemd/system/redis.service  服务启动文件
 
 ## Redis开启远程登录连接，redis默认只能localhost访问，所以需要开启远程登录。解决方法如下：
 
