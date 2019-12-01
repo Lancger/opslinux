@@ -2,7 +2,7 @@
 
 ## 直接yum 安装的redis 不是最新版本
 
-    yum install redis
+    yum install redis -y
 
 ## 如果要安装最新的redis，需要安装Remi的软件源，官网地址：http://rpms.famillecollet.com/
 
