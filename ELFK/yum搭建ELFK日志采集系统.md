@@ -196,6 +196,9 @@ systemctl start logstash
 
 ```
 yum install -y https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-6.3.2-x86_64.rpm
+
+curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.5.0-x86_64.rpm
+sudo rpm -vi filebeat-7.5.0-x86_64.rpm
 ```
 修改每台服务器上的filebeat配置文件：
 
