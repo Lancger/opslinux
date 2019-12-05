@@ -16,4 +16,6 @@ filter {
 ```
 参考资料：
 
-https://mp.weixin.qq.com/s/LQtrWcPwxl4Py3ZaTWg-gQ   如何使Kibana中TimeStamp和日志时间一致
+https://mp.weixin.qq.com/s/LQtrWcPwxl4Py3ZaTWg-gQ   如何使Kibana中TimeStamp和日志时间一致'
+
+https://mp.weixin.qq.com/s/I4Jj2-UN_aF-iX_vc1fiCg  运维神器 -- ELK
