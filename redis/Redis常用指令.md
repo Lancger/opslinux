@@ -46,8 +46,35 @@ OK
 HDEL runoobkey name
 ```
 
+# 四、Redis command 统计
 
+部分显示的统计信息是基于命令类型的。包括调用次数、耗费CPU时间、每个命令平均耗费CPU。
 
+```bash
+INFO all
+
+# Commandstats
+cmdstat_get:calls=10701389,usec=40587034,usec_per_call=3.79
+cmdstat_set:calls=9464518,usec=75001252,usec_per_call=7.92
+cmdstat_setex:calls=1517,usec=32897,usec_per_call=21.69
+cmdstat_del:calls=9559539,usec=33066579,usec_per_call=3.46
+cmdstat_rpush:calls=9456699,usec=54998591,usec_per_call=5.82
+cmdstat_lpop:calls=9456698,usec=51766153,usec_per_call=5.47
+cmdstat_llen:calls=10681347,usec=49961993,usec_per_call=4.68
+cmdstat_lrange:calls=26,usec=342,usec_per_call=13.15
+cmdstat_hset:calls=2320496,usec=24788034,usec_per_call=10.68
+cmdstat_hget:calls=15971821,usec=70126696,usec_per_call=4.39
+cmdstat_hmset:calls=71183,usec=4393191,usec_per_call=61.72
+cmdstat_hmget:calls=1147675,usec=8114188,usec_per_call=7.07
+cmdstat_hdel:calls=1670141,usec=1869100,usec_per_call=1.12
+cmdstat_hgetall:calls=1138,usec=11945,usec_per_call=10.50
+cmdstat_hexists:calls=6481244,usec=46845131,usec_per_call=7.23
+cmdstat_expire:calls=1088,usec=6135,usec_per_call=5.64
+cmdstat_keys:calls=2524,usec=90522,usec_per_call=35.86
+cmdstat_ping:calls=86390517,usec=134478145,usec_per_call=1.56
+cmdstat_info:calls=3,usec=37258,usec_per_call=12419.33
+cmdstat_monitor:calls=3,usec=12,usec_per_call=4.00
+```
 
 参考文档：
 
