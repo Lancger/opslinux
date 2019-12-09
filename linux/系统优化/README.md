@@ -59,6 +59,7 @@ ls -l /home/
 
 ```
 echo -e "\n139.180.210.37 download.devops.com" >> /etc/hosts
+cat /etc/hosts|grep download.devops.com
 cd /usr/local/src/
 mkdir -p /opt/java
 wget -N http://download.devops.com/jdk-8u211-linux-x64.tar.gz
