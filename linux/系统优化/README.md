@@ -98,6 +98,14 @@ sed -i 's/master.*/master: 139.180.210.37/g' /etc/salt/minion
 
 systemctl enable salt-minion
 systemctl restart salt-minion
+
+#minion更换主机名重新认证
+rm -rf /etc/salt/pki/
+rm -rf /etc/salt/minion_id
+>/etc/salt/minion_id
+
+#master端
+salt-key -d test_minion
 ```
 
 参考文档
