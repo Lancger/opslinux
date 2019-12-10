@@ -90,6 +90,7 @@ yum install -y salt-minion
 
 >/etc/salt/minion_id
 rm -f /etc/salt/pki/minion/minion_master.pub
+rm -f /etc/salt/pki/minion/minion_master.pem
 sudo tee /etc/salt/minion << 'EOF'   # 默认使用主机名作为salt_minion_id
 master: 192.168.56.11
 EOF
