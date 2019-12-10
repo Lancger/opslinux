@@ -102,7 +102,7 @@ systemctl restart salt-minion
 #minion更换主机名重新认证
 rm -rf /etc/salt/pki/
 rm -rf /etc/salt/minion_id
->/etc/salt/minion_id
+systemctl restart salt-minion
 
 #master端
 salt-key -d test_minion
