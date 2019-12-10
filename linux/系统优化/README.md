@@ -88,9 +88,12 @@ hostnamectl set-hostname test-001
 yum install -y epel-release
 yum install -y salt-minion
 
+>/etc/salt/minion_id
+rm -f /etc/salt/pki/minion/minion_master.pub
 sudo tee /etc/salt/minion << 'EOF'   # 默认使用主机名作为salt_minion_id
 master: 192.168.56.11
 EOF
+sed -i 's/master.*/master: 139.180.210.37/g' /etc/salt/minion
 
 systemctl enable salt-minion
 systemctl restart salt-minion
