@@ -25,3 +25,26 @@ chattr +i /var/spool/cron/root
 chmod 644 /etc/sysconfig/iptables
 chattr +i /etc/sysconfig/iptables
 ```
+
+## 四、判断服务器出口
+```bash
+#国内接口地址
+curl myip.ipip.net
+
+当前 IP：28.187.161.129  来自于：中国 广东 深圳  电信
+
+#国际接口地址
+curl ip.gs
+
+Current IP / 当前 IP: 13.21.24.187
+ISP / 运营商:  kf-idc.com
+City / 城市:  Hong Kong
+Country / 国家: China
+IP.GS is now IP.SB, please visit https://ip.sb/ for more information. / IP.GS 已更改为 IP.SB ，请访问 https://ip.sb/ 获取更详细 IP 信息！
+Please join Telegram group https://t.me/sbfans if you have any issues. / 如有问题，请加入 Telegram 群 https://t.me/sbfans 
+
+  /\_/\
+=( °w° )=
+  )   (  //
+ (__ __)//
+```
