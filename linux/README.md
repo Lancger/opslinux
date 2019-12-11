@@ -28,6 +28,20 @@ chattr +i /etc/sysconfig/iptables
 
 ## 四、判断服务器出口
 ```bash
+curl https://ip.cn/
+
+curl https://ipinfo.io/
+{
+  "ip": "103.201.24.187",
+  "city": "Hong Kong",
+  "region": "Central and Western",
+  "country": "HK",
+  "loc": "22.2783,114.1747",
+  "org": "AS133115 HK Kwaifong Group Limited",
+  "timezone": "Asia/Hong_Kong",
+  "readme": "https://ipinfo.io/missingauth"
+}
+
 #国内接口地址
 curl myip.ipip.net
 
