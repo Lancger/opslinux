@@ -8,3 +8,8 @@ alt+command+b
 
 shift+command+b
 ```
+
+# 让iterm多个窗口执行同一个命令
+```bash
+只要按下Command+Shift+i 之后输入命令即可
+```
