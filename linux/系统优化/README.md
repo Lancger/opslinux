@@ -103,6 +103,7 @@ systemctl restart salt-minion
 rm -rf /etc/salt/pki/
 rm -rf /etc/salt/minion_id
 systemctl restart salt-minion
+cat /etc/salt/minion_id
 
 #master端
 salt-key -d test_minion
