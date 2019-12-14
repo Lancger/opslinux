@@ -88,6 +88,11 @@ hostnamectl set-hostname test-001
 yum install -y epel-release
 yum install -y salt-minion
 
+cat >/etc/hosts<<\EOF
+127.0.0.1 localhost
+139.180.210.37 download.devops.com
+EOF
+
 >/etc/salt/minion_id
 rm -f /etc/salt/pki/minion/minion_master.pub
 rm -f /etc/salt/pki/minion/minion_master.pem
