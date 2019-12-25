@@ -13,3 +13,16 @@ shift+command+b
 ```bash
 只要按下Command+Shift+i 之后输入命令即可
 ```
+
+# mac vscode快捷键
+```
+Ctrl + `  打开默认终端;
+
+Ctrl + Shift + `  新建新的终端;
+
+Ctrl + Shift + Y  打开调试控制台,然后再自行切换终端选项; 
+
+ps:
+
+` 在键盘数字1的左边,  Ctrl 和 Shift 在键盘左下角.
+```
