@@ -15,6 +15,7 @@ Gmail的bug  没识别 发件人
 # SPF records
 ```bash
 https://support.google.com/a/answer/33786?hl=en
+https://support.google.com/a/answer/33786?hl=ch
 
 DKIM 加强安全
 ```
