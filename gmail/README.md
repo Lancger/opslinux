@@ -7,4 +7,8 @@ https://toolbox.googleapps.com/apps/checkmx/check?domain=test.com&dkim_selector=
 # 使用From Fields进行Gmail邮件伪造
 ```bash
 https://www.360zhijia.com/anquan/431382.html
+
+smtp.mailfrom   From  没做校验
+
+Gmail的bug  没识别 发件人
 ```
