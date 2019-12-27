@@ -12,3 +12,7 @@ smtp.mailfrom   From  没做校验
 
 Gmail的bug  没识别 发件人
 ```
+# SPF records
+```bash
+https://support.google.com/a/answer/33786?hl=en
+```
