@@ -125,6 +125,12 @@ long_query_time=1
 server-id=1
 log-bin=/var/lib/mysql/mysql-bin
 
+## Buffer pool是用来缓存数据和索引,尽可能地设置大一点,以确保在进行大多数读操作时是读内存而不是读磁盘(一般设置物理内存的75%)
+innodb_buffer_pool_size=4G
+
+## redo(重做)日志是用来确保写入的数据能够快速地写入，并且持久化.
+innodb_log_file_size=512M
+
 ## 主从复制的格式（mixed,statement,row，默认格式是statement）
 binlog_format=MIXED
 
