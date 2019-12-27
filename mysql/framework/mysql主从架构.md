@@ -116,7 +116,6 @@ collation-server=utf8_general_ci
 max_connections=1000
 
 character_set_server=utf8
-character_set_client=utf8
 
 slow_query_log=on
 slow-query-log-file=/var/log/mysqld-slow.log
