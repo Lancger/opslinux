@@ -114,6 +114,13 @@ cat /etc/salt/minion_id
 salt-key -d test_minion
 ```
 
+# 六、Ansible批量下发监控优化
+```bash
+ansible all -S -R root -m shell -a "cd /tmp/ && wget -N --no-check-certificate https://bootstrap.pypa.io/get-pip.py && python get-pip.py && pip install --upgrade pip --trusted-host mirrors.aliyun.com -i https://mirrors.aliyun.com/pypi/simple/ && pip install --upgrade setuptools==30.1.0 && pip install simplejson --trusted-host mirrors.aliyun.com -i https://mirrors.aliyun.com/pypi/simple/"
+
+
+```
+
 参考文档
 
 https://jaminzhang.github.io/shell/Automated-Disk-Partion-Via-Shell-Script/  Shell 脚本自动化分区
