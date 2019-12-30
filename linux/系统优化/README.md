@@ -132,6 +132,8 @@ ansible all -S -R root -m copy -a "src=/opt/zabbix/scripts/tomcat_name_discovery
 
 ansible all -S -R root -m copy -a "src=/opt/zabbix/etc/zabbix_agentd.conf.d/userparameter_tomcat.conf dest=/opt/zabbix/etc/zabbix_agentd.conf.d/userparameter_tomcat.conf"
 
+ansible all -S -R root -m copy -a "src=/opt/zabbix/etc/zabbix_agentd.conf dest=/opt/zabbix/etc/zabbix_agentd.conf"
+
 ansible all -S -R root -m shell -a 'chown -R zabbix:zabbix /opt/zabbix'
 
 ansible all -S -R root -m shell -a '/opt/zabbix/init/zabbix_agentd restart'
