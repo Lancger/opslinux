@@ -127,6 +127,12 @@ ansible all -S -R root -m shell -a 'echo "Defaults:zabbix !requiretty" >> /etc/s
 ansible all -S -R root -m shell -a 'sed -i "s/^Defaults.*.requiretty/#Defaults    requiretty/" /etc/sudoers'
 ansible all -S -R root -m shell -a 'cat /etc/sudoers | grep requiretty'
 ansible all -S -R root -m shell -a 'cat /etc/sudoers.d/zabbix'
+
+ansible all -S -R root -m copy -a "src=/opt/zabbix/scripts/tomcat_name_discovery.py dest=/opt/zabbix/scripts/tomcat_name_discovery.py"
+
+ansible all -S -R root -m copy -a "src=/opt/zabbix/etc/zabbix_agentd.conf.d/userparameter_tomcat.conf dest=/opt/zabbix/etc/zabbix_agentd.conf.d/userparameter_tomcat.conf"
+
+ansible all -S -R root -m shell -a 'chown -R zabbix:zabbix /opt/zabbix'
 ```
 
 参考文档
