@@ -118,7 +118,15 @@ salt-key -d test_minion
 ```bash
 ansible all -S -R root -m shell -a "cd /tmp/ && wget -N --no-check-certificate https://bootstrap.pypa.io/get-pip.py && python get-pip.py && pip install --upgrade pip --trusted-host mirrors.aliyun.com -i https://mirrors.aliyun.com/pypi/simple/ && pip install --upgrade setuptools==30.1.0 && pip install simplejson --trusted-host mirrors.aliyun.com -i https://mirrors.aliyun.com/pypi/simple/"
 
+#还需注意自动发现目录的权限
+ansible all -S -R root -m shell -a 'chmod -R 755 /data0/run/'
 
+#自动发现
+ansible all -S -R root -m shell -a 'echo "zabbix ALL=(ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/zabbix'
+ansible all -S -R root -m shell -a 'echo "Defaults:zabbix !requiretty" >> /etc/sudoers.d/zabbix'
+ansible all -S -R root -m shell -a 'sed -i "s/^Defaults.*.requiretty/#Defaults    requiretty/" /etc/sudoers'
+ansible all -S -R root -m shell -a 'cat /etc/sudoers | grep requiretty'
+ansible all -S -R root -m shell -a 'cat /etc/sudoers.d/zabbix'
 ```
 
 参考文档
