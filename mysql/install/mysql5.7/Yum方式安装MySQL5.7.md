@@ -185,8 +185,8 @@ mysql_install_db --user=mysql --basedir=/usr/ --datadir=/data0/mysql_data/
 
     #方式二
     mysql> use mysql
-    mysql> GRANT ALL PRIVILEGES ON *.* TO root@"%" IDENTIFIED BY "root";
-    mysql> update user set Password = password('123456') where User='root';
+    mysql> GRANT ALL PRIVILEGES ON *.* TO root@"%" IDENTIFIED BY "1Qaz2Wsx3Edc!@#";
+    mysql> update user set Password = password('123456') where User='1Qaz2Wsx3Edc!@#';
     mysql> show grants for root@"%";
     mysql> flush privileges;
     mysql> select Host,User,Password from user where User='root';
