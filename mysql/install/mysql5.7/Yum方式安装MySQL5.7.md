@@ -120,11 +120,11 @@ yum安装的mysql默认  --basedir=/usr/
 
 --initialize-insecure    初始化为空密码
 
-#指定参数初始化
-mysql_install_db --user=mysql --basedir=/usr/ --datadir=/data0/mysql_data/
-
 #指定配置文件初始化
 mysqld --defaults-file=/etc/my.cnf --initialize-insecure --user=mysql
+
+#指定参数初始化
+mysql_install_db --user=mysql --basedir=/usr/ --datadir=/data0/mysql_data/
 ```
     
 
@@ -151,6 +151,7 @@ mysqld --defaults-file=/etc/my.cnf --initialize-insecure --user=mysql
     5、输入初始密码，此时不能做任何事情，因为MySQL默认必须修改密码之后才能操作数据库：
     
     mysql> ALTER USER 'root'@'localhost' IDENTIFIED BY '1Qaz2Wsx3Edc!@#';
+    mysql> ALTER USER 'root'@'%' IDENTIFIED BY '1Qaz2Wsx3Edc!@#';
     
     这里有个问题，新密码设置的时候如果设置的过于简单会报错：
     
