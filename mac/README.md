@@ -7,6 +7,10 @@ alt+command+b
 2、快速显示和隐藏书签
 
 shift+command+b
+
+3、快速打开谷歌浏览器调试模式
+
+option+command+i
 ```
 
 # 让iterm多个窗口执行同一个命令
