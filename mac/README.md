@@ -30,3 +30,7 @@ ps:
 
 ` 在键盘数字1的左边,  Ctrl 和 Shift 在键盘左下角.
 ```
+
+# mac lrzsz
+
+https://github.com/lancger-ops/iterm2-zmodem
