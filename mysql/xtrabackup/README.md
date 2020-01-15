@@ -3,6 +3,8 @@
 使用XtraBackup，默认情况下，会对io有影响，不会对线上正在运行的主库有影响，最好配合管道把数据直接送到从库的server
 
 ```
+yum install pigz -y
+
 #1、Installing Percona XtraBackup from Percona yum repository
 
 yum remove percona-xtrabackup
