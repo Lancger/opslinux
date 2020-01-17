@@ -55,7 +55,7 @@ ls -l /home/
 #ln -s /data /data0  (前面为目标，后面为软链)
 ```
 
-# AWS磁盘格式化
+# AWS磁盘XFS格式化
 
 ```bash
 cat > /tmp/disk.sh << \EOF
