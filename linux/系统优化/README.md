@@ -55,6 +55,36 @@ ls -l /home/
 #ln -s /data /data0  (前面为目标，后面为软链)
 ```
 
+# AWS磁盘格式化
+
+```bash
+cat > /tmp/disk.sh << \EOF
+#!/bin/bash
+echo "n
+p
+1
+
+
+w
+" | fdisk /dev/nvme1n1 && mkfs.xfs /dev/nvme1n1p1
+echo '/dev/nvme1n1p1 /data0                  xfs    defaults        0 0' >> /etc/fstab
+mkdir /data0
+mount /dev/nvme1n1p1 /data0
+df -h
+EOF
+
+chmod +x /tmp/disk.sh && sh /tmp/disk.sh
+mkdir -p /data0/{opt,logs}
+ln -s /data0/logs/ /opt/logs
+chown -R www:www /data0/
+chown -R www:www /opt/logs
+mv /home/ /data0/
+ln -s /data0/home/ /home
+ls -l /data0/
+ls -l /opt/
+ls -l /home/
+```
+
 # 四、java环境
 
 ```
