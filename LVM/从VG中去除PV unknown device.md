@@ -37,7 +37,14 @@
 ```
 
 ```bash
+#去除未知或已丢失的VG
 vgreduce --removemissing /dev/vg_group
+
+vgextend vg_group /dev/vdc1
+
+lvextend -l +100%FREE /dev/vg_group/vg_data
+
+xfs_growfs /dev/vg_group/vg_data 
 ```
 参考资料：
 
