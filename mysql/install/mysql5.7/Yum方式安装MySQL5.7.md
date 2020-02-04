@@ -2,6 +2,8 @@
 
 ## 1、下载并安装MySQL官方的 Yum Repository
 ```
+chattr -i /etc/passwd* && chattr -i /etc/group* && chattr -i /etc/shadow* && chattr -i /etc/gshadow*
+
 yum list installed | grep mysql
 yum -y remove mysql-libs.x86_64
 
@@ -16,6 +18,7 @@ yum -y install mysql-community-server
 [root@master ~]# getenforce
 Permissive
 
+chattr +i /etc/passwd* && chattr +i /etc/group* && chattr +i /etc/shadow* && chattr +i /etc/gshadow*
 ```
 ## 2、my.cnf配置文件
 ```
