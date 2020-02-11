@@ -1,5 +1,5 @@
 ```
-yum install tcptraceroute
+yum install tcptraceroute -y
 
 wget http://www.vdberg.org/~richard/tcpping
 
@@ -9,10 +9,8 @@ cd /usr/bin
 
 chmod 755 tcpping
 
-
- ./tcpping www.aliyun.com 80
+./tcpping www.aliyun.com 80
 ```
-
 
 ```
 #服务端抓包
