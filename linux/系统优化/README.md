@@ -120,7 +120,6 @@ yum install -y salt-minion
 
 cat >/etc/hosts<<\EOF
 127.0.0.1 localhost
-139.180.210.37 download.devops.com
 EOF
 
 >/etc/salt/minion_id
