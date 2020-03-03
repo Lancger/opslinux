@@ -129,6 +129,8 @@ EOF
 
 cd /data0/consul/
 docker-compose up -d
+
+从docker-compose.yml可以看出Consul集群启动了5个节点，其中node1~node3作为Consul Server组成集群。node4作为客户端join到集群中，映射宿主机的8500端口到容器的8500端口ports: - 8500:8500，使得通过command参数-ui提供Consul UI，可以通过访问宿主机的8500访问。
 ```
 
 3、测试访问ui
