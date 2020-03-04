@@ -41,14 +41,21 @@ git push -u origin master
 
 git push origin master 
 
-
-git删除文件并推送
+6.git删除文件并推送
 git rm * -r
 
 git commit -m "clear"
 
-git push origin master 
+git push origin master
+
+7.git重命名文件夹(例如我想把Zabbix目录改成zabbix,不能直接git mv Zabbix zabbix, 可以使用中转方式，先改成临时的一个目录，然后再改回zabbix)
+git config core.ignorecase false  #关闭git忽略大小写配置，即可检测到大小写名称更改
+git mv -f Zabbix tmpfolder
+git mv -f tmpfolder zabbix
+git add -u zabbix  #(-u选项会更新已经追踪的文件和文件夹)
+git commit -m "changed the Zabbix to zabbix"
 ```
+
 参考：http://blog.csdn.net/liang0000zai/article/details/50724632
 
 
