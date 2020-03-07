@@ -355,6 +355,9 @@ net.ipv4.ip_local_port_range = 1024 65000
 vm.overcommit_memory = 1
 vm.dirty_background_ratio = 5
 vm.dirty_ratio = 10
+vm.max_map_count = 262144
+net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-iptables = 1
 EOF
     /sbin/sysctl -p
     source /etc/profile
