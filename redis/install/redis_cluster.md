@@ -339,6 +339,16 @@ for i in {20001..20006} {20101..20106};do sed -i 's/10.1.1.116/10.1.1.119/g' red
     >>> Check for open slots...
     >>> Check slots coverage...
     [OK] All 16384 slots covered.
+    
+### 修复数据
+
+    [ERR] Node 10.33.56.11:7000 is not empty. Either the node already knows other nodes (check with CLUSTER NODES) or contains some key in database 0.
+    
+    #使用下面指令修复
+    ./redis-trib.rb fix 10.33.56.11:7000
+    
+    https://blog.csdn.net/weixin_34050005/article/details/85980639   [ERR] Not all 16384 slots are covered by nodes.
+
 
 ### 列出集群节点
 
