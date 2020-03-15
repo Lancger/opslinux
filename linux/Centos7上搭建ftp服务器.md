@@ -33,7 +33,7 @@ listen_port=21
 pasv_enable=YES
 pasv_min_port=10000
 pasv_max_port=20000
-pasv_address=103.106.208.242
+pasv_address=11.106.22.215
 pasv_addr_resolve=YES
 reverse_lookup_enable=NO
 pasv_promiscuous=YES
@@ -111,6 +111,30 @@ https://www.cnblogs.com/hisunhyx/p/5029476.html?utm_source=tuicool&utm_medium=re
 https://www.cnblogs.com/ajianbeyourself/p/7655464.html
 ```
 
+# 七、nginx代理ftp图片
+```bash
+cat >/etc/nginx/conf.d/ftp.conf<<\EOF
+server {
+    listen       80;
+    server_name  localhost;
+
+    #charset koi8-r;
+    access_log  /var/log/nginx/host.access.log  main;
+
+    location /pub/banner/ {
+       alias /data0/ftpfile/pub/banner/;
+       index  index.html index.htm;
+       autoindex on;
+    }
+
+    location /bitcoin360/ {
+       alias /data0/ftpfile/bitcoin360/;
+       index  index.html index.htm;
+       autoindex on;
+    }
+}
+EOF
+```
 参考资料：
 
 https://www.cnblogs.com/tdalcn/p/6940147.html  
