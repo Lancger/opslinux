@@ -20,6 +20,10 @@ root># du -sh .[!.]*
 16K     .ssh
 4.0K    .tcshrc
 4.0K    .viminfo
+
+
+
+du -h --max-depth=1 /
 ```
 参考文档：
 
