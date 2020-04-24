@@ -6,7 +6,7 @@
 
 第三步:
 降低谷歌账号对安全性的要求
-谷歌会自动检测并禁止你的谷歌账号在它认为不够安全的设备或者应用上登录，这时候就会一直出现check information。我们可以暂时关掉这个功能，进入https://www.google.com/settings/u/1/security/lesssecureapps然后关掉这个选项就可以了。
+谷歌会自动检测并禁止你的谷歌账号在它认为不够安全的设备或者应用上登录，这时候就会一直出现check information。我们可以暂时关掉这个功能，进入https://www.google.com/settings/u/1/security/lesssecureapps 然后关掉这个选项就可以了。
 完成这两步之后，你在自己的手机上试试使用google play, 大约check information 六分钟之后，就进入应用商店了。
 
 参考资料：
