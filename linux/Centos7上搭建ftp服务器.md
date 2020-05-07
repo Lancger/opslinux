@@ -143,7 +143,7 @@ EOF
 server {
     listen       80;
     listen 443 ssl;
-    server_name  ftp.bitcoin360.io;
+    server_name  ftp.coin.io;
 
     ssl_certificate      /etc/nginx/certs/coin.pem;
     ssl_certificate_key  /etc/nginx/certs/coin.key;
