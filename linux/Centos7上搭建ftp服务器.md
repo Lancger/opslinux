@@ -79,6 +79,9 @@ systemctl status  vsftpd.service
 yum -y install ftp
 
 ftp 103.106.20X.XX
+
+#使用安全设置列出目录
+ftp>ls
 ```
 
 # 五、报错解决
