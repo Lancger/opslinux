@@ -137,6 +137,37 @@ server {
     }
 }
 EOF
+
+# 443 配置
+
+server {
+    listen       80;
+    listen 443 ssl;
+    server_name  ftp.bitcoin360.io;
+
+    ssl_certificate      /etc/nginx/certs/coin.pem;
+    ssl_certificate_key  /etc/nginx/certs/coin.key;
+    ssl_session_timeout 5m;
+    ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;
+    ssl_protocols TLSv1.1 TLSv1.2;
+    ssl_prefer_server_ciphers on;
+
+    #charset koi8-r;
+    access_log  /var/log/nginx/ftp.coin.io.log  main;
+    error_log /var/log/nginx/ftp.coin.io.error.log;
+
+    location /pub/banner/ {
+       alias /data0/ftpfile/pub/banner/;
+       index  index.html index.htm;
+       autoindex on;
+    }
+
+    location /coin/ {
+       alias /data0/ftpfile/coin/;
+       index  index.html index.htm;
+       autoindex on;
+    }
+}
 ```
 参考资料：
 
