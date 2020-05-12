@@ -262,9 +262,9 @@ add_user(){
 #set sshd
 ssh_config(){
     mv -f /etc/ssh/sshd_config /etc/ssh/sshd_config_$$
+    inner_ip=`/sbin/ifconfig -a|grep inet|grep -v 127.0.0.1|grep -v inet6|awk '{print $2}'|tr -d "addr:"|head -n1`
     cat >/etc/ssh/sshd_config<<EOF
-Port 33389
-ListenAddress 0.0.0.0:22
+ListenAddress ${inner_ip}:22
 ListenAddress 0.0.0.0:33389
 HostKey /etc/ssh/ssh_host_rsa_key
 HostKey /etc/ssh/ssh_host_ecdsa_key
