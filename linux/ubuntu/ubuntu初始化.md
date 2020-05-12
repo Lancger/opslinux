@@ -49,6 +49,37 @@ useradd www -m -d /home/www
 www:x:1001:1001::/home/www:/bin/bash
 ```
 
+# 二、磁盘格式化
+
+```bash
+cat > /tmp/disk.sh << \EOF
+#!/bin/bash
+echo "n
+p
+1
+
+
+w
+" | fdisk /dev/nvme1n1 && mkfs.xfs /dev/nvme1n1p1
+echo '/dev/nvme1n1p1 /data0                  xfs    defaults        0 0' >> /etc/fstab
+mkdir /data0
+mount /dev/nvme1n1p1 /data0
+df -h
+EOF
+
+chmod +x /tmp/disk.sh && sh /tmp/disk.sh
+mkdir -p /data0/{opt,logs}
+ln -s /data0/logs/ /opt/logs
+chown -R www:www /data0/
+chown -R www:www /opt/logs
+mv /home/ /data0/
+ln -s /data0/home/ /home
+ls -l /data0/
+ls -l /opt/
+ls -l /home/
+
+#注意aws的磁盘格式化，在mkfs.xfs阶段会有点慢，需要手动执行下，然后执行mount -a重新挂载下
+```
 
 # 二、修改主机名
 
