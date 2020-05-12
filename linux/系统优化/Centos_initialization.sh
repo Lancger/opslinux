@@ -271,8 +271,8 @@ HostKey /etc/ssh/ssh_host_ecdsa_key
 HostKey /etc/ssh/ssh_host_ed25519_key
 SyslogFacility AUTHPRIV
 MaxAuthTries 10
-#PermitRootLogin no    #禁用root 登录
-#RSAAuthentication yes #通过RSA认证
+PermitRootLogin no    #打开注释，表示禁用root登录，添加#注释表示允许root登录，目前表示禁止root登录
+RSAAuthentication yes #通过RSA认证
 PubkeyAuthentication yes
 AuthorizedKeysFile      %h/.ssh/authorized_keys
 #PasswordAuthentication no #禁止密码方式验证
