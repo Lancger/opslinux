@@ -237,3 +237,5 @@ systemctl restart mysqld
 https://my.oschina.net/marhal/blog/2086091   mysql 开启日志记录并且解决日志时间错误问题 
 
 https://blog.csdn.net/hyy_217/article/details/72781614  mysql5.7日志时间与系统时间不一致
+
+https://blog.csdn.net/wx145/article/details/82740737  关于mysql的参数autocommit
