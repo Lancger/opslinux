@@ -51,7 +51,7 @@ datadir=/data0/mysql_data/
 socket=/var/lib/mysql/mysql.sock
 
 character_set_server=utf8
-init_connect='SET NAMES utf8;set autocommit=0;'
+init_connect='SET NAMES utf8;set autocommit=1;'
 
 #跳过密码验证登录
 #skip-grant-tables
