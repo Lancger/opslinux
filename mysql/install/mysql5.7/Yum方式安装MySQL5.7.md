@@ -233,6 +233,36 @@ flush privileges;
 systemctl restart mysqld
 ```
 
+# 六、查看事务自动提交
+
+```yaml
+set session autocommit=1;
+
+set global autocommit=1;
+
+mysql>  show global variables like 'autocommit';    
++---------------+-------+
+| Variable_name | Value |
++---------------+-------+
+| autocommit    | ON    |
++---------------+-------+
+1 row in set (0.00 sec)
+
+mysql>  show variables like 'autocommit';         
++---------------+-------+
+| Variable_name | Value |
++---------------+-------+
+| autocommit    | ON    |
++---------------+-------+
+1 row in set (0.00 sec)
+
+
+https://www.cnblogs.com/kerrycode/p/8649101.html 
+
+注意，上述SQL修改会话系统变量或全局系统变量，只对当前实例有效，如果MySQL服务重启的话，这些设置就会丢失，如果要永久生效，就必须在配置文件中修改系统变量。
+
+
+```
 
 https://my.oschina.net/marhal/blog/2086091   mysql 开启日志记录并且解决日志时间错误问题 
 
