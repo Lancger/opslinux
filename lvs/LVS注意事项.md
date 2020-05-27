@@ -91,3 +91,5 @@ https://www.jianshu.com/p/e146a7a14b4b lvs+keepalived群集配置
 https://www.centos.bz/2017/07/lvs-keepalived-ha-loadbalace/  LVS Keepalived双机高可用负载均衡搭建
 
 https://blog.csdn.net/u013694670/article/details/60580175   记一次keepalived脑裂问题查找
+
+https://bugzilla.redhat.com/show_bug.cgi?id=1047693   lvs vip运行半年时好时坏的bug问题
