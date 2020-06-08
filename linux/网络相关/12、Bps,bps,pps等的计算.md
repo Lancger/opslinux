@@ -16,7 +16,14 @@ bps=8*Bps
 所以三者之间知其一就能知道剩余的
 bps=Bps*8
 pps=Bps/84 //这求的是最大pps
+
+
+以太网传输最小包长是64字节。包转发线速的衡量标准是以单位时间内发送64byte的数据包（最小包）的个数作为计算基准的。
+对于千兆以太网来说，计算方法如下：
+1000Mbps/((64B+8B+12B)×8bit)=1.488095pps
 ```
 参考资料：
 
 https://blog.csdn.net/Coder_Joker/article/details/85617034
+
+https://www.jianshu.com/p/d04f26f78151
