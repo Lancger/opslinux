@@ -426,6 +426,8 @@ for i in {20001..20006} {20101..20106};do sed -i 's/10.1.1.116/10.1.1.119/g' red
 
 参考文档：
 
+https://blog.csdn.net/tianshi_rain/article/details/86612193  Redis5 cluster人工指定主从关系
+
 https://www.centos.bz/2017/08/centos7-3-install-redis-4-0-1-cluster/
 
 https://note.youdao.com/ynoteshare1/index.html?id=425c61744b4d4d24427e0dc4b44521ae&type=note  
