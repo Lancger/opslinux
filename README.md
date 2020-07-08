@@ -65,6 +65,13 @@ git config --global http.https://github.com.proxy socks5://127.0.0.1:1080
 
 #取消代理
 git config --global --unset http.https://github.com.proxy
+
+#取消代理
+git config --global --unset http.proxy
+git config --global --unset https.proxy
+
+#查看git配置
+git config -l
 ```
 
 参考：http://blog.csdn.net/liang0000zai/article/details/50724632
