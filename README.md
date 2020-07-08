@@ -70,6 +70,8 @@ git config --global --unset http.https://github.com.proxy
 git config --global --unset http.proxy
 git config --global --unset https.proxy
 
+git config --global --unset http.https.proxy
+
 #查看git配置
 git config -l
 ```
