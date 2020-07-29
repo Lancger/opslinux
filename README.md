@@ -219,8 +219,15 @@ cp -rp vue-element-admin/. /opt/mysite/frontend     一定要有这个 . 才能�
 cp -a vue-element-admin/. /opt/mysite/frontend
 cp -rf vue-element-admin/. /opt/mysite/frontend
 
-
 rm -rf .*   删除隐藏文件
+```
+
+# 八、临时edu邮箱申请
+
+```bash
+https://wangdalao.com/page/2?s=edu&type=post
+
+https://51.ruyo.net/
 ```
 
 https://blog.csdn.net/zhaoyanjun6/article/details/72284974 GitHub 实现多人协同提交代码并且权限分组管理
