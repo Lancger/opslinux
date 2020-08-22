@@ -12,6 +12,7 @@ chmod -R 666 /nfs/data
 #编辑export文件
 vim /etc/exports
 /nfs/data *(rw,no_root_squash,sync)
+/nfs/data *(rw,sync,all_squash,anonuid=1001,anongid=1001) ---anonuid=1001指定挂载的用户
 
 #配置生效
 exportfs -r
