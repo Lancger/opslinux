@@ -128,6 +128,32 @@ mysqld --defaults-file=/etc/my.cnf --initialize-insecure --user=mysql
 
 #指定参数初始化
 mysql_install_db --user=mysql --basedir=/usr/ --datadir=/data0/mysql_data/
+
+#方式三
+mysql> use mysql
+mysql> GRANT ALL PRIVILEGES ON *.* TO root@"%" IDENTIFIED BY "root";
+mysql> update user set Password = password('123456') where User='root';
+mysql> update user set Password = password('123456') where User='root' and Host="127.0.0.1";
+mysql> show grants for root@"%";
+mysql> flush privileges;
+mysql> select Host,User,Password from user where User='root';
+mysql> exit
+
+#增加‘127.0.0.1’的登录配置
+mysql> select user,host from user;
++-----------------+--------------+
+| user            | host         |
++-----------------+--------------+
+| mysql.session   | localhost    |
+| mysql.sys       | localhost    |
+| root            | localhost    |
++-----------------+--------------+
+
+#这里果然没有 ‘127.0.0.1’的登录设置
+
+grant all privileges on *.* to 'root'@'127.0.0.1' identified by 'mysql密码';
+
+flush privileges;
 ```
     
 
