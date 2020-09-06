@@ -3,7 +3,12 @@ cd /usr/local/src/
 
 yum install wget -y
 wget http://mirror.bit.edu.cn/apache/zookeeper/zookeeper-3.4.14/zookeeper-3.4.14.tar.gz
+
+curl -O http://mirror.bit.edu.cn/apache/zookeeper/zookeeper-3.4.12/zookeeper-3.4.12.tar.gz
 ```
+
+
+
 
 参考资料：
 
