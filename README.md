@@ -218,12 +218,11 @@ remote: error: GH001: Large files detected. You may want to try Git Large File S
 yum install git-lfs -y
 
 git lfs install
-
-git lfs track '*.*' 
-
-git lfs track "jdk-8u251-linux-x64.tar.gz"  #这里指定上传大文件的路径和文件名
-
-git commit -m "上传大文件"
+git lfs track "jdk-8u251-linux-x64.tar.gz"
+git add .gitattributes
+git add *
+git commit -m "大文件上传"
+git push
 
 git push origin master 
 
