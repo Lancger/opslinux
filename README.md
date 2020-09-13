@@ -210,6 +210,22 @@ git checkout vuex-state_getter
 ```
 参考：https://blog.csdn.net/liang0000zai/article/details/50724632
 
+# 七、git上传大文件
+
+```bash
+remote: error: GH001: Large files detected. You may want to try Git Large File Storage - https://git-lfs.github.com.
+
+yum install git-lfs -y
+
+git lfs install
+
+git lfs track "jdk-8u251-linux-x64.tar.gz"  #这里指定上传大文件的路径和文件名
+
+git commit -m "上传大文件"
+
+git push origin master 
+```
+
 # 七、linux cp 隐藏文件和删除隐藏文件
 ```
 显示所有文件，包含隐藏文件
