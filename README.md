@@ -219,6 +219,8 @@ yum install git-lfs -y
 
 git lfs install
 
+git lfs track '*.*' 
+
 git lfs track "jdk-8u251-linux-x64.tar.gz"  #这里指定上传大文件的路径和文件名
 
 git commit -m "上传大文件"
