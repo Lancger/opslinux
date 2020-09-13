@@ -226,6 +226,8 @@ git lfs track "jdk-8u251-linux-x64.tar.gz"  #这里指定上传大文件的路�
 git commit -m "上传大文件"
 
 git push origin master 
+
+https://www.jianshu.com/p/3f25cd20e392  Github如何上传超过100M的大文件
 ```
 
 # 七、linux cp 隐藏文件和删除隐藏文件
