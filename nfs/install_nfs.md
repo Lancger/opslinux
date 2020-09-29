@@ -90,7 +90,24 @@ vim /etc/fstab
 mount -a
 ```
 
+## 四、ls -al shows nobody:nobody问题解决
+
+```bash
+#服务端配置
+echo Y > /sys/module/nfs/parameters/nfs4_disable_idmapping
+nfsidmap -c
+
+#客户端
+echo Y > /sys/module/nfsd/parameters/nfs4_disable_idmapping
+
+#永久生效
+echo "options nfs nfs4_disable_idmapping=1" > /etc/modprobe.d/nfs.conf
+echo "options nfsd nfs4_disable_idmapping=1" > /etc/modprobe.d/nfsd.conf
+```
+
 参考文档：
+
+https://serverfault.com/questions/877795/nfs4-ubuntu-ls-al-shows-nobodynobody  NFS4 ubuntu: ls -al shows nobody:nobody
 
 http://www.mydlq.club/article/3/  CentOS7 搭建 NFS 服务器
 
