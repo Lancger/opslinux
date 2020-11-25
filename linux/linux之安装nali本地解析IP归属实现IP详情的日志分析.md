@@ -4,6 +4,9 @@ wget https://github.com/dzxx36gyy/nali-ipip/archive/master.zip
 unzip master.zip
 cd nali-ipip-master/
 ./configure && make && make install && nali-update
+
+https://github.com/zu1k/nali/blob/master/README_zh-CN.md
+wget https://github.com/zu1k/nali/releases/download/v0.2.2/nali-linux-amd64-v0.2.2.gz
 ```
 
 ## 二、具体用法
