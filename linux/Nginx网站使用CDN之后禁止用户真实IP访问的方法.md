@@ -47,6 +47,17 @@ map $http_x_forwarded_for  $clientRealIp {
         ""      $remote_addr;
         ~^(?P<firstAddr>[0-9\.]+),?.*$  $firstAddr;
 }
+
+map $http_x_forwarded_for  $clientRealIp {
+        ## 没有通过代理，直接用 remote_addr
+        ""    $remote_addr;  
+        ## 用正则匹配，从 x_forwarded_for 中取得用户的原始IP
+        ## 例如  X-Forwarded-For: 202.123.123.11, 208.22.22.234, 192.168.2.100,...
+        ## 这里第一个 202.123.123.11 是用户的真实 IP，后面其它都是经过的 CDN 服务器
+        ~^(?P<firstAddr>[0-9\.]+),?.*$    $firstAddr;
+}
+## 通过 map 指令，我们为 nginx 创建了一个变量 $clientRealIp ，这个就是 原始用户的真实 IP 地址，
+## 不论用户是直接访问，还是通过一串 CDN 之后的访问，我们都能取得正确的原始IP地址
 ```
 那么，$clientRealIP就是用户真实IP了，其实就是匹配了 $http_x_forwarded_for 的第一个值，具体原理前文也简单分享过：
 
@@ -299,4 +310,6 @@ map $http_x_forwarded_for  $clientRealIp {
 ```
 参考链接
 
-https://www.cnblogs.com/qcloud1001/p/6617970.html
+https://www.cnblogs.com/qcloud1001/p/6617970.html  Nginx网站使用CDN之后禁止用户真实IP访问的方法
+
+https://blog.csdn.net/ai2000ai/article/details/71411224  Nginx 内置变量，细化规则，真实IP获取及限制连接请求
