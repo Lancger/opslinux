@@ -10,12 +10,13 @@ yum install libffi-devel -y
 ## 二、下载并安装python3.7
 ```bash
 #源码安装
+export VER="3.7.4"
 cd /usr/local/src/
-wget -N https://www.python.org/ftp/python/3.7.4/Python-3.7.4.tgz
-tar -xzf Python-3.7.4.tgz 
-cd Python-3.7.4
+wget -N https://www.python.org/ftp/python/${VER}/Python-${VER}.tgz
+tar -xzf Python-${VER}.tgz 
+cd Python-${VER}
 ./configure --prefix=/usr/local/python3.7 --enable-shared
-make && make install
+make -j 4 && make install
 
 ln -s /usr/local/python3.7/bin/python3.7 /usr/bin/python3
 ln -s /usr/local/python3.7/bin/pip3 /usr/bin/pip3
@@ -40,14 +41,14 @@ pip3 install -i https://pypi.mirrors.ustc.edu.cn/simple/  -r requirements.txt   
 
 ## 四、创建虚拟环境
 ```bash
-cd /usr/local/
-/usr/local/python3.7/bin/pyvenv demovenv
-cd demovenv
-source bin/activate
-
 #推荐使用
 cd /usr/local/
 python3 -m venv demovenv
+cd demovenv
+source bin/activate
+
+cd /usr/local/
+/usr/local/python3.7/bin/pyvenv demovenv
 cd demovenv
 source bin/activate
 ```
