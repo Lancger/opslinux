@@ -45,7 +45,7 @@ nali  42.96.189.63
 ###V1-2019-03-13###
 
 CropID='wwd618cb53fdf20d94'
-Secret='HeD64P1nPSTWaUhp_Yne_MY7IsA7lhF-EUZaCOmb_gY'
+Secret='ASSHeD64P1AnPSTWaUhp_Yne_MY7IsA7lhF-EUZaCOmb_gY'
 GURL="https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid=$CropID&corpsecret=$Secret"
 Gtoken=$(/usr/bin/curl -s -G $GURL | jq -r '.access_token')
 PURL="https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token=$Gtoken"
