@@ -10,4 +10,6 @@ ping -c 3 www.baidu.com
 ```
 参考文档：
 
-https://www.cnblogs.com/happyhotty/articles/2539951.html  
+https://www.cnblogs.com/happyhotty/articles/2539951.html  解决linux ping: unknown host www.baidu.com
+
+https://www.cloudflare.com/zh-cn/learning/dns/what-is-dns/  什么是 DNS？ | DNS 的工作方式
