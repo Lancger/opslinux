@@ -15,3 +15,5 @@ https://www.cnblogs.com/happyhotty/articles/2539951.html  解决linux ping: unkn
 https://www.cloudflare.com/zh-cn/learning/dns/what-is-dns/  什么是 DNS？ | DNS 的工作方式
 
 https://reaff.com/6109.html   使用Censys 查询CDN|如Cloudflare后面的真实服务器IP地址 与对应防范
+
+https://censys.io/ipv4?q=baidu.com  https://censys.io/ipv4
