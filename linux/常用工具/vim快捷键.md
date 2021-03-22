@@ -32,6 +32,12 @@ ctrl + a 跳至行首
 ctrl + e 跳至行尾
 
 ctrl + tab 切换窗口
+
+Ctrl + w     删除当前光标至行首的字符
+
+Ctrl + k     删除当前光标至行末的字符
+ 
+Ctrl + u     删除当前光标至行首的字符
 ```
 
 # 大全
@@ -103,4 +109,6 @@ Ctrl + n：历史中的下一条命令
 https://www.jianshu.com/p/ab7936af747c
 
 https://www.cnblogs.com/svennee/p/4071523.html
+
+https://www.jb51.net/article/109011.htm
 
