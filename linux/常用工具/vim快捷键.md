@@ -110,5 +110,5 @@ https://www.jianshu.com/p/ab7936af747c
 
 https://www.cnblogs.com/svennee/p/4071523.html
 
-https://www.jb51.net/article/109011.htm
+https://www.jb51.net/article/109011.htm  linux下命令行操作快捷键及技巧(分享)
 
