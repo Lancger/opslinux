@@ -74,6 +74,16 @@ git config --global --unset http.https.proxy
 
 #查看git配置
 git config -l
+
+9.Linux下git clone加速
+例如：这是你要克隆的那个链接
+https://github.com/ROBOTIS-GIT/turtlebot3_simulations.git
+将其中的github.com替换为github.com.cnpmjs.org
+地址也就变成了这样：https://github.com.cnpmjs.org/ROBOTIS-GIT/turtlebot3_simulations.git
+然后git clone 
+boom！网速提升了几十倍！
+
+https://www.bilibili.com/read/cv7701558
 ```
 
 参考：http://blog.csdn.net/liang0000zai/article/details/50724632
