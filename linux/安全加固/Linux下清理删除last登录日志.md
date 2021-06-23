@@ -57,6 +57,7 @@ echo > /var/run/utmp
 echo > /root/.bash_history
 echo > /home/www/.bash_history
 history -c
+echo "HISTSIZE=0" >>/etc/profile
 cat /dev/null > ~/.bash_history && history -c && exit
 ```
 # salt下发
