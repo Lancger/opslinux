@@ -4,7 +4,7 @@
 #Mai: 1151980610@qq.com
 #Function:  This script is used for system Centos6 or Centos7 initialization 
 #Version:  V1.0
-#Update:  2020-05-12
+#Update:  2021-12-16
 
 . /etc/init.d/functions
 
@@ -218,8 +218,6 @@ ulimit_config(){
 #@faculty        hard    nproc           50
 #ftp             hard    nproc           0
 #@student        -       maxlogins       4
-
-
 # End of file
 * soft           nofile           204800
 * hard           nofile           204800
@@ -227,7 +225,7 @@ ulimit_config(){
 * hard           nproc            204800
 EOF
 
-#  *          代表针对所有用户   
+#  *         代表针对所有用户   
 # nproc      是代表最大进程数   
 # nofile     是代表最大文件打开数 
 # soft nofile表示软限制，hard nofile表示硬限制，软限制要小于等于硬限制。
@@ -249,7 +247,7 @@ echo "1460" > /sys/class/net/eth0/mtu
 #add user
 add_user(){
     useradd www
-    echo "GoodLuck!@#2021"|passwd --stdin www
+    echo "GoodLuck!@#2022"|passwd --stdin www
     mkdir -p /home/www/.ssh/
     chmod 700 /home/www/.ssh/
     echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCyrgnAdfukV1xAllnl/IEFh/T9X4BkRlhSNMarwZIhZJ8S9euxz4PciAZTVqZ7zudcaPxjZGhtfa6ak5DHPW5GBr/DJ8Zh9Vk9p/c19szAUw04Go/ZuwaaSjIgdJwctfxnbBRVMSqMZFozc97MSh6yWoxLA3k2CWzv0yl9sjs3uUcYqe67GcFZaNQiomSGEKeBCxxtKQZyUEV2F7ufcoDIgcm9m2DH//DSflLd8QAyOj4Y4vj5Qcr8lThV9pWhjYq/sD1spxGbplz7+NQJeV8HEC5AzA1jZXy+pTFyV6DEOhPnn4V+GWUiDF39S8ky1wx0UpzpGxSRpTXhu1f9126B" > /home/www/.ssh/authorized_keys
@@ -316,6 +314,14 @@ echo "NETWORKING_IPV6=off" >> /etc/sysconfig/network
 cat /etc/sysconfig/network | grep NETWORKING_IPV6
 }
 
+# a. 所有进程打开的文件描述符数不能超过/proc/sys/fs/file-max
+# b. 单个进程打开的文件描述符数不能超过user limit中nofile的soft limit
+# c. nofile的soft limit不能超过其hard limit
+# d. nofile的hard limit不能超过/proc/sys/fs/nr_open
+
+sysctl -w 'fs.nr_open=2000000' > /dev/null
+sysctl -w 'fs.file-max=2100000' > /dev/null
+
 #set sysctl
 sysctl_config(){
     cp /etc/sysctl.conf /etc/sysctl.conf.$$
@@ -358,6 +364,8 @@ vm.dirty_ratio = 10
 vm.max_map_count = 262144
 net.bridge.bridge-nf-call-ip6tables = 1
 net.bridge.bridge-nf-call-iptables = 1
+fs.nr_open = 2000000
+fs.file-max = 2100000
 EOF
     /sbin/sysctl -p
     source /etc/profile
