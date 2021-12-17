@@ -262,3 +262,5 @@ https://51.ruyo.net/
 https://blog.csdn.net/zhaoyanjun6/article/details/72284974 GitHub 实现多人协同提交代码并且权限分组管理
 
 https://www.thinbug.com/q/41863484  清除git本地缓存
+
+https://blog.csdn.net/csj50/article/details/112917855  github取消密码验证，改成token验证
