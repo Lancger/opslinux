@@ -71,3 +71,7 @@ IP      : 116.81.26.69
 数据三  : 中国广东广州 | 电信
 URL     : http://www.cip.cc/116.81.26.69
 ```
+
+参考资料：
+
+https://oneinstack.com/   一键安装Linux基础组件软件推荐
