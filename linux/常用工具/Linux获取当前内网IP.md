@@ -19,7 +19,7 @@ root># sh getip.sh
 # 三、获取方式三
 
 ```bash
-root># hostIp=$(ip addr | grep inet | egrep -v '(127.0.0.1|inet6|docker)' | awk '{print $2}' | tr -d "addr:" | head -n 1 | cut -d / -f1
+root># hostIp=$(ip addr | grep inet | egrep -v '(127.0.0.1|inet6|docker)' | awk '{print $2}' | tr -d "addr:" | head -n 1 | cut -d / -f1)
 
 root># echo $hostIp
 172.30.186.162
