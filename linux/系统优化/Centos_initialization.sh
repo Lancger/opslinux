@@ -4,10 +4,13 @@
 #Mai: 1151980610@qq.com
 #Function:  This script is used for system Centos6 or Centos7 initialization 
 #Version:  V1.0
-#Update:  2021-12-16
+#Update:  2022-01-26
 
+#设置环境变量
 . /etc/init.d/functions
+export PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 
+#设置脚本输出颜色
 function echo_color() {
     if [ $1 == "green" ]; then
         echo -e "\033[32;40m$2\033[0m"
@@ -16,6 +19,18 @@ function echo_color() {
     fi
 }
 
+#只允许root用户执行该脚本
+if [[ "$(whoami)" != "root" ]]; then
+    echo_color red "please run this script as root"
+    exit 1
+fi
+
+echo_color green "这个是centos6/7系统初始化脚本，请慎重运行！Please continue to enter or ctrl+C to cancel"
+
+#获取服务器内核版本
+RELEASEVER=$(rpm -q --qf "%{VERSION}" $(rpm -q --whatprovides redhat-release))
+
+#服务器初始化标记
 function initialization_check() {
     initialization_pid="/tmp/check_pid"
     if [ -f $initialization_pid ]; then
@@ -38,25 +53,6 @@ function initialization_check() {
                     ;;
             esac
         done
-
-        # read -p "Are you sure?[y/n]: " sure
-        # while true; do
-        #     case $sure in
-        #         [Yy]* )
-        #             echo_color green "you enter $sure"
-        #             break
-        #             ;;
-        #         [Nn]* ) 
-        #            echo_color red "Exit ......"
-        #            exit
-        #         ;;
-        #         * ) 
-        #             echo -n "Please answer yes or no: "
-        #             read sure
-        #             ;;
-        #     esac
-        # done
-
     else
         echo_color green "服务器初始化标记"
         date_tag=`date +'%Y-%m-%d %H:%M:%S'`
@@ -64,37 +60,28 @@ function initialization_check() {
     fi
 }
 
-if [[ "$(whoami)" != "root" ]]; then
-    echo_color red "please run this script as root" >&2
-    exit 1
-fi
-
-echo_color green "这个是centos6/7系统初始化脚本，请慎重运行！Please continue to enter or ctrl+C to cancel"
-
-# get kernel version
-RELEASEVER=$(rpm -q --qf "%{VERSION}" $(rpm -q --whatprovides redhat-release))
-
-#configure yum source
-yum_config(){
-#     if [ $RELEASEVER == 6 ];then
-#         echo -e "\033[32m 这个是Centos6系统 \033[0m"
-#         mv -f /etc/yum.repos.d /etc/yum.repos.d_backup
-#         mkdir /etc/yum.repos.d
-#         wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.163.com/.help/CentOS6-Base-163.repo
-#     fi
-#     if [ $RELEASEVER == 7 ];then
-#         echo -e "\033[32m 这个是Centos7系统 \033[0m"
-#         mv -f /etc/yum.repos.d /etc/yum.repos.d_backup
-#         mkdir /etc/yum.repos.d
-#         wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.163.com/.help/CentOS7-Base-163.repo
-#     fi
+#配置yum源
+function yum_config(){
+    # if [ $RELEASEVER == 6 ];then
+    #     echo -e "\033[32m 这个是Centos6系统 \033[0m"
+    #     mv -f /etc/yum.repos.d /etc/yum.repos.d_backup
+    #     mkdir /etc/yum.repos.d
+    #     wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.163.com/.help/CentOS6-Base-163.repo
+    # fi
+    # if [ $RELEASEVER == 7 ];then
+    #     echo -e "\033[32m 这个是Centos7系统 \033[0m"
+    #     mv -f /etc/yum.repos.d /etc/yum.repos.d_backup
+    #     mkdir /etc/yum.repos.d
+    #     wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.163.com/.help/CentOS7-Base-163.repo
+    # fi
     # yum clean all
+
     yum makecache
-    yum -y install vim wget telnet bind-utils epel-release rsync bc lsof traceroute strace net-snmp lrzsz zip xz unzip vnstat iotop iftop net-tools openssh-clients gcc gcc-c++ make cmake libxml2-devel openssl-devel curl curl-devel sudo ntp ntpdate ncurses-devel autoconf automake zlib-devel python-devel iptables-services iptables psmisc pcre*
+    yum -y install vim wget telnet bind-utils epel-release rsync bc lsof traceroute strace net-snmp lrzsz zip xz unzip vnstat iotop iftop net-tools openssh-clients gcc gcc-c++ make cmake libxml2-devel openssl-devel curl curl-devel sudo ntp ntpdate ncurses-devel autoconf automake zlib-devel python-devel iptables-services iptables psmisc pcre* bash-completion
 }
 
 #firewalld
-iptables_config(){
+function iptables_config(){
     if [ $RELEASEVER == 6 ];then
         /etc/init.d/iptables save
         /etc/init.d/iptables stop
@@ -116,21 +103,33 @@ iptables_config(){
 }
 
 #system config
-system_config(){
+function system_config(){
     sed -i "s/SELINUX=enforcing/SELINUX=disabled/g" /etc/selinux/config
     sed -i "s/SELINUXTYPE=targeted/SELINUXTYPE=disabled/g" /etc/selinux/config    
     setenforce 0
+}
+
+#服务器时区和时间同步
+function set_config_ntp(){
+    #手动做一次时间同步
+    /sbin/ntpdate ntp.aliyun.com && /sbin/hwclock -w
+
+    # 配置时间同步定时任务
+    if [ "`cat /var/spool/cron/root | grep ntpdate`" = "" ]; then
+        echo "*/10 * * * * /sbin/ntpdate ntp.aliyun.com >/dev/null 2>&1" >> /var/spool/cron/root
+    fi
 
     # 设置上海时区
-    /bin/cp -f /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+    rm -rf /etc/localtime
+    timedatectl set-timezone Asia/Shanghai
+    ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
     # 设置为东京时区
     # ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
 }
 
 #set ulimit
-ulimit_config(){
-
+function ulimit_config(){
     tag1=`grep  "ulimit -SHn" /etc/rc.local`
 
     if [ $? -eq 0 ]
@@ -241,11 +240,11 @@ cat > /etc/security/limits.d/def.conf << EOF
 EOF
 
 #修复MTU太大了，造成了丢包问题
-echo "1460" > /sys/class/net/eth0/mtu
+echo "1480" > /sys/class/net/eth0/mtu
 }
 
 #add user
-add_user(){
+function add_user(){
     useradd www
     echo "GoodLuck!@#2022"|passwd --stdin www
     mkdir -p /home/www/.ssh/
@@ -257,10 +256,31 @@ add_user(){
     echo_color green "add user www OK!!"
 }
 
+#删除无效用户和用户组
+function set_config_user(){
+    # 删除无效用户
+    userdel adm
+    userdel lp
+    userdel shutdown
+    userdel operator
+    userdel games
+    userdel uucp
+    # 删除无效用户组
+    groupdel adm
+    groupdel lp
+    groupdel games
+}
+
+function set_config_network(){
+    #修改网卡名称为统一为传统方式命名eth*
+    sed -ri '/CMDLINE/s#(.*)"#\1 net.ifnames=0 biosdevname=0"#' /etc/default/grub
+    grub2-mkconfig -o /etc/grub2.cfg
+}
+
 #set sshd
-ssh_config(){
+function ssh_config(){
     mv -f /etc/ssh/sshd_config /etc/ssh/sshd_config_$$
-    inner_ip=`/sbin/ifconfig -a|grep inet|grep -v 127.0.0.1|grep -v inet6|awk '{print $2}'|tr -d "addr:"|head -n1`
+    inner_ip=$(`which ip` addr | grep inet | egrep -v '(127.0.0.1|inet6|docker)' | awk '{print $2}' | tr -d "addr:" | head -n 1 | cut -d / -f1)
     cat >/etc/ssh/sshd_config<<EOF
 ListenAddress ${inner_ip}:22
 ListenAddress 0.0.0.0:33389
@@ -298,7 +318,7 @@ EOF
     fi
 }
 
-ipv6_config(){
+function ipv6_config(){
     cat > /etc/modprobe.d/ipv6.conf << EOFI
 #
 #
@@ -323,7 +343,7 @@ sysctl -w 'fs.nr_open=2000000' > /dev/null
 sysctl -w 'fs.file-max=2100000' > /dev/null
 
 #set sysctl
-sysctl_config(){
+function sysctl_config(){
     cp /etc/sysctl.conf /etc/sysctl.conf.$$
     cat > /etc/sysctl.conf << \EOF
 net.ipv4.ip_forward = 1
@@ -373,7 +393,7 @@ EOF
     echo_color green "sysctl set OK!!"
 }
 
-system_bash(){
+function system_bash(){
     #修改Bash提示符字符串
     tmp_profile="/tmp/tmp_profile_$$"
     cat /etc/profile|grep -v "PS1" > $tmp_profile
@@ -384,7 +404,7 @@ system_bash(){
 }
 
 #audit_log
-audit_log(){
+function audit_log(){
     mkdir -pv /var/log/shell_audit
     touch /var/log/shell_audit/audit.log
 
@@ -424,13 +444,16 @@ audit_log(){
 EOF
 }
 
-main(){
+function main(){
     initialization_check
     yum_config
     iptables_config
     system_config
+    set_config_ntp
     ulimit_config
     add_user
+    set_config_user
+    set_config_network
     ssh_config
     ipv6_config
     sysctl_config
