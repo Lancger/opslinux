@@ -457,7 +457,7 @@ function main(){
     ssh_config
     ipv6_config
     sysctl_config
-    #audit_log
+    audit_log
     system_bash 
 }
 main
