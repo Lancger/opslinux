@@ -453,7 +453,7 @@ function main(){
     ulimit_config
     add_user
     set_config_user
-    set_config_network
+    #set_config_network
     ssh_config
     ipv6_config
     sysctl_config
