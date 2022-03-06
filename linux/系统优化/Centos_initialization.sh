@@ -298,6 +298,7 @@ ChallengeResponseAuthentication no
 GSSAPIAuthentication no
 GSSAPICleanupCredentials no
 ClientAliveInterval 60
+ClientAliveCountMax 10
 UsePAM yes
 X11Forwarding yes
 UseDNS no
