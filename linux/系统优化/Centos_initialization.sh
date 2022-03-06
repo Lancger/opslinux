@@ -405,13 +405,13 @@ function system_bash(){
 
 #audit_log
 function audit_log(){
-    mkdir -pv /var/log/shell_audit
-    touch /var/log/shell_audit/audit.log
+    mkdir -pv /var/log/.shell_audit
+    touch /var/log/.shell_audit/audit.log
 
-    chown nobody:nobody /var/log/shell_audit/audit.log
-    chmod 002 /var/log/shell_audit/audit.log
+    chown nobody:nobody /var/log/.shell_audit/audit.log
+    chmod 002 /var/log/.shell_audit/audit.log
 
-    chattr +a /var/log/shell_audit/audit.log
+    chattr +a /var/log/.shell_audit/audit.log
 
     tag1=`grep  "source /etc/history_conf" /etc/profile`
 
@@ -424,21 +424,21 @@ function audit_log(){
     fi
 
     cat >/etc/logrotate.d/shell_audit<<EOF
-/var/log/shell_audit/audit.log { 
+/var/log/.shell_audit/audit.log { 
     weekly  
     missingok 
     dateext 
     rotate 100
     sharedscripts 
     prerotate 
-    /usr/bin/chattr -a /var/log/shell_audit/audit.log 
+    /usr/bin/chattr -a /var/log/.shell_audit/audit.log 
     endscript 
     sharedscripts 
     postrotate 
-      /bin/touch /var/log/shell_audit/audit.log
-      /bin/chmod 002 /var/log/shell_audit/audit.log
-      /bin/chown nobody:nobody /var/log/shell_audit/audit.log
-      /usr/bin/chattr +a /var/log/shell_audit/audit.log
+      /bin/touch /var/log/.shell_audit/audit.log
+      /bin/chmod 002 /var/log/.shell_audit/audit.log
+      /bin/chown nobody:nobody /var/log/.shell_audit/audit.log
+      /usr/bin/chattr +a /var/log/.shell_audit/audit.log
     endscript 
 }
 EOF
