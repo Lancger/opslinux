@@ -14,7 +14,7 @@ EOF
 # 二、ftp被动模式配置
 ```
 cat > /etc/vsftpd/vsftpd.conf << \EOF
-anonymous_enable=YES
+anonymous_enable=NO  #NO表示关闭匿名用户
 chroot_local_user=YES
 local_root=/data0/ftpfile 
 local_enable=YES
