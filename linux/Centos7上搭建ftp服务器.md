@@ -15,6 +15,7 @@ EOF
 ```
 cat > /etc/vsftpd/vsftpd.conf << \EOF
 anonymous_enable=YES
+chroot_local_user=YES
 local_root=/data0/ftpfile 
 local_enable=YES
 write_enable=YES
