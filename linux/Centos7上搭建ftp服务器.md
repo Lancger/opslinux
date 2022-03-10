@@ -14,8 +14,9 @@ EOF
 # 二、ftp被动模式配置
 ```
 cat > /etc/vsftpd/vsftpd.conf << \EOF
-anonymous_enable=NO  #NO表示关闭匿名用户
-chroot_local_user=YES
+#NO表示关闭匿名用户
+anonymous_enable=NO
+#设置用户登录ftp所进入的目录
 local_root=/data0/ftpfile 
 local_enable=YES
 write_enable=YES
@@ -34,7 +35,7 @@ listen_port=21
 pasv_enable=YES
 pasv_min_port=10000
 pasv_max_port=20000
-pasv_address=11.106.22.215
+pasv_address=12.13.43.97
 pasv_addr_resolve=YES
 reverse_lookup_enable=NO
 pasv_promiscuous=YES
