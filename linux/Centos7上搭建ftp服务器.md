@@ -40,12 +40,21 @@ reverse_lookup_enable=NO
 pasv_promiscuous=YES
 EOF
 
-
 systemctl start vsftpd.service
 systemctl stop vsftpd.service
 systemctl restart vsftpd.service
 systemctl status  vsftpd.service
 ```
+
+问题
+
+1、解决服务器发回了不可路由的地址。使用服务器地址代替的问题
+
+```bash
+#需要加入外部ip，否则被动模式会失败
+pasv_address=39.96.38.179
+```
+
 
 # 三、ftp主动模式配置
 ```
