@@ -182,6 +182,8 @@ server {
 ```
 参考资料：
 
+https://linux.cn/article-6746-1.html  如何在命令行中使用 ftp 命令上传和下载文件
+
 https://www.cnblogs.com/tdalcn/p/6940147.html  
 
 https://www.jianshu.com/p/72a35e14c6bb
