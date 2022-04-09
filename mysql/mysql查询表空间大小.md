@@ -17,3 +17,7 @@ mysql> SELECT table_name AS "Tables", round(((data_length + index_length) / 1024
 TRUNCATE TABLE  t_event_log_07; 
 ```
 
+
+https://codeantenna.com/a/LDEfzyehZM  MySQL——查询某个表占用的空间大小以及表的数据量
+
+https://blog.csdn.net/sageyin/article/details/115702013  Mysql：查看Mysql表占用的空间大小
