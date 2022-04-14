@@ -383,8 +383,8 @@ vm.overcommit_memory = 1
 vm.dirty_background_ratio = 5
 vm.dirty_ratio = 10
 vm.max_map_count = 262144
-net.bridge.bridge-nf-call-ip6tables = 1
-net.bridge.bridge-nf-call-iptables = 1
+#net.bridge.bridge-nf-call-ip6tables = 1
+#net.bridge.bridge-nf-call-iptables = 1
 fs.nr_open = 2000000
 fs.file-max = 2100000
 EOF
