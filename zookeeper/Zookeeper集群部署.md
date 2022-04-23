@@ -37,6 +37,7 @@ syncLimit=5
 dataDir=/data0/zookeeper/zkdata
 dataLogDir=/data0/zookeeper/zkdatalog
 clientPort=2181
+4lw.commands.whitelist=*
 server.1=172.18.8.24:3181:4181
 server.2=172.18.8.25:3181:4181
 server.3=172.18.8.26:3181:4181
