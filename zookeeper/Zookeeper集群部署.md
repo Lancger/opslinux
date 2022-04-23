@@ -13,7 +13,7 @@
 ```
 export VER=3.5.6
 cd /usr/local/src/
-wget https://archive.apache.org/dist/zookeeper/zookeeper-${VER}/zookeeper-${VER}.tar.gz
+wget https://archive.apache.org/dist/zookeeper/zookeeper-${VER}/apache-zookeeper-${VER}.tar.gz
 ```
 
 # 三、安装zookeeper
