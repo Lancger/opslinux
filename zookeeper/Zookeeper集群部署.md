@@ -25,8 +25,8 @@ mkdir zkdata
 mkdir zkdatalog
 
 cd /usr/local/src/
-tar zxvf apache-zookeeper-${VER}.tar.gz
-mv apache-zookeeper-${VER}/ /usr/local/zookeeper
+tar zxvf apache-zookeeper-${VER}-bin.tar.gz
+mv apache-zookeeper-${VER}-bin/ /usr/local/zookeeper
 cp -rf /usr/local/zookeeper/conf/zoo_sample.cfg /usr/local/zookeeper/conf/zoo.cfg
 
 #zoo.cfg配置文件
