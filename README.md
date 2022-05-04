@@ -266,3 +266,10 @@ https://blog.csdn.net/zhaoyanjun6/article/details/72284974 GitHub 实现多人�
 https://www.thinbug.com/q/41863484  清除git本地缓存
 
 https://blog.csdn.net/csj50/article/details/112917855  github取消密码验证，改成token验证
+
+
+## Stargazers over time
+
+[![Stargazers over time](https://starchart.cc/Lancger/opslinux.svg)](https://starchart.cc/Lancger/opslinux)
+
+
