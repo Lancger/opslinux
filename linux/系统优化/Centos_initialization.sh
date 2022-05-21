@@ -141,17 +141,17 @@ function ulimit_config(){
         echo "ulimit -SHn 204800" >> /etc/rc.local
     fi
 
-    echo_color green "limit memory"
-    mem=`free |sed -n '2p'|awk '{print $2}'`
-    rem=`echo "$mem * 0.8"|bc|awk '{print int($0)}'`
-    tag2=`grep  "ulimit -m" /etc/profile`
-    if [ $? -eq 0 ]
-    then
-        echo_color red "内存限制参数存在替换"
-        sed -i 's/^ulimit -m.*/ulimit -m '"$rem"'/g' /etc/profile
-    else
-        echo "ulimit -m $rem" >> /etc/profile
-    fi
+    # echo_color green "limit memory"
+    # mem=`free |sed -n '2p'|awk '{print $2}'`
+    # rem=`echo "$mem * 0.8"|bc|awk '{print int($0)}'`
+    # tag2=`grep  "ulimit -m" /etc/profile`
+    # if [ $? -eq 0 ]
+    # then
+    #     echo_color red "内存限制参数存在替换"
+    #     sed -i 's/^ulimit -m.*/ulimit -m '"$rem"'/g' /etc/profile
+    # else
+    #     echo "ulimit -m $rem" >> /etc/profile
+    # fi
 
     sed -i "/^ulimit -SHn.*/d" /etc/profile
     echo "ulimit -SHn 204800" >> /etc/profile
