@@ -121,6 +121,14 @@ git push origin master
 3、重新push 提交 输入用户名密码。
 
 4、下次就可以直接提交了
+
+git 重置账号和密码
+git config --system --unset credential.helper
+
+// 如果需要更大的范围
+git config --global --unset credential.helper
+
+https://blog.csdn.net/weixin_34403976/article/details/104652347  git 重置账号和密码
 ```
 
 ## 四、Git更新远程仓库代码到本地 git fetch
