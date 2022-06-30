@@ -307,6 +307,7 @@ AcceptEnv LC_PAPER LC_NAME LC_ADDRESS LC_TELEPHONE LC_MEASUREMENT
 AcceptEnv LC_IDENTIFICATION LC_ALL LANGUAGE
 AcceptEnv XMODIFIERS
 Subsystem       sftp    /usr/libexec/openssh/sftp-server
+GatewayPorts yes
 EOF
     echo_color green "#######################################################"
     if [ $RELEASEVER == 6 ];then
