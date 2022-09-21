@@ -372,13 +372,13 @@ EOF
 
 function system_bash(){
     cat <<'EOF'>/etc/profile.d/sh.local
-export HISTSIZE=10
+export HISTSIZE=20
 export HISTFILESIZE=200000
 ulimit -SHn 204800
 source /etc/.history_conf
 PS1="\[\e]0;\a\]\n\[\e[1;32m\]\[\e[1;33m\]\H\[\e[1;35m\]<\$(date +\"%Y-%m-%d %T\")> \[\e[32m\]\w\[\e[0m\]\n\u>\\$ "
 EOF
-    source /etc/profile.d/sh.local
+    source /etc/profile
 }
 
 #audit_log
