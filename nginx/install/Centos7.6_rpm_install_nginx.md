@@ -43,3 +43,7 @@ ls /var/log/nginx/* -lh
 #添加定时任务
 59 23 * * * /usr/sbin/logrotate -vf /etc/logrotate.d/nginx
 ```
+
+# 参考资料：
+
+https://stackoverflow.com/questions/27849331/how-to-set-nginx-max-open-files
