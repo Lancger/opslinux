@@ -1,0 +1,17 @@
+[Unit]
+Description=Read-sch Update Data
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/share/info/tc-speed-limit start
+ExecStop=/usr/local/share/info/tc-speed-limit stop
+ExecReload=/usr/local/share/info/tc-speed-limit restart
+User=root
+Group=root
+RemainAfterExit=yes
+StandardOutput=null
+StandardError=null
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,9 @@
+[Unit]
+Description=Restart rhel-sch-control.service every minute
+
+[Timer]
+OnCalendar=*-*-* 02:00:00
+Persistent=true
+
+[Install]
+WantedBy=timers.target

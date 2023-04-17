@@ -1,0 +1,9 @@
+[Unit]
+Description=Restart rhel-sch-control.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/systemctl restart rhel-sch-control.service
+
+[Install]
+WantedBy=multi-user.target
