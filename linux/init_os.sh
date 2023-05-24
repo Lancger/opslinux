@@ -227,7 +227,7 @@ echo "1480" > /sys/class/net/eth0/mtu
 #add user
 function add_user(){
     useradd www
-    echo 'GoodLuck!@#2022'|passwd --stdin www
+    echo 'GoodLuck!@#2023'|passwd --stdin www
     mkdir -p /home/www/.ssh/
     chmod 700 /home/www/.ssh/
     echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCyrgnAdfukV1xAllnl/IEFh/T9X4BkRlhSNMarwZIhZJ8S9euxz4PciAZTVqZ7zudcaPxjZGhtfa6ak5DHPW5GBr/DJ8Zh9Vk9p/c19szAUw04Go/ZuwaaSjIgdJwctfxnbBRVMSqMZFozc97MSh6yWoxLA3k2CWzv0yl9sjs3uUcYqe67GcFZaNQiomSGEKeBCxxtKQZyUEV2F7ufcoDIgcm9m2DH//DSflLd8QAyOj4Y4vj5Qcr8lThV9pWhjYq/sD1spxGbplz7+NQJeV8HEC5AzA1jZXy+pTFyV6DEOhPnn4V+GWUiDF39S8ky1wx0UpzpGxSRpTXhu1f9126B" > /home/www/.ssh/authorized_keys
@@ -265,7 +265,6 @@ HostKey /etc/ssh/ssh_host_ed25519_key
 SyslogFacility AUTHPRIV
 MaxAuthTries 10
 PermitRootLogin yes    #yes表示允许，no表示禁止，root登录（默认是允许）
-RSAAuthentication yes #通过RSA认证
 PubkeyAuthentication yes
 AuthorizedKeysFile      %h/.ssh/authorized_keys
 PasswordAuthentication yes #yes表示允许，no表示禁止，密码方式验证
