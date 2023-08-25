@@ -266,7 +266,7 @@ SyslogFacility AUTHPRIV
 MaxAuthTries 10
 PermitRootLogin yes    #yes表示允许，no表示禁止，root登录（默认是允许）
 PubkeyAuthentication yes
-AuthorizedKeysFile      %h/.ssh/authorized_keys
+AuthorizedKeysFile .ssh/authorized_keys
 PasswordAuthentication yes #yes表示允许，no表示禁止，密码方式验证
 ChallengeResponseAuthentication no
 GSSAPIAuthentication no
