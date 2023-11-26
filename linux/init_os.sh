@@ -257,30 +257,26 @@ function ssh_config(){
     mv -f /etc/ssh/sshd_config /etc/ssh/sshd_config_$$
     inner_ip=$(`which ip` addr | grep inet | egrep -v '(127.0.0.1|inet6|docker)' | awk '{print $2}' | tr -d "addr:" | head -n 1 | cut -d / -f1)
     cat >/etc/ssh/sshd_config<<EOF
-ListenAddress ${inner_ip}:22
-ListenAddress 0.0.0.0:33389
 HostKey /etc/ssh/ssh_host_rsa_key
 HostKey /etc/ssh/ssh_host_ecdsa_key
 HostKey /etc/ssh/ssh_host_ed25519_key
-SyslogFacility AUTHPRIV
-MaxAuthTries 10
-PermitRootLogin yes    #yes表示允许，no表示禁止，root登录（默认是允许）
-PubkeyAuthentication yes
 AuthorizedKeysFile .ssh/authorized_keys
-PasswordAuthentication yes #yes表示允许，no表示禁止，密码方式验证
 ChallengeResponseAuthentication no
-GSSAPIAuthentication no
+GSSAPIAuthentication yes
 GSSAPICleanupCredentials no
-ClientAliveInterval 60
-ClientAliveCountMax 10
 UsePAM yes
 X11Forwarding yes
-UseDNS no
 AcceptEnv LANG LC_CTYPE LC_NUMERIC LC_TIME LC_COLLATE LC_MONETARY LC_MESSAGES
 AcceptEnv LC_PAPER LC_NAME LC_ADDRESS LC_TELEPHONE LC_MEASUREMENT
 AcceptEnv LC_IDENTIFICATION LC_ALL LANGUAGE
 AcceptEnv XMODIFIERS
-Subsystem       sftp    /usr/libexec/openssh/sftp-server
+Subsystem sftp  /usr/libexec/openssh/sftp-server
+UseDNS no
+AddressFamily inet
+SyslogFacility AUTHPRIV
+MaxAuthTries 10
+PasswordAuthentication yes # yes表示允许，no表示禁止，密码方式验证
+PermitRootLogin yes        # yes表示允许，no表示禁止，root登录（默认是允许）
 GatewayPorts yes
 EOF
     echo_color green "#######################################################"
