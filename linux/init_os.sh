@@ -94,6 +94,18 @@ function system_config(){
     sed -i "s/SELINUX=enforcing/SELINUX=disabled/g" /etc/selinux/config
     sed -i "s/SELINUXTYPE=targeted/SELINUXTYPE=disabled/g" /etc/selinux/config    
     setenforce 0
+
+    # 设置全局进程限制
+    echo_color green "Configuring Systemd global limits"
+    
+    # 修改系统服务默认文件描述符限制
+    sudo sed -i '/^#*DefaultLimitNOFILE/s/^#*DefaultLimitNOFILE=.*/DefaultLimitNOFILE=655360/' /etc/systemd/system.conf
+    # 修改系统服务默认进程数限制
+    sudo sed -i '/^#*DefaultLimitNPROC/s/^#*DefaultLimitNPROC=.*/DefaultLimitNPROC=655360/' /etc/systemd/system.conf
+    
+    # 重新加载Systemd配置使改动生效
+    sudo systemctl daemon-reexec
+    echo_color green "Systemd limits configuration completed"
 }
 
 #服务器时区和时间同步
