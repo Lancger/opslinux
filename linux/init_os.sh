@@ -202,10 +202,10 @@ function ulimit_config(){
 #ftp             hard    nproc           0
 #@student        -       maxlogins       4
 # End of file
-* soft           nofile           204800
-* hard           nofile           204800
-* soft           nproc            204800
-* hard           nproc            204800
+* soft           nofile           655350
+* hard           nofile           655350
+* soft           nproc            655350
+* hard           nproc            655350
 EOF
 
 #  *         代表针对所有用户   
@@ -214,13 +214,13 @@ EOF
 # soft nofile表示软限制，hard nofile表示硬限制，软限制要小于等于硬限制。
 
 cat > /etc/security/limits.d/90-nproc.conf << EOF
-* soft nproc 204800
-* hard nproc 204800
+* soft nproc 655350
+* hard nproc 655350
 EOF
 
 cat > /etc/security/limits.d/def.conf << EOF
-* soft nproc 204800
-* hard nproc 204800
+* soft nproc 655350
+* hard nproc 655350
 EOF
 
 #修复MTU太大了，造成了丢包问题
