@@ -122,10 +122,10 @@ function ulimit_config(){
     if [ $? -eq 0 ]
     then
         echo_color red "ulimit参数存在替换"
-        sed -i 's/^ulimit -SHn.*/ulimit -SHn 204800/g' /etc/rc.local
-        # sed -i "/^ulimit -SHn/c ulimit -SHn 204800" /etc/rc.local    # c 匹配行替换
+        sed -i 's/^ulimit -SHn.*/ulimit -SHn 655350/g' /etc/rc.local
+        # sed -i "/^ulimit -SHn/c ulimit -SHn 655350" /etc/rc.local    # c 匹配行替换
     else
-        echo "ulimit -SHn 204800" >> /etc/rc.local
+        echo "ulimit -SHn 655350" >> /etc/rc.local
     fi
 
     # echo_color green "limit memory"
